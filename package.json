@@ -1,0 +1,19 @@
+{
+  "name": "partydox-react-front-end",
+  "version": "1.0.0",
+  "description": "partydox front end application built with react",
+  "main": "index.js",
+  "scripts": {
+    "test": "react-scripts test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjogles/partydox-react-front-end.git"
+  },
+  "author": "Jackson Ogles",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cjogles/partydox-react-front-end/issues"
+  },
+  "homepage": "https://github.com/cjogles/partydox-react-front-end#readme"
+}
