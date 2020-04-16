@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
-function Register() {
+function Register(props) {
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -13,14 +14,18 @@ function Register() {
   };
 
   const handleSubmit = (event) => {
-    alert(
-      "A username and password and friend name was submitted: " +
-        state.username +
-        " " +
-        state.password +
-        " " +
-        state.friend_name
-    );
+    axios.post('https://partydox.herokuapp.com/register', {
+        username: state.username,
+        password: state.password,
+        friend_name: state.friend_name
+      })
+      .then(function (res) {
+            localStorage.setItem('token', res.data.token)
+            props.history.push('/dashboard')
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     event.preventDefault();
   };
 

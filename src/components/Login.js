@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
-function Login() {
+function Login(props) {
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -12,8 +13,17 @@ function Login() {
   };
 
   const handleSubmit = (event) => {
-    alert("A username and password was submitted: " + state.username + " " + state.password);
-    event.preventDefault();
+    axios.post('https://partydox.herokuapp.com/friends/login', {
+        username: state.username,
+        password: state.password
+      })
+      .then(function (res) {
+        localStorage.setItem('token', res.data.token)
+        props.history.push('/dashboard')
+      })
+      .catch(function (error) {
+        console.log(error);
+      });    event.preventDefault();
   };
 
   return (
