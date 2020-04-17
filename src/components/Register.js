@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Redirect } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { register } from '../01_actions/registerActions';
 
 function Register(props) {
   const [state, setState] = useState({
@@ -14,22 +16,19 @@ function Register(props) {
   };
 
   const handleSubmit = (event) => {
-    axios.post('https://partydox.herokuapp.com/register', {
-        username: state.username,
-        password: state.password,
-        friend_name: state.friend_name
-      })
-      .then(function (res) {
-            localStorage.setItem('token', res.data.token)
-            props.history.push('/dashboard')
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
     event.preventDefault();
+    props.register({
+      username: state.username,
+      password: state.password,
+      friend_name: state.friend_name
+    })
   };
 
   return (
+    <>
+
+    {props.isLoggedIn ? <Redirect push to="/dashboard" /> : null}
+
     <div className="login">
       <Link to="/">
         <h1>
@@ -73,7 +72,18 @@ function Register(props) {
         </form>
       </div>
     </div>
+    </>
   );
 }
 
-export default Register;
+const mapStateToProps = state => {
+  return {
+      isLoggedIn: state.isLoggedIn,
+      isError: state.isError,
+      error: state.error
+  }
+}
+
+export default connect(mapStateToProps, { register })(Register)
+
+// export default Register;

@@ -1,20 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import ScrollToTop from './components/ScrollToTop';
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from '';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from 'redux-thunk'
+import App from "./App";
+import ScrollToTop from './03_utils/ScrollToTop';
+import reducer from './02_reducers';
 
-const store = createStore(rootReducer)
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ScrollToTop>
-        <Provider store={store}>
+        <Provider store={createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))}>
           <App />
         </Provider>
       </ScrollToTop>
