@@ -1,33 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { register } from '../01_actions/registerActions';
+import { useHistory } from 'react-router-dom';
 
 function Register(props) {
+
+  const history = useHistory();
+
   const [state, setState] = useState({
     username: "",
     password: "",
     friend_name: "",
   });
 
-  const handleChange = (event) => {
+  const onChange = event => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const onSubmit = event => {
     event.preventDefault();
-    props.register({
-      username: state.username,
-      password: state.password,
-      friend_name: state.friend_name
-    })
+    props.register(state, props)
   };
 
   return (
     <>
-
-    {props.isLoggedIn ? <Redirect push to="/dashboard" /> : null}
 
     <div className="login">
       <Link to="/">
@@ -40,14 +38,14 @@ function Register(props) {
       </Link>
       <div>
         <h2>Register Here:</h2>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={onSubmit}>
           <label>
             Name:
             <input
               type="text"
               name="friend_name"
               value={state.friend_name}
-              onChange={(e) => handleChange(e)}
+              onChange={onChange}
             />
           </label>
           <label>
@@ -56,7 +54,7 @@ function Register(props) {
               type="text"
               name="username"
               value={state.username}
-              onChange={(e) => handleChange(e)}
+              onChange={onChange}
             />
           </label>
           <label>
@@ -65,7 +63,7 @@ function Register(props) {
               type="text"
               name="password"
               value={state.password}
-              onChange={(e) => handleChange(e)}
+              onChange={onChange}
             />
           </label>
           <input type="submit" value="Submit" />
@@ -78,12 +76,16 @@ function Register(props) {
 
 const mapStateToProps = state => {
   return {
+      isLoggingIn: state.isLoggingIn,
       isLoggedIn: state.isLoggedIn,
       isError: state.isError,
       error: state.error
   }
 }
 
-export default connect(mapStateToProps, { register })(Register)
+const mapDispatchToProps = { register }
 
-// export default Register;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Register)

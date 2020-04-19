@@ -28,16 +28,18 @@ const registerReducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          id: null,
+          id: action.payload.id,
           name: action.payload.friend_name,
           username: action.payload.username,
         },
+        isLoggingIn: false,
         isLoggedIn: true,
       };
     case a.REGISTER_FAIL:
         return {
             ...state,
             isLoggedIn: false,
+            isLoggingIn: false,
             isError: true,
             error: action.payload
         }
