@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Redirect } from 'react-router-dom';
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { register } from '../01_actions/registerActions';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 function Register(props) {
-
-  const history = useHistory();
 
   const [state, setState] = useState({
     username: "",
@@ -79,6 +77,7 @@ const mapStateToProps = state => {
       isLoggingIn: state.isLoggingIn,
       isLoggedIn: state.isLoggedIn,
       isError: state.isError,
+      status: state.status,
       error: state.error
   }
 }

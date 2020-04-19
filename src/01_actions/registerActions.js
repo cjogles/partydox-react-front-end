@@ -12,8 +12,6 @@ export const register = ( credentials, props ) => dispatch => {
     axios
       .post('https://partydox.herokuapp.com/friends/register', credentials)
         .then(res => {
-          console.log("register action/dispatch res", res);
-          console.log(props)
           localStorage.setItem("token", res.data.token)
           dispatch({ type: REGISTER_SUCCESS, payload: res.data })
           props.history.push('/dashboard')

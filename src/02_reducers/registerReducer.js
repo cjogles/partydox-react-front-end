@@ -3,17 +3,14 @@ import * as a from "../01_actions/registerActions";
 const initialState = {
   user: {
     id: null,
-    name: "name",
-    username: "username",
-    profilePic: "profilePic",
-    email: "email@email.com",
-    phone: "1-800-200-2000",
-    role: "user",
+    username: "",
+    name: ""
   },
   isLoggingIn: false,
   isLoggedIn: false,
+  status: "",
   isError: false,
-  error: "",
+  error: ""
 };
 
 const registerReducer = (state = initialState, action) => {
@@ -22,6 +19,7 @@ const registerReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: true,
+        status: action.payload
       };
     case a.REGISTER_SUCCESS:
       return {
@@ -29,8 +27,9 @@ const registerReducer = (state = initialState, action) => {
         user: {
           ...state.user,
           id: action.payload.id,
-          name: action.payload.friend_name,
           username: action.payload.username,
+          name: action.payload.friend_name,
+          status: `Welcome ${action.payload.friend_name}!`
         },
         isLoggingIn: false,
         isLoggedIn: true,
