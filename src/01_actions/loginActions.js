@@ -12,6 +12,7 @@ export const login = ( credentials, props ) => dispatch => {
     axios
       .post('https://partydox.herokuapp.com/friends/login', credentials)
         .then(res => {
+          console.log(res)
           dispatch({ type: LOGIN_SUCCESS, payload: res.data })
           props.history.push('/dashboard')
           })

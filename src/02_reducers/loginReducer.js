@@ -33,11 +33,11 @@ const loginReducer = (state = initialState, action) => {
           ...state.user,
           id: action.payload.id,
           username: action.payload.username,
-          name: action.payload.friend_name,
+          name: action.payload.name,
           profile_pic: action.payload.friend_profile_pic,
           email: action.payload.friend_email,
           phone: action.payload.friend_phone,
-          status: `Welcome ${action.payload.friend_name}!`
+          status: `Welcome ${action.payload.name}! 🎉`
         },
         isLoggingIn: false,
         isLoggedIn: true,
