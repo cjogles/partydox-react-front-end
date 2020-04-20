@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { register } from '../01_actions/registerActions';
+import { login } from '../01_actions/loginActions';
 // import { useHistory } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ function Login(props) {
 
   const onSubmit = event => {
     event.preventDefault();
-    props.register(state, props)
+    props.login(state, props)
   };
 
   return (
@@ -72,7 +72,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = { register }
+const mapDispatchToProps = { login }
 
 export default connect(
   mapStateToProps,
