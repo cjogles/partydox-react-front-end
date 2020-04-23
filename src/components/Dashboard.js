@@ -1,13 +1,21 @@
 import React from "react";
+// import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-function Dashboard() {
-
+function Dashboard(props) {
   return (
-    <div className="dashboard">
-      <p>hello from the dashboard</p>
-      <p>Gonna be great.</p>
-    </div>
-  );
+    <>
+      <div>{props.id}</div>
+    </>
+  )
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    id: state.auth.user.id,
+  };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
