@@ -1,72 +1,88 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import Nav from "./Nav";
+import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { login } from "../01_actions/authActions";
+import { login } from "../actions/signUpActions";
 import { Redirect } from "react-router-dom";
 
-function Login(props) {
-  const [state, setState] = useState({
-    username: "",
-    password: "",
-  });
-
-  const onChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.value });
-  };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    props.login(state, props);
-  };
-
-  return (
-    <>
-      {props.isSignedIn ? <Redirect push to="/dashboard" /> : null}
-
-      <div className="login">
-        <Link to="/">
-          <h1>
-            Party Dox! {props.isLoggedIn}
-            <span role="img" aria-label="tada">
-              🎉
-            </span>
-          </h1>{" "}
-        </Link>
+class Login extends React.Component {
+  renderError = ({ error, touched }) => {
+    if (touched && error) {
+      return (
         <div>
-          <h2>Login Here:</h2>
-          <form onSubmit={onSubmit}>
-            <label>
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={state.username}
-                onChange={onChange}
-              />
-            </label>
-            <label>
-              Password:
-              <input
-                type="text"
-                name="password"
-                value={state.password}
-                onChange={onChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
+          <div>{error}</div>
         </div>
+      );
+    }
+  };
+
+  renderInput = ({ input, label, meta }) => {
+    return (
+      <div className="field">
+        <label>{label}</label>
+        <input {...input} autoComplete="off" />
+        {this.renderError(meta)}
       </div>
-    </>
-  );
+    );
+  };
+
+  onSubmit = (credentials) => {
+    this.props.login(credentials, this.props);
+  };
+
+  render() {
+    return (
+      <>
+
+        {this.props.loggedIn && <Redirect push to='/dashboard'/>}
+
+        <Nav />
+        <div>Login Form</div>
+        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+          <Field
+            name="username"
+            component={this.renderInput}
+            label="Enter Username"
+          />
+          <Field
+            name="password"
+            component={this.renderInput}
+            label="Enter Password"
+          />
+          <button>Submit</button>
+        </form>
+        {/* <button onClick={() => console.log(this.props.store)}>
+          TEST STORE
+        </button> */}
+      </>
+    );
+  }
 }
+
+const validate = (formValues) => {
+  const errors = {};
+
+  if (!formValues.username) {
+    errors.username = "You must enter your username.";
+  }
+  if (!formValues.password) {
+    errors.password = "You must enter your password.";
+  }
+
+  return errors;
+};
+
+const formWrapped = reduxForm({
+  form: "login",
+  validate: validate,
+})(Login);
 
 const mapStateToProps = (state) => {
   return {
-    isSignedIn: state.auth.user.isSignedIn,
+    loggedIn: state.signUpReducer.loggedIn
   };
 };
 
 const mapDispatchToProps = { login };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(formWrapped);

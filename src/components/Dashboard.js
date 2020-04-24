@@ -1,21 +1,29 @@
 import React from "react";
-// import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import NavFriend from './friends/NavFriend';
+import { getFriend } from '../actions/friendActions';
+import { connect } from 'react-redux';
 
 function Dashboard(props) {
+
   return (
     <>
-      <div>{props.id}</div>
+      <NavFriend friend={props.name} />
+      <div>welcome to dashboard</div>
+      <p>{props.id}</p>
+      <p>{props.name}</p>
+      <p>{props.username}</p>
     </>
-  )
+  );
 }
 
 const mapStateToProps = (state) => {
   return {
-    id: state.auth.user.id,
-  };
-};
+    id: state.signUpReducer.friend.id,
+    name: state.signUpReducer.friend.name,
+    username: state.signUpReducer.friend.username
+  }
+}
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

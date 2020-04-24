@@ -7,8 +7,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from 'redux-thunk'
 import App from "./App";
-import ScrollToTop from './03_utils/ScrollToTop';
-import reducer from './02_reducers';
+import ScrollToTop from './utils/ScrollToTop';
+import reducer from './reducers';
 
 
 ReactDOM.render(
