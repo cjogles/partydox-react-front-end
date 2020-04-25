@@ -2,6 +2,8 @@ import axios from "axios";
 import * as t from "./types";
 
 export const login = (credentials, props) => (dispatch) => {
+  dispatch({ type: t.LOGIN_START, payload: "Loading Your Partydox Dashboard..."})
+  props.history.push("/dashboard");
   axios
     .post("https://partydox.herokuapp.com/friends/login", credentials)
     .then((res) => {
@@ -10,7 +12,6 @@ export const login = (credentials, props) => (dispatch) => {
       localStorage.setItem("username", res.data.username);
       localStorage.setItem("name", res.data.name);
       dispatch({ type: t.LOGIN_SUCCESS, payload: res.data });
-      props.history.push("/dashboard");
     })
     .catch((err) => {
       console.log(err);

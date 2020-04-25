@@ -1,13 +1,26 @@
-import React from 'react';
+import React from "react";
 
 function About() {
   return (
     <div className="about">
       <h2>Collaborate with friends to have the best trip ever!</h2>
-      <p>Prepare activities and collaborate for an optimal trip.</p>
-      <p>Compare flights to the trip destination.</p>
-      <p>Compare parking spots at each specified activity.</p>
-      <p>Create shopping lists and keep track of who bought what item and how much it cost.</p>
+      <div className="aboutsection">
+        <div className="about1">
+          <ul>
+            <li>Prepare activities and collaborate for an optimal trip.</li>
+            <li>Compare flights for best price and flight time.</li>
+          </ul>
+        </div>
+        <div className="about2">
+          <ul>
+            <li>Keep track of parking spots for each trip activity.</li>
+            <li>
+              Create shopping lists and keep track of who bought what item and
+              how much it cost.
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

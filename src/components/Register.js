@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "./Nav";
+import FooterSignUp from './FooterSignUp';
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { register } from "../actions/signUpActions";
@@ -10,7 +11,7 @@ class Register extends React.Component {
     if (touched && error) {
       return (
         <div>
-          <div>{error}</div>
+          <div className="error">{error}</div>
         </div>
       );
     }
@@ -33,32 +34,38 @@ class Register extends React.Component {
   render() {
     return (
       <>
-
-        {this.props.loggedIn && <Redirect push to='/dashboard'/>}
+        {this.props.loggedIn && <Redirect push to="/dashboard" />}
 
         <Nav />
-        <div>Register Form</div>
-        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-          <Field
-            name="friend_name"
-            component={this.renderInput}
-            label="Enter Name"
-          />
-          <Field
-            name="username"
-            component={this.renderInput}
-            label="Enter Username"
-          />
-          <Field
-            name="password"
-            component={this.renderInput}
-            label="Enter Password"
-          />
-          <button>Submit</button>
-        </form>
-        {/* <button onClick={() => console.log(this.props.store)}>
-          TEST STORE
-        </button> */}
+        <div className="loginWrapper">
+          <div className="login">
+            <div className="logintitle">
+              <span role="img" aria-label="partyface">
+                🥳
+              </span>
+              Sign Up Here
+            </div>
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+              <Field
+                name="friend_name"
+                component={this.renderInput}
+                label="Name"
+              />
+              <Field
+                name="username"
+                component={this.renderInput}
+                label="Username"
+              />
+              <Field
+                name="password"
+                component={this.renderInput}
+                label="Password"
+              />
+              <button>Submit</button>
+            </form>
+          </div>
+        </div>
+        <FooterSignUp/>
       </>
     );
   }
@@ -87,7 +94,7 @@ const formWrapped = reduxForm({
 
 const mapStateToProps = (state) => {
   return {
-    loggedIn: state.signUpReducer.loggedIn
+    loggedIn: state.signUpReducer.loggedIn,
   };
 };
 
