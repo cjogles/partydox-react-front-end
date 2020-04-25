@@ -16,12 +16,15 @@ function Dashboard(props) {
       {props.error && <div className="dasherror">{props.errorMessage}</div>}
       {props.loggedIn && (
         <>
-          <NavFriend friend={props.name} />
-          <div>
-            <div>welcome to dashboard</div>
-            <p>{props.id}</p>
-            <p>{props.name}</p>
-            <p>{props.username}</p>
+        <NavFriend friend={props.name} />
+          <div className='dash'>
+            
+            <div>
+              <div>welcome to dashboard</div>
+              <p>{props.id}</p>
+              <p>{props.name}</p>
+              <p>{props.username}</p>
+            </div>
           </div>
         </>
       )}

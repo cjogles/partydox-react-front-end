@@ -6,10 +6,21 @@ import { connect } from 'react-redux';
 function NavFriend(props) {
   return (
     <div className="nav">
-        <Link to='/'><h1>Party Dox! <span role='img' aria-label="tada">🎉</span></h1></Link>
-        <Link to='/profile'>
+      <div>
+        <Link to="/">
+          <h1>
+            Party Dox!{" "}
+            <span role="img" aria-label="tada">
+              🎉
+            </span>
+          </h1>
+        </Link>
+      </div>
+      <div>
+        <Link to="/profile">
           <h2>{props.name}</h2>
         </Link>
+      </div>
     </div>
   );
 }

@@ -312,7 +312,16 @@ html {
   font-size: 1rem;
 }
 div.loggingin {
+  overflow: hidden;
   margin: auto;
+  margin-top: 10rem;
+  padding: 5rem;
+  font-size: 3rem;
+}
+.dash {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 .footerSign {
   display: flex;
@@ -338,5 +347,30 @@ div.loggingin {
   padding: 2rem;
 }
 .footerSign p {
+  padding: 2rem;
+}
+.navFriend {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 4rem;
+  background-color: lightskyblue;
+  overflow: hidden;
+}
+.navFriend div :hover {
+  background-color: white;
+  color: black;
+  transition: 0.6s;
+  cursor: pointer;
+}
+.navFriend div a {
+  text-decoration: none;
+  color: black;
+}
+.navFriend div a h1 {
+  padding: 2rem;
+  font-size: 1.5rem;
+}
+.navFriend div a h2 {
   padding: 2rem;
 }
