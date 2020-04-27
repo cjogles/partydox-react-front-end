@@ -18,6 +18,7 @@ class Login extends React.Component {
   };
 
   renderInput = ({ input, label, meta }) => {
+    console.log("input props", input)
     return (
       <div className="field">
         <label>{label}</label>
