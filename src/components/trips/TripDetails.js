@@ -36,17 +36,17 @@ function TripDetails(props) {
           <p>Trip Notes: {trip.tripNotes}</p>
         </div>
         <div className="tripstuff2">
-          <Link to={{ pathname: "/activities", state: props.activities, }}>
-            Activities
+          <Link to={{ pathname: "/activities", state: { activities: props.activities }, }}>
+            Trip Activities
           </Link>
-          <Link to={{ pathname: "/parkingLots", state: props.parkingLots, }}>
-            Parking Lots
+          <Link to={{ pathname: "/parkingLots", state: { parkingLots: props.parkingLots }, }}>
+            Trip Parking Lots
           </Link>
-          <Link to={{ pathname: "/shoppingLists", state: props.shoppingLists, }}>
-            Shopping Lists
+          <Link to={{ pathname: "/shoppingLists", state: { shoppingLists: props.shoppingLists }, }}>
+            Trip Shopping Lists
           </Link>
-          <Link to={{ pathname: "/flights", state: props.flights, }}>
-            Flights
+          <Link to={{ pathname: "/flights", state: { flights: props.flights }, }}>
+            Trip Flights
           </Link>
         </div>
       </div>
