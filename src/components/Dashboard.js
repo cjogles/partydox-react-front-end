@@ -1,31 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import NavFriend from "./friends/NavFriend";
-import Trip from "./trips/Trip";
+import Trips from "./trips/Trips";
 import { connect } from "react-redux";
 import { getTrips } from "../actions/tripActions";
-import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 function Dashboard(props) {
-  const [trips, setTrips] = useState([]);
+  
   let id = localStorage.getItem("id");
-
   useEffect(() => {
-    let id = localStorage.getItem("id");
-    AxiosWithAuth()
-      .get(`/trips/user/${id}`)
-      .then((res) => {
-        console.log("res.data", res.data)
-        let tripList = res.data.map(trip => {
-          return trip;
-        })
-        console.log("tripList mapping", tripList)
-        setTrips([...tripList])
-        console.log("trip state", trips)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [props.loggingIn, props.error, props.id]);
+    props.getTrips();
+    console.log("useEffect has run")
+  }, [id]);
 
   return (
     <>
@@ -33,22 +18,13 @@ function Dashboard(props) {
         <div className="loggingin">{props.loggingInMessage}</div>
       )}
       {props.error && <div className="dasherror">{props.errorMessage}</div>}
+
       {props.loggedIn && (
         <>
           <NavFriend friend={props.name} />
-
           <div className="dash">
-            <h2>Your Trips</h2>
-            {/* {AxiosWithAuth()
-              .get(`/trips/user/${id}`)
-              .then((res) => {
-                let tripList = res.data.map(trip => {
-                  return trip;
-                <Trip></Trip>;
-              })
-              .catch((err) => {
-                console.log(err);
-              })} */}
+            <h2 className="dashH">Welcome to Your Dashboard!</h2>
+            <Trips trips={props.trips}/>
           </div>
         </>
       )}
@@ -58,15 +34,14 @@ function Dashboard(props) {
 
 const mapStateToProps = (state) => {
   return {
-    id: state.signUpReducer.friend.id,
     name: state.signUpReducer.friend.name,
-    username: state.signUpReducer.friend.username,
     errorMessage: state.signUpReducer.errorMessage,
     error: state.signUpReducer.error,
     loggedIn: state.signUpReducer.loggedIn,
     loggingIn: state.signUpReducer.loggingIn,
     loggingInMessage: state.signUpReducer.loggingInMessage,
-    trips: state.tripsReducer.trip,
+    trips: state.tripsReducer.trips,
+    gettingTrips: state.tripsReducer.gettingTrips,
   };
 };
 

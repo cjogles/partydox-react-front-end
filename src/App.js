@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
+import TripDetails from './components/trips/TripDetails';
 
 import "./css/index.css";
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" component={Login}/>
         <PrivateRoute>
           <Route path="/dashboard" component={Dashboard}/>
+          <Route path="/tripDetails" component={TripDetails}/>
         </PrivateRoute>
       </Switch>
     </div>

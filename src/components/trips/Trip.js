@@ -1,30 +1,45 @@
-import React, { useEffect, useState } from "react";
-// import NavFriend from "./friends/NavFriend";
+import React from "react";
 import { connect } from "react-redux";
-// import { getTrips } from "../actions/tripActions";
-import AxiosWithAuth from '../../utils/AxiosWithAuth';
+import { Link } from 'react-router-dom';
 
 function Trip(props) {
 
-  const [trips, setTrips] = useState();
-
-  // useEffect(() => {
-  //     let id = localStorage.getItem("id");
-  //   AxiosWithAuth()
-  //       .get(`/trips/user/${id}`)
-  //       .then(res => {
-            
-  //       })
-  //       .catch(err => {
-  //           console.log(err)
-  //       })
-  // }, [props.loggingIn, props.error, props.id]);
-
   return (
     <>
-      {/* <NavFriend friend={props.name} /> */}
-      <div className="dash">
-        <h2>Your Trips</h2>
+
+      <div className="trip">
+        <div className="tripdiv1">
+          <div>
+            <h6>Name:</h6>
+            <h2>{props.trip.trip_name}</h2>
+          </div>
+          <div>
+            <h6>Description:</h6>
+            <h2>{props.trip.trip_description}</h2>
+          </div>
+        </div>
+        <div className="tripdiv2">
+            <div>
+                {/* access these props via props.location.state */}
+                <Link to={{ pathname: '/tripDetails', state: { 
+                    tripId: props.trip.id,
+                    tripName: props.trip.trip_name,
+                    tripDescription: props.trip.trip_description,
+                    tripLocation: props.trip.trip_location,
+                    tripCar: props.trip.trip_car,
+                    tripStartDate: props.trip.trip_start_date,
+                    tripEndDate: props.trip.trip_end_date,
+                    tripLikes: props.trip.trip_upvotes,
+                    tripNotes: props.trip.trip_notes
+                    } 
+                    }}>View Trip Details</Link>
+            </div>
+        </div>
+        <div className="tripdiv3">
+            <div>
+                <Link to="/inviteFriend">Invite a Friend to Collaborate!</Link>
+            </div>
+        </div>
       </div>
     </>
   );
@@ -32,15 +47,7 @@ function Trip(props) {
 
 const mapStateToProps = (state) => {
   return {
-    id: state.signUpReducer.friend.id,
-    name: state.signUpReducer.friend.name,
-    username: state.signUpReducer.friend.username,
-    errorMessage: state.signUpReducer.errorMessage,
-    error: state.signUpReducer.error,
-    loggedIn: state.signUpReducer.loggedIn,
-    loggingIn: state.signUpReducer.loggingIn,
-    loggingInMessage: state.signUpReducer.loggingInMessage,
-    trips: state.tripsReducer.trip,
+    trips: state.tripsReducer.trips,
   };
 };
 

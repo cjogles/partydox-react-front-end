@@ -6,8 +6,8 @@ export const getTrips = () => (dispatch) => {
   AxiosWithAuth()
     .get(`/trips/user/${id}`)
     .then((res) => {
-      console.log(res);
-      dispatch({ type: t.GET_ALL_TRIPS, payload: res.data[0] });
+      console.log("axios payload:", res.data)
+      dispatch({ type: t.GET_ALL_TRIPS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);

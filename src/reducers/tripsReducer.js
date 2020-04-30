@@ -1,37 +1,20 @@
 import * as a from "../actions/types";
 
 let initialState = {
-  trip: {
-    id: 0,
-    name: "",
-    location: "",
-    lift_off_location: "",
-    car: "",
-    start_date: "",
-    end_date: "",
-    upvote: 0,
-    notes: "",
-  },
+  trips: [],
+  error: false,
+  errorMessage: "",
+  gettingTrips: false,
+  gotTrips: false,
 };
 
 const tripsReducer = (state = initialState, action) => {
   switch (action.type) {
     case a.GET_ALL_TRIPS:
-        return {
-            ...state,
-            trip: {
-                ...state.trip,
-                id: action.payload.id,
-                name: action.payload.name,
-                location: action.payload.location,
-                lift_off_location: action.payload.lift_off_location,
-                car: action.payload.car,
-                start_date: action.payload.start_date,
-                end_date: action.payload.end_date,
-                upvote: action.payload.upvote,
-                notes: action.payload.notes,
-            }
-        }
+      return {
+        ...state,
+        trips: action.payload,
+      };
     default:
       return state;
   }

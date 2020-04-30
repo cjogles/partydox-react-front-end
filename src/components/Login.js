@@ -18,7 +18,6 @@ class Login extends React.Component {
   };
 
   renderInput = ({ input, label, meta }) => {
-    console.log("input props", input)
     return (
       <div className="field">
         <label>{label}</label>
@@ -29,6 +28,7 @@ class Login extends React.Component {
   };
 
   onSubmit = (credentials) => {
+    // console.log(this.props)
     this.props.login(credentials, this.props);
   };
 
