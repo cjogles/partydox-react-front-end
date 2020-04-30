@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import NavFriend from "./friends/NavFriend";
 import Trips from "./trips/Trips";
 import { connect } from "react-redux";
-import { getTrips } from "../actions/tripActions";
+import { getAllTrips } from "../actions/tripActions";
 
 function Dashboard(props) {
   
   let id = localStorage.getItem("id");
   useEffect(() => {
-    props.getTrips();
-    console.log("useEffect has run")
+    props.getAllTrips();
   }, [id]);
 
   return (
@@ -45,6 +44,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { getTrips };
+const mapDispatchToProps = { getAllTrips };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

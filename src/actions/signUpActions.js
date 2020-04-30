@@ -19,6 +19,8 @@ export const login = (credentials, props) => (dispatch) => {
 };
 
 export const register = (credentials, props) => (dispatch) => {
+  dispatch({ type: t.LOGIN_START, payload: "Loading Your Partydox Dashboard..."})
+  props.history.push("/dashboard");
   axios
     .post("https://partydox.herokuapp.com/friends/register", credentials)
     .then((res) => {
@@ -28,7 +30,6 @@ export const register = (credentials, props) => (dispatch) => {
       localStorage.setItem("username", res.data.username);
       localStorage.setItem("name", res.data.name);
       dispatch({ type: t.LOGIN_SUCCESS, payload: res.data });
-    //   props.history.push("/dashboard");
     })
     .catch((err) => {
       console.log(err);

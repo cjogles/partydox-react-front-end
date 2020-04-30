@@ -1,7 +1,7 @@
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import * as t from "./types";
 
-export const getTrips = () => (dispatch) => {
+export const getAllTrips = () => (dispatch) => {
   let id = localStorage.getItem("id");
   AxiosWithAuth()
     .get(`/trips/user/${id}`)
