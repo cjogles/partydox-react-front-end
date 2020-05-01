@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../../components/friends/NavFriend";
+import Footer from '../FooterSignUp';
 import { getAllActivities } from '../../actions/activityActions';
 import { getAllParkingLots } from '../../actions/parkingActions';
 import { getAllShoppingLists } from '../../actions/shoppingActions';
@@ -22,34 +23,35 @@ function TripDetails(props) {
 
   return (
     <>
+    <NavFriend />
       <div className="tripDetails">
-        <NavFriend />
         <div className="tripstuff1">
           <h1>Your single trip details:</h1>
-          <p>Trip Name: {trip.tripName}</p>
-          <p>Trip Description: {trip.tripDescription}</p>
-          <p>Trip Location: {trip.tripLocation}</p>
-          <p>Trip Car: {trip.tripCar}</p>
-          <p>Trip Start Date: {trip.tripStartDate}</p>
-          <p>Trip End Date: {trip.tripEndDate}</p>
-          <p>Trip Likes: {trip.tripLikes}</p>
-          <p>Trip Notes: {trip.tripNotes}</p>
+          <p className="outerp">Trip Name: <p>{trip.tripName}</p></p>
+          <p className="outerp">Trip Description: <p>{trip.tripDescription}</p></p>
+          <p className="outerp">Trip Location: <p>{trip.tripLocation}</p></p>
+          <p className="outerp">Trip Car: <p>{trip.tripCar}</p></p>
+          <p className="outerp">Trip Start Date: <p>{trip.tripStartDate}</p></p>
+          <p className="outerp">Trip End Date: <p>{trip.tripEndDate}</p></p>
+          <p className="outerp">Trip Likes: <p>{trip.tripLikes}</p></p>
+          <p className="outerp">Trip Notes: <p>{trip.tripNotes}</p></p>
         </div>
         <div className="tripstuff2">
-          <Link to={{ pathname: "/activities", state: { activities: props.activities }, }}>
+          <Link to="/activities">
             Trip Activities
           </Link>
-          <Link to={{ pathname: "/parkingLots", state: { parkingLots: props.parkingLots }, }}>
+          <Link to="/parkingLots">
             Trip Parking Lots
           </Link>
-          <Link to={{ pathname: "/shoppingLists", state: { shoppingLists: props.shoppingLists }, }}>
+          <Link to="/shoppingLists">
             Trip Shopping Lists
           </Link>
-          <Link to={{ pathname: "/flights", state: { flights: props.flights }, }}>
+          <Link to="/flights">
             Trip Flights
           </Link>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
@@ -57,10 +59,6 @@ function TripDetails(props) {
 const mapStateToProps = (state) => {
   return {
     trips: state.tripsReducer.trips,
-    activities: state.activityReducer.activities,
-    shoppingLists: state.shoppingReducer.shoppingLists,
-    parkingLots: state.parkingReducer.parkingLots,
-    flights: state.flightReducer.flights,
   };
 };
 

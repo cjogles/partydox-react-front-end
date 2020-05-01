@@ -6,8 +6,7 @@ export const getAllParkingLots = (tripId) => (dispatch) => {
   AxiosWithAuth()
     .get(`/parking/user/${id}/parkingTrip/${tripId}`)
     .then((res) => {
-      console.log("parking axios payload:", res.data)
-    //   dispatch({ type: t.GET_ALL_PARKING_LOTS, payload: res.data });
+      dispatch({ type: t.GET_ALL_PARKING_LOTS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);

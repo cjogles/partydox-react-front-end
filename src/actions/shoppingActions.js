@@ -6,8 +6,7 @@ export const getAllShoppingLists = (tripId) => (dispatch) => {
   AxiosWithAuth()
     .get(`/shopping/user/${id}/shoppingTrip/${tripId}`)
     .then((res) => {
-      console.log("shopping payload:", res.data)
-    //   dispatch({ type: t.GET_ALL_SHOPPING_LISTS, payload: res.data });
+      dispatch({ type: t.GET_ALL_SHOPPING_LISTS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);

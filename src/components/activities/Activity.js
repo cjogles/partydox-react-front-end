@@ -35,11 +35,6 @@ function Activity(props) {
                     }}>View Activity Details</Link>
             </div>
         </div>
-        <div className="tripdiv3">
-            <div>
-                <Link to="/inviteFriend">Invite a Friend to Collaborate!</Link>
-            </div>
-        </div>
       </div>
     </>
   );
@@ -47,7 +42,7 @@ function Activity(props) {
 
 const mapStateToProps = (state) => {
   return {
-    activities: state.activityReducer.activities,
+
   };
 };
 

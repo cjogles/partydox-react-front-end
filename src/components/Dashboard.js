@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import NavFriend from "./friends/NavFriend";
+import Nav from "./Nav";
 import Trips from "./trips/Trips";
+import Footer from "./FooterSignUp";
 import { connect } from "react-redux";
 import { getAllTrips } from "../actions/tripActions";
 
 function Dashboard(props) {
-  
   let id = localStorage.getItem("id");
   useEffect(() => {
     props.getAllTrips();
@@ -13,18 +14,31 @@ function Dashboard(props) {
 
   return (
     <>
-      {props.loggingIn && (
-        <div className="loggingin">{props.loggingInMessage}</div>
-      )}
-      {props.error && <div className="dasherror">{props.errorMessage}</div>}
+      {props.loggingIn ? (
+        <>
+          <Nav />
+          <div className="loggingin">{props.loggingInMessage}</div>
+          <Footer />{" "}
+        </>
+      ) : null}
+      {props.error ? (
+        <>
+          <Nav />
+          <div className="dasherror">{props.errorMessage}</div>
+          <Footer />
+        </>
+      ) : null}
 
       {props.loggedIn && (
         <>
           <NavFriend friend={props.name} />
           <div className="dash">
-            <h2 className="dashH">Welcome to Your Dashboard!</h2>
-            <Trips trips={props.trips}/>
+            <div className="dashContainer1">
+              <h2 className="dashH">Welcome to Your Dashboard!</h2>
+              <Trips trips={props.trips} />
+            </div>
           </div>
+          <Footer />
         </>
       )}
     </>

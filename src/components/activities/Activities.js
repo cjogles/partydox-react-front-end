@@ -1,25 +1,30 @@
 import React from "react";
-import Activity from './Activity';
+import Activity from "./Activity";
 import { connect } from "react-redux";
+import NavFriend from "../friends/NavFriend";
+import Footer from '../FooterSignUp';
 
 function Activities(props) {
-
-  let activities = props.location.state.activities;
-
+  console.log.apply("activities in redux store", props.activities);
   return (
     <>
-      <div className="activityList">
-        <h2>Your Activities</h2>
-        {activities.map(activity => {
-          return <Activity key={activity.id} activity={activity}/>
-        })}
+      <NavFriend />
+      <div className="dash">
+        <div className="dashContainer1">
+          <h2 className="dashH">Your Activities</h2>
+          {props.activities.map((activity) => {
+            return <Activity key={activity.id} activity={activity} />;
+          })}
+        </div>
       </div>
+      <Footer/>
     </>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
+    activities: state.activityReducer.activities,
   };
 };
 

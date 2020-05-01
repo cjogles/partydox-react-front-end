@@ -292,22 +292,20 @@ html {
   background-color: #9eddff;
   padding: 2rem;
   margin-bottom: 5.8rem;
-}
-.loginWrapper .login form div.field {
-  margin-top: 1.2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-direction: column;
 }
-.loginWrapper .login form div.field label {
+.loginWrapper .login form label {
   font-size: 1.3rem;
   margin-bottom: 1.1rem;
 }
-.loginWrapper .login form div.field input {
+.loginWrapper .login form input {
   border: lightgray;
   height: 1.5rem;
+  margin-bottom: 2rem;
 }
-.loginWrapper .login form div.field div.error {
+.loginWrapper .login form div.error {
   color: red;
   font-size: 1rem;
 }
@@ -318,16 +316,28 @@ div.loggingin {
   padding: 5rem;
   font-size: 3rem;
 }
+div.dasherror {
+  overflow: hidden;
+  margin: auto;
+  margin-top: 10rem;
+  padding: 5rem;
+  font-size: 3rem;
+}
 .dash {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: solid red;
+  box-shadow: inset 0 11px 8px -10px rgba(0, 0, 0, 0.2), inset 0 -11px 8px -10px rgba(0, 0, 0, 0.2);
 }
-.dash h2.dashH {
+.dash div.dashContainer1 {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+.dash div.dashContainer1 h2.dashH {
   font-size: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  margin-left: 2rem;
 }
 .footerSign {
   display: flex;
@@ -380,38 +390,114 @@ div.loggingin {
 .navFriend div a h2 {
   padding: 2rem;
 }
-.tripList {
+div.tripList {
   display: flex;
   flex-direction: column;
-  border: solid pink;
   margin: 2rem;
+}
+div.tripList h2.tripListH {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
 }
 .trip {
   display: flex;
   flex-direction: row;
+  margin: 0.6rem;
+  background-color: #bae9ff;
+  border-radius: 3rem;
   justify-content: space-evenly;
   align-items: center;
-  border: solid blue;
-  margin: 3rem;
 }
 .trip div.tripdiv1 {
   display: flex;
   flex-direction: row;
-  border: solid orange;
   margin: 2rem;
+  justify-content: space-evenly;
+  width: 50%;
 }
 .trip div.tripdiv1 div {
   display: flex;
   flex-direction: column;
-  border: solid pink;
-  margin: 2rem;
+  justify-content: space-between;
+}
+.trip div.tripdiv1 div h6 {
+  margin-bottom: 1rem;
+  margin-right: 2rem;
 }
 .trip div.tripdiv1 div h2 {
   font-family: 'Roboto Condensed', sans-serif;
 }
-.trip div.tripdiv2 {
-  border: solid black;
+.trip div.tripdiv2 :hover {
+  background-color: white;
+  color: black;
+  transition: 0.6s;
+  cursor: pointer;
 }
-.trip div.tripdiv3 {
-  border: solid red;
+.trip div.tripdiv2 a {
+  text-decoration: none;
+  color: black;
+  border: solid skyblue;
+  padding: 0.8rem;
+  border-radius: 2rem;
+}
+.trip div.tripdiv3 :hover {
+  background-color: white;
+  color: black;
+  transition: 0.6s;
+  cursor: pointer;
+}
+.trip div.tripdiv3 a {
+  text-decoration: none;
+  color: black;
+  border: solid skyblue;
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
+div.tripDetails {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  box-shadow: inset 0 11px 8px -10px rgba(0, 0, 0, 0.2), inset 0 -11px 8px -10px rgba(0, 0, 0, 0.2);
+  justify-content: space-evenly;
+  align-items: center;
+}
+div.tripDetails .tripstuff1 {
+  margin-top: 5rem;
+  background-color: #bae9ff;
+  padding: 3rem;
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+}
+div.tripDetails .tripstuff1 h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+div.tripDetails .tripstuff1 p.outerp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+div.tripDetails .tripstuff1 p.outerp p {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+div.tripDetails .tripstuff2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+div.tripDetails .tripstuff2 :hover {
+  background-color: skyblue;
+  color: black;
+  transition: 0.6s;
+  cursor: pointer;
+}
+div.tripDetails .tripstuff2 a {
+  text-decoration: none;
+  color: black;
+  border: solid skyblue;
+  padding: 0.8rem;
+  border-radius: 2rem;
+  margin: 1rem;
 }

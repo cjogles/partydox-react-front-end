@@ -7,7 +7,7 @@ function Trips(props) {
   return (
     <>
       <div className="tripList">
-        <h2>Your Trips</h2>
+        <h2 className="tripListH">Your Trips</h2>
         {props.trips.map(trip => {
           return <Trip key={trip.id} trip={trip}/>
         })}

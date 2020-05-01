@@ -1,89 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "./Nav";
-import FooterSignUp from './FooterSignUp';
-import { Field, reduxForm } from "redux-form";
+import FooterSignUp from "./FooterSignUp";
 import { connect } from "react-redux";
 import { login } from "../actions/signUpActions";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
-class Login extends React.Component {
-  renderError = ({ error, touched }) => {
-    if (touched && error) {
-      return (
-        <div>
-          <div className="error">{error}</div>
-        </div>
-      );
-    }
-  };
+function Login(props) {
+  
+  let history = useHistory();
 
-  renderInput = ({ input, label, meta }) => {
-    return (
-      <div className="field">
-        <label>{label}</label>
-        <input {...input} autoComplete="off" />
-        {this.renderError(meta)}
-      </div>
-    );
-  };
+  const [user, setUser] = useState({ username: "", password: "" });
 
-  onSubmit = (credentials) => {
-    // console.log(this.props)
-    this.props.login(credentials, this.props);
-  };
-
-  render() {
-    return (
-      <>
-        {this.props.loggedIn && <Redirect push to="/dashboard" />}
-        <Nav />
-        <div className="loginWrapper">
-          <div className="login">
-            <div className="logintitle">
-              <span role="img" aria-label="partyface">
-                🥳
-              </span>
-              Login Here
-            </div>
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-              <Field
-                name="username"
-                component={this.renderInput}
-                label="Username"
-              />
-              <Field
-                name="password"
-                component={this.renderInput}
-                label="Password"
-              />
-              <button>Submit</button>
-            </form>
-          </div>
-        </div>
-        <FooterSignUp/>
-      </>
-      
-    );
+  const onChange = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
   }
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    props.login(user, history)
+  }
+
+  return (
+    <>
+      {props.loggedIn && <Redirect push to="/dashboard" />}
+      <Nav />
+      <div className="loginWrapper">
+        <div className="login">
+          <div className="logintitle">
+            <span role="img" aria-label="partyface">
+              🥳
+            </span>
+            Login Here
+          </div>
+
+          <form onSubmit={event => onSubmit(event)}>
+            <label htmlFor="username">Username:</label>
+            <input type="text" id="username" name="username" value={user.username} onChange={event => onChange(event)}></input>
+            <label htmlFor="password">Password:</label>
+            <input type="text" id="password" name="password" value={user.password} onChange={event => onChange(event)}></input>
+            <button>Submit</button>
+          </form>
+
+        </div>
+      </div>
+      <FooterSignUp />
+    </>
+  );
 }
 
-const validate = (formValues) => {
-  const errors = {};
-
-  if (!formValues.username) {
-    errors.username = "You must enter your username.";
-  }
-  if (!formValues.password) {
-    errors.password = "You must enter your password.";
-  }
-
-  return errors;
-};
-
-const formWrapped = reduxForm({
-  form: "login",
-  validate: validate,
-})(Login);
 
 const mapStateToProps = (state) => {
   return {
@@ -93,4 +57,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { login };
 
-export default connect(mapStateToProps, mapDispatchToProps)(formWrapped);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

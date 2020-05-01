@@ -6,7 +6,7 @@ export const getFriend = () => (dispatch) => {
   AxiosWithAuth()
     .get(`/friends/user/${id}`)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: t.GET_FRIEND, payload: res.data[0] });
     })
     .catch((err) => {

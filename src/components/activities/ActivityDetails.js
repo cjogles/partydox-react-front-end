@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import NavFriend from "../../components/friends/NavFriend";
+import NavFriend from "../friends/NavFriend";
 
 function ActivityDetails(props) {
 
@@ -24,20 +24,7 @@ function ActivityDetails(props) {
           <p>Activity Likes: {activity.activityLikes}</p>
           <p>Activity Notes: {activity.activityNotes}</p>
         </div>
-        <div className="tripstuff2">
-          {/* <Link to={{ pathname: "/activities", state: props.activities, }}>
-            Trip Activities
-          </Link>
-          <Link to={{ pathname: "/parkingLots", state: props.parkingLots, }}>
-            Trip Parking Lots
-          </Link>
-          <Link to={{ pathname: "/shoppingLists", state: props.shoppingLists, }}>
-            Trip Shopping Lists
-          </Link>
-          <Link to={{ pathname: "/flights", state: props.flights, }}>
-            Trip Flights
-          </Link> */}
-        </div>
+
       </div>
     </>
   );
@@ -45,11 +32,7 @@ function ActivityDetails(props) {
 
 const mapStateToProps = (state) => {
   return {
-    // trips: state.tripsReducer.trips,
-    // activities: state.activityReducer.activities,
-    // shoppingLists: state.shoppingReducer.shoppingLists,
-    // parkingLots: state.parkingReducer.parkingLots,
-    // flights: state.flightReducer.flights,
+
   };
 };
 
