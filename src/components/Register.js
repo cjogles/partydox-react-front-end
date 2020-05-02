@@ -8,17 +8,20 @@ import { Redirect, useHistory } from "react-router-dom";
 function Register(props) {
   
   let history = useHistory();
-
-  const [user, setUser] = useState({ friend_name: "", username: "", password: "" });
+  const [user, setUser] = useState({
+    friend_name: "",
+    username: "",
+    password: "",
+  });
 
   const onChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
-  }
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    props.register(user, history)
-  }
+    props.register(user, history);
+  };
 
   return (
     <>
@@ -33,23 +36,39 @@ function Register(props) {
             Sign Up Here
           </div>
 
-          <form onSubmit={event => onSubmit(event)}>
+          <form onSubmit={(event) => onSubmit(event)}>
             <label htmlFor="friend_name">Name:</label>
-            <input type="text" id="friend_name" name="friend_name" value={user.friend_name} onChange={event => onChange(event)}></input>
+            <input
+              type="text"
+              id="friend_name"
+              name="friend_name"
+              value={user.friend_name}
+              onChange={(event) => onChange(event)}
+            ></input>
             <label htmlFor="username">Username:</label>
-            <input type="text" id="username" name="username" value={user.username} onChange={event => onChange(event)}></input>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={user.username}
+              onChange={(event) => onChange(event)}
+            ></input>
             <label htmlFor="password">Password:</label>
-            <input type="text" id="password" name="password" value={user.password} onChange={event => onChange(event)}></input>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              value={user.password}
+              onChange={(event) => onChange(event)}
+            ></input>
             <button>Submit</button>
           </form>
-
         </div>
       </div>
       <FooterSignUp />
     </>
   );
 }
-
 
 const mapStateToProps = (state) => {
   return {

@@ -577,6 +577,12 @@ div.dasherror {
   margin-bottom: 2rem;
   margin-left: 2rem;
 }
+@media (max-width: 320px) {
+  .dash div.dashContainer1 h2.dashH {
+    text-align: center;
+    margin-left: 0rem;
+  }
+}
 .footerSign {
   display: flex;
   justify-content: space-evenly;
@@ -645,10 +651,20 @@ div.tripList {
   flex-direction: column;
   margin: 2rem;
 }
+@media (max-width: 320px) {
+  div.tripList {
+    margin: 0rem;
+  }
+}
 div.tripList h2.tripListH {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
   margin-top: 1rem;
+}
+@media (max-width: 320px) {
+  div.tripList h2.tripListH {
+    text-align: center;
+  }
 }
 .trip {
   display: flex;
@@ -659,50 +675,170 @@ div.tripList h2.tripListH {
   justify-content: space-evenly;
   align-items: center;
 }
-.trip div.tripdiv1 {
-  display: flex;
-  flex-direction: row;
-  margin: 2rem;
-  justify-content: space-evenly;
-  width: 50%;
+@media (max-width: 800px) {
+  .trip {
+    flex-direction: column;
+    margin: 0rem;
+    padding: 4rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 500px) {
+  .trip {
+    flex-direction: column;
+    margin: 0rem;
+    padding: 4rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 320px) {
+  .trip {
+    flex-direction: column;
+    margin: 0rem;
+    padding: 4rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (min-width: 1001px) {
+  .trip div.tripdiv1 {
+    width: 45%;
+  }
+}
+@media (max-width: 800px) {
+  .trip div.tripdiv1 {
+    flex-direction: column;
+    width: 100%;
+    margin: 0rem;
+    text-align: center;
+  }
+}
+@media (max-width: 500px) {
+  .trip div.tripdiv1 {
+    flex-direction: column;
+    width: 100%;
+    margin: 0rem;
+    text-align: center;
+  }
+}
+@media (max-width: 320px) {
+  .trip div.tripdiv1 {
+    flex-direction: column;
+    width: 100%;
+    margin: 0rem;
+    text-align: center;
+  }
 }
 .trip div.tripdiv1 div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 2rem;
+}
+@media (max-width: 800px) {
+  .trip div.tripdiv1 div {
+    padding: 0rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 500px) {
+  .trip div.tripdiv1 div {
+    padding: 0rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 320px) {
+  .trip div.tripdiv1 div {
+    padding: 0rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 .trip div.tripdiv1 div h6 {
   margin-bottom: 1rem;
   margin-right: 2rem;
 }
-.trip div.tripdiv1 div h2 {
-  font-family: 'Roboto Condensed', sans-serif;
+@media (min-width: 415px) {
+  .trip div.tripdiv1 div h6 {
+    font-size: 2rem;
+    margin: 0rem;
+    margin-bottom: 0.5rem;
+  }
 }
-.trip div.tripdiv2 :hover {
-  background-color: white;
-  color: black;
-  transition: 0.6s;
-  cursor: pointer;
+@media (max-width: 500px) {
+  .trip div.tripdiv1 div h6 {
+    margin: 0rem;
+    margin-bottom: 0.5rem;
+  }
+}
+@media (max-width: 320px) {
+  .trip div.tripdiv1 div h6 {
+    margin: 0rem;
+    margin-bottom: 0.5rem;
+  }
+}
+.trip div.tripdiv1 div h2 {
+  font-family: "Roboto Condensed", sans-serif;
+}
+@media (max-width: 800px) {
+  .trip div.tripdiv1 div h2 {
+    font-size: 1rem;
+    padding-top: 0.5rem;
+  }
+}
+@media (min-width: 415px) {
+  .trip div.tripdiv1 div h2 {
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+  }
+}
+@media (max-width: 800px) {
+  .trip div.tripdiv2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    border-top: solid skyblue;
+    padding-top: 1rem;
+  }
 }
 .trip div.tripdiv2 a {
   text-decoration: none;
   color: black;
-  border: solid skyblue;
-  padding: 0.8rem;
-  border-radius: 2rem;
 }
-.trip div.tripdiv3 :hover {
+.trip div.tripdiv2 a :hover {
   background-color: white;
-  color: black;
+  border: skyblue solid;
   transition: 0.6s;
   cursor: pointer;
+  padding: 1rem;
+}
+.trip div.tripdiv2 a p {
+  font-size: 1rem;
+}
+@media (max-width: 800px) {
+  .trip div.tripdiv3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    border-top: solid skyblue;
+    border-bottom: solid skyblue;
+    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+  }
 }
 .trip div.tripdiv3 a {
   text-decoration: none;
   color: black;
-  border: solid skyblue;
-  padding: 0.5rem;
-  border-radius: 2rem;
+}
+.trip div.tripdiv3 a :hover {
+  background-color: white;
+  border: skyblue solid;
+  transition: 0.6s;
+  cursor: pointer;
+  padding: 1rem;
+}
+.trip div.tripdiv3 a p {
+  font-size: 1rem;
 }
 div.tripDetails {
   display: flex;

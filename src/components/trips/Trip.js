@@ -9,11 +9,11 @@ function Trip(props) {
 
       <div className="trip">
         <div className="tripdiv1">
-          <div>
+          <div className="tripname">
             <h6>Name:</h6>
             <h2>{props.trip.trip_name}</h2>
           </div>
-          <div>
+          <div className="tripdescription">
             <h6>Description:</h6>
             <h2>{props.trip.trip_description}</h2>
           </div>
@@ -32,12 +32,12 @@ function Trip(props) {
                     tripLikes: props.trip.trip_upvotes,
                     tripNotes: props.trip.trip_notes
                     } 
-                    }}>View Trip Details</Link>
+                    }}><p>View Trip Details</p></Link>
             </div>
         </div>
         <div className="tripdiv3">
             <div>
-                <Link to="/inviteFriend">Invite a Friend to Collaborate!</Link>
+                <Link to="/inviteFriend"><p>Invite a Friend to Collaborate!</p></Link>
             </div>
         </div>
       </div>
