@@ -511,9 +511,20 @@ html {
   margin-top: 5.8rem;
   margin-bottom: 2rem;
 }
+@media (max-width: 320px) {
+  .loginWrapper .login div.logintitle {
+    font-size: 1rem;
+  }
+}
 .loginWrapper .login span {
   font-size: 3rem;
   margin-right: 2rem;
+}
+@media (max-width: 320px) {
+  .loginWrapper .login span {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
 }
 .loginWrapper .login form {
   background-color: #9eddff;
@@ -571,6 +582,18 @@ div.dasherror {
   justify-content: space-evenly;
   padding-top: 2rem;
   overflow: hidden;
+}
+@media (max-width: 500px) {
+  .footerSign {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+@media (max-width: 320px) {
+  .footerSign {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 .footerSign div :hover {
   background-color: skyblue;
