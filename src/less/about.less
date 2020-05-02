@@ -12,6 +12,20 @@
     padding: 1.5rem;
     border-radius: 2rem;
     background: rgba(255, 255, 255, 0.8);
+    @media @large {
+      margin: 2rem;
+      text-align: center;
+    }
+    @media @medium {
+      font-size: 1.5rem;
+      margin: 2rem;
+      text-align: center;   
+    }
+    @media @small {
+      font-size: 1.5rem;
+      margin: 2rem;
+      text-align: center;
+    }
   }
   div.aboutsection {
     display: flex;
@@ -19,6 +33,25 @@
     justify-content: space-evenly;
     width: 100%;
     margin-top: 3rem;
+    @media @large3 {
+      margin-left: 5rem;
+    }
+    @media @large2 {
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+    @media @large {
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+    @media @medium {
+      flex-direction: column;
+      margin-top: 1rem;     
+    }
+    @media @small {
+      flex-direction: column;
+      margin-top: 1rem;
+    }
     .about1 {
       ul {
         list-style-type: square;
@@ -26,6 +59,23 @@
           margin-bottom: 3rem;
           margin-top: 1rem;
           font-size: 1.4rem;
+          @media @large3 {
+            margin-right: 2rem;
+            margin-left: 2rem;
+          }
+          @media @large2 {
+            margin-left: 4rem;
+            margin-right: 4rem;          }
+          @media @large {
+            margin-left: 4rem;
+            margin-right: 4rem;
+          }
+          @media @medium {
+            margin: 3rem;
+          }
+          @media @small {
+            margin: 2rem;
+          }
         }
       }
     }
@@ -36,6 +86,27 @@
           margin-bottom: 3rem;
           margin-top: 1rem;
           font-size: 1.4rem;
+          @media @large3 {
+            margin-right: 7rem;
+            margin-left: 3rem;
+          }
+          @media @large2 {
+            margin-left: 4rem;
+            margin-right: 4rem;
+            margin-top: 0rem;          }
+          @media @large {
+            margin-left: 4rem;
+            margin-right: 4rem;
+            margin-top: 0rem;
+          }
+          @media @medium {
+            margin: 3rem;
+            margin-top: 0rem;
+          }
+          @media @small {
+            margin: 2rem;
+            margin-top: 0rem;
+          }
         }
       }
     }
