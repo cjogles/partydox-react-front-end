@@ -554,12 +554,22 @@ div.loggingin {
   padding: 5rem;
   font-size: 3rem;
 }
+@media (max-width: 320px) {
+  div.loggingin {
+    font-size: 1rem;
+  }
+}
 div.dasherror {
   overflow: hidden;
   margin: auto;
   margin-top: 10rem;
   padding: 5rem;
   font-size: 3rem;
+}
+@media (max-width: 320px) {
+  div.dasherror {
+    font-size: 1rem;
+  }
 }
 .dash {
   overflow: hidden;
@@ -650,6 +660,7 @@ div.tripList {
   display: flex;
   flex-direction: column;
   margin: 2rem;
+  overflow: hidden;
 }
 @media (max-width: 320px) {
   div.tripList {
@@ -674,6 +685,7 @@ div.tripList h2.tripListH {
   border-radius: 3rem;
   justify-content: space-evenly;
   align-items: center;
+  overflow: hidden;
 }
 @media (max-width: 800px) {
   .trip {
@@ -793,6 +805,10 @@ div.tripList h2.tripListH {
     padding-top: 0.5rem;
   }
 }
+.trip div.tripdiv2 {
+  display: flex;
+  align-items: center;
+}
 @media (max-width: 800px) {
   .trip div.tripdiv2 {
     text-align: center;
@@ -802,19 +818,22 @@ div.tripList h2.tripListH {
     padding-top: 1rem;
   }
 }
+.trip div.tripdiv2 :hover {
+  background-color: white;
+  transition: 0.6s;
+  cursor: pointer;
+}
 .trip div.tripdiv2 a {
   text-decoration: none;
   color: black;
 }
-.trip div.tripdiv2 a :hover {
-  background-color: white;
-  border: skyblue solid;
-  transition: 0.6s;
-  cursor: pointer;
-  padding: 1rem;
-}
 .trip div.tripdiv2 a p {
   font-size: 1rem;
+  padding: 2rem;
+}
+.trip div.tripdiv3 {
+  display: flex;
+  align-items: center;
 }
 @media (max-width: 800px) {
   .trip div.tripdiv3 {
@@ -826,19 +845,18 @@ div.tripList h2.tripListH {
     padding-top: 1rem;
   }
 }
+.trip div.tripdiv3 :hover {
+  background-color: white;
+  transition: 0.6s;
+  cursor: pointer;
+}
 .trip div.tripdiv3 a {
   text-decoration: none;
   color: black;
 }
-.trip div.tripdiv3 a :hover {
-  background-color: white;
-  border: skyblue solid;
-  transition: 0.6s;
-  cursor: pointer;
-  padding: 1rem;
-}
 .trip div.tripdiv3 a p {
   font-size: 1rem;
+  padding: 2rem;
 }
 div.tripDetails {
   display: flex;
