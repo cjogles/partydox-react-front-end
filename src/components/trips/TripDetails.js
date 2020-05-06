@@ -28,13 +28,13 @@ function TripDetails(props) {
         <div className="tripstuff1">
           <h1>{trip.tripName}</h1>
           <p className="outerp">Trip Name: <p>{trip.tripName}</p></p>
-          <p className="outerp">Trip Description: <p>{trip.tripDescription}</p></p>
-          <p className="outerp">Trip Location: <p>{trip.tripLocation}</p></p>
-          <p className="outerp">Trip Car: <p>{trip.tripCar}</p></p>
-          <p className="outerp">Trip Start Date: <p>{trip.tripStartDate}</p></p>
-          <p className="outerp">Trip End Date: <p>{trip.tripEndDate}</p></p>
-          <p className="outerp">Trip Likes: <p>{trip.tripLikes}</p></p>
-          <p className="outerp">Trip Notes: <p>{trip.tripNotes}</p></p>
+          <p className="outerp">Description: <p>{trip.tripDescription}</p></p>
+          <p className="outerp">Location: <p>{trip.tripLocation}</p></p>
+          <p className="outerp">Car: <p>{trip.tripCar}</p></p>
+          <p className="outerp">Start Date: <p>{trip.tripStartDate}</p></p>
+          <p className="outerp">End Date: <p>{trip.tripEndDate}</p></p>
+          <p className="outerp">Likes: <p>{trip.tripLikes}</p></p>
+          <p className="outerp">Notes: <p>{trip.tripNotes}</p></p>
         </div>
         <div className="tripstuff2">
           <Link to="/activities">

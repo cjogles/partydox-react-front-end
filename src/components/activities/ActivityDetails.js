@@ -11,15 +11,15 @@ function ActivityDetails(props) {
       <NavFriend />
       <div className="tripDetails">
         <div className="tripstuff1">
-          <h1>Your single activity details:</h1>
-          <p>Activity Name: {activity.activityName}</p>
-          <p>Activity Description: {activity.activityDescription}</p>
-          <p>Activity Address: {activity.activityAddress}</p>
-          <p>Activity Phone: {activity.activityPhone}</p>
-          <p>Activity Start Date: {activity.activityStartDate}</p>
-          <p>Activity End Date: {activity.activityEndDate}</p>
-          <p>Activity Likes: {activity.activityLikes}</p>
-          <p>Activity Notes: {activity.activityNotes}</p>
+          <h1>{activity.activityName}</h1>
+          <p className="outerp">Activity Name: <p>{activity.activityName}</p></p>
+          <p className="outerp">Description: <p>{activity.activityDescription}</p></p>
+          <p className="outerp">Address: <p>{activity.activityAddress}</p></p>
+          <p className="outerp">Phone: <p>{activity.activityPhone}</p></p>
+          <p className="outerp">Start Date: <p>{activity.activityStartDate}</p></p>
+          <p className="outerp">End Date: <p>{activity.activityEndDate}</p></p>
+          <p className="outerp">Likes: <p>{activity.activityLikes}</p></p>
+          <p className="outerp">Notes: <p>{activity.activityNotes}</p></p>
         </div>
         <div className="tripstuff2">
           <Link to="/activities">Trip Activities</Link>
