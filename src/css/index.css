@@ -714,7 +714,7 @@ div.tripList h2.tripListH {
 }
 @media (min-width: 1001px) {
   .trip div.tripdiv1 {
-    width: 45%;
+    width: 30%;
   }
 }
 @media (max-width: 800px) {
