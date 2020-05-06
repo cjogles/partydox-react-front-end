@@ -4,15 +4,12 @@ import { Link } from "react-router-dom";
 import NavFriend from "../friends/NavFriend";
 
 function ActivityDetails(props) {
-
   let activity = props.location.state;
-//   let tripId = props.location.state.activityId;
-//   let id = localStorage.getItem("id");
 
   return (
     <>
+      <NavFriend />
       <div className="tripDetails">
-        <NavFriend />
         <div className="tripstuff1">
           <h1>Your single activity details:</h1>
           <p>Activity Name: {activity.activityName}</p>
@@ -24,18 +21,15 @@ function ActivityDetails(props) {
           <p>Activity Likes: {activity.activityLikes}</p>
           <p>Activity Notes: {activity.activityNotes}</p>
         </div>
-
       </div>
     </>
   );
 }
 
 const mapStateToProps = (state) => {
-  return {
-
-  };
+  return {};
 };
 
-const mapDispatchToProps = { };
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityDetails);
