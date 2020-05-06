@@ -10,16 +10,27 @@ function ActivityDetails(props) {
     <>
       <NavFriend />
       <div className="tripDetails">
+        <h1>{activity.activityName}</h1>
         <div className="tripstuff1">
-          <h1>{activity.activityName}</h1>
-          <p className="outerp">Activity Name: <p>{activity.activityName}</p></p>
-          <p className="outerp">Description: <p>{activity.activityDescription}</p></p>
-          <p className="outerp">Address: <p>{activity.activityAddress}</p></p>
-          <p className="outerp">Phone: <p>{activity.activityPhone}</p></p>
-          <p className="outerp">Start Date: <p>{activity.activityStartDate}</p></p>
-          <p className="outerp">End Date: <p>{activity.activityEndDate}</p></p>
-          <p className="outerp">Likes: <p>{activity.activityLikes}</p></p>
-          <p className="outerp">Notes: <p>{activity.activityNotes}</p></p>
+          <div className="tripstuffnames"></div>
+          <div className="tripstuffvalues">
+            <p>{activity.activityName}</p>
+            <p>{activity.activityDescription}</p>
+            <p>{activity.activityAddress}</p>
+            <p>{activity.activityPhone}</p>
+            <p>{activity.activityStartDate}</p>
+            <p>{activity.activityEndDate}</p>
+            <p>{activity.activityLikes}</p>
+            <p>{activity.activityNotes}</p>
+          </div>
+          <p className="outerp">Activity Name: </p>
+          <p className="outerp">Description: </p>
+          <p className="outerp">Address: </p>
+          <p className="outerp">Phone: </p>
+          <p className="outerp">Start Date: </p>
+          <p className="outerp">End Date: </p>
+          <p className="outerp">Likes: </p>
+          <p className="outerp">Notes: </p>
         </div>
         <div className="tripstuff2">
           <Link to="/activities">Trip Activities</Link>

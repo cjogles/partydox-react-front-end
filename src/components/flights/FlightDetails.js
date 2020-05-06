@@ -10,33 +10,58 @@ function FlightDetails(props) {
     <>
       <NavFriend />
       <div className="tripDetails">
+        <h1>Your Flight Details:</h1>
         <div className="tripstuff1">
-          <h1>Your Flight Details:</h1>
-          <h2>Departure:</h2>
-          <p className="outerp">Airport Name: <p>{flight.departureAirportName}</p></p>
-          <p className="outerp">Departure Date: <p>{flight.departureDate}</p></p>
-          <p className="outerp">Depature Airport Address: <p>{flight.departureAirportAddress}</p></p>
-          <p className="outerp">Departure Airport Phone: <p>{flight.departureAirportPhone}</p></p>
-          <p className="outerp">Ticket Number: <p>{flight.departureTicketNumber}</p></p>
-          <p className="outerp">Flight Number: <p>{flight.departureFlightNumber}</p></p>
-          <p className="outerp">Terminal: <p>{flight.departureTerminal}</p></p>
-          <p className="outerp">Gate: <p>{flight.depatureGate}</p></p>
-          <p className="outerp">Departure Flight Notes: <p>{flight.depatureNotes}</p></p>
-
-          <h2>Arrival:</h2>
-          <p className="outerp">Airport Name: <p>{flight.arrivalAirportName}</p></p>
-          <p className="outerp">Departure Date: <p>{flight.arrivalDate}</p></p>
-          <p className="outerp">Depature Airport Address: <p>{flight.arrivalAirportAddress}</p></p>
-          <p className="outerp">Departure Airport Phone: <p>{flight.arrivalAirportPhone}</p></p>
-          <p className="outerp">Ticket Number:<p>{flight.arrivalTicketNumber}</p></p>
-          <p className="outerp">Flight Number: <p>{flight.arrivalFlightNumber}</p></p>
-          <p className="outerp">Terminal: <p>{flight.arrivalTerminal}</p></p>
-          <p className="outerp">Gate: <p>{flight.arrivalGate}</p></p>
-          <p className="outerp">Departure Flight Notes: <p>{flight.arrivalNotes}</p></p>
-
-          <h2>BOTH</h2>
-          <p className="outerp">TOTAL COST: <p>{flight.flightCost}</p></p>
-          <p className="outerp">Likes: <p>{flight.flightLikes}</p></p>
+          <div className="tripstuffnames">
+            <h2>Departure:</h2>
+            <p className="outerp">Airport Name: </p>
+            <p className="outerp">Departure Date: </p>
+            <p className="outerp">Depature Airport Address: </p>
+            <p className="outerp">Departure Airport Phone: </p>
+            <p className="outerp">Ticket Number: </p>
+            <p className="outerp">Flight Number: </p>
+            <p className="outerp">Terminal: </p>
+            <p className="outerp">Gate: </p>
+            <p className="outerp">Departure Flight Notes: </p>
+            <h2>Arrival:</h2>
+            <p className="outerp">Airport Name: </p>
+            <p className="outerp">Departure Date: </p>
+            <p className="outerp">Depature Airport Address: </p>
+            <p className="outerp">Departure Airport Phone: </p>
+            <p className="outerp">Ticket Number:</p>
+            <p className="outerp">Flight Number: </p>
+            <p className="outerp">Terminal: </p>
+            <p className="outerp">Gate: </p>
+            <p className="outerp">Departure Flight Notes: </p>
+            <h2>BOTH</h2>
+            <p className="outerp">TOTAL COST: </p>
+            <p className="outerp">Likes: </p>
+          </div>
+          <div className="tripstuffvalues">
+            <p></p>
+            <p>{flight.departureAirportName}</p>
+            <p>{flight.departureDate}</p>
+            <p>{flight.departureAirportAddress}</p>
+            <p>{flight.departureAirportPhone}</p>
+            <p>{flight.departureTicketNumber}</p>
+            <p>{flight.departureFlightNumber}</p>
+            <p>{flight.departureTerminal}</p>
+            <p>{flight.depatureGate}</p>
+            <p>{flight.depatureNotes}</p>
+            <p></p>
+            <p>{flight.arrivalAirportName}</p>
+            <p>{flight.arrivalDate}</p>
+            <p>{flight.arrivalAirportAddress}</p>
+            <p>{flight.arrivalAirportPhone}</p>
+            <p>{flight.arrivalTicketNumber}</p>
+            <p>{flight.arrivalFlightNumber}</p>
+            <p>{flight.arrivalTerminal}</p>
+            <p>{flight.arrivalGate}</p>
+            <p>{flight.arrivalNotes}</p>
+            <p></p>
+            <p>{flight.flightCost}</p>
+            <p>{flight.flightLikes}</p>
+          </div>
         </div>
         <div className="tripstuff2">
           <Link to="/activities">Trip Activities</Link>

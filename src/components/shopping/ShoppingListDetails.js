@@ -10,13 +10,22 @@ function ShoppingListDetails(props) {
     <>
       <NavFriend />
       <div className="tripDetails">
+        <h1>Your Shopping List Details:</h1>
         <div className="tripstuff1">
-          <h1>Your Shopping List Details:</h1>
-          <p className="outerp">Item Names: <p>{items.name}</p></p>
-          <p className="outerp">Items Total Cost: <p>{items.cost}</p></p>
-          <p className="outerp">Buyer/Buyers: <p>{items.buyer}</p></p>
-          <p className="outerp">Likes: <p>{items.likes}</p></p>
-          <p className="outerp">Notes: <p>{items.notes}</p></p>
+          <div className="tripstuffnames">
+            <p className="outerp">Item Names: </p>
+            <p className="outerp">Items Total Cost: </p>
+            <p className="outerp">Buyer/Buyers: </p>
+            <p className="outerp">Likes: </p>
+            <p className="outerp">Notes: </p>
+          </div>
+          <div className="tripstuffvalues">
+            <p>{items.name}</p>
+            <p>{items.cost}</p>
+            <p>{items.buyer}</p>
+            <p>{items.likes}</p>
+            <p>{items.notes}</p>
+          </div>
         </div>
         <div className="tripstuff2">
           <Link to="/activities">Trip Activities</Link>
