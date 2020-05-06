@@ -12,7 +12,7 @@ function ShoppingLists(props) {
         <div className="dashContainer1">
           <h2 className="dashH">Welcome!</h2>
           <div className="tripList">
-            <h2 className="tripListH"> Your Trips</h2>
+            <h2 className="tripListH"> Your Shopping Lists</h2>
             {props.shoppingLists.map((shopping) => {
               return <Shopping key={shopping.id} shopping={shopping} />;
             })}
