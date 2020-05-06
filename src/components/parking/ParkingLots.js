@@ -12,7 +12,7 @@ function ParkingLots(props) {
         <div className="dashContainer1">
           <h2 className="dashH">Welcome!</h2>
           <div className="tripList">
-            <h2 className="tripListH"> {localStorage.getItem("tripName")} Parking Lots</h2>
+            <h2 className="tripListH"> {localStorage.getItem("tripName")} parking lots</h2>
             {props.parkingLots.map((parking) => {
               return <Parking key={parking.id} parking={parking} />;
             })}

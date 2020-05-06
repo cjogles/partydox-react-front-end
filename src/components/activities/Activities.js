@@ -13,7 +13,7 @@ function Activities(props) {
           <h2 className="dashH">Welcome!</h2>
           <div className="tripList">
             <h2 className="tripListH">
-              {localStorage.getItem("tripName")} Activities
+              {localStorage.getItem("tripName")} activities
             </h2>
             {props.activities.map((activity) => {
               return <Activity key={activity.id} activity={activity} />;
