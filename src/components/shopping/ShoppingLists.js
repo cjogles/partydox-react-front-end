@@ -10,10 +10,13 @@ function ShoppingLists(props) {
       <NavFriend />
       <div className="dash">
         <div className="dashContainer1">
-          <h2 className="dashH">Your ShoppingLists</h2>
-          {props.shoppingLists.map((shopping) => {
-            return <Shopping key={shopping.id} shopping={shopping} />;
-          })}
+          <h2 className="dashH">Welcome!</h2>
+          <div className="tripList">
+            <h2 className="tripListH"> Your Trips</h2>
+            {props.shoppingLists.map((shopping) => {
+              return <Shopping key={shopping.id} shopping={shopping} />;
+            })}
+          </div>
         </div>
       </div>
       <Footer />

@@ -26,7 +26,7 @@ function TripDetails(props) {
     <NavFriend />
       <div className="tripDetails">
         <div className="tripstuff1">
-          <h1>Your single trip details:</h1>
+          <h1>{trip.tripName}</h1>
           <p className="outerp">Trip Name: <p>{trip.tripName}</p></p>
           <p className="outerp">Trip Description: <p>{trip.tripDescription}</p></p>
           <p className="outerp">Trip Location: <p>{trip.tripLocation}</p></p>
