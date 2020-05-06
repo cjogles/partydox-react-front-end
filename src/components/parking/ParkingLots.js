@@ -10,10 +10,13 @@ function ParkingLots(props) {
       <NavFriend />
       <div className="dash">
         <div className="dashContainer1">
-          <h2 className="dashH">Your ParkingLots</h2>
+        <h2 className="dashH">Welcome!</h2>
+          <div className="tripList">
+            <h2 className="tripListH"> Your Parking Lots</h2>
           {props.parkingLots.map((parking) => {
             return <Parking key={parking.id} parking={parking} />;
           })}
+          </div>
         </div>
       </div>
       <Footer/>
