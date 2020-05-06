@@ -883,6 +883,11 @@ div.tripDetails .tripstuff1 {
 div.tripDetails .tripstuff1 div.tripstuffnames {
   margin-right: 2rem;
 }
+div.tripDetails .tripstuff1 div.tripstuffnames h2.flighth2 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
 div.tripDetails .tripstuff1 div.tripstuffvalues p {
   font-family: 'Roboto Condensed', sans-serif;
 }

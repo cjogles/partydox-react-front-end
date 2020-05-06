@@ -12,7 +12,7 @@ function Flights(props) {
         <div className="dashContainer1">
           <h2 className="dashH">Welcome!</h2>
           <div className="tripList">
-            <h2 className="tripListH"> Your Flights</h2>
+            <h2 className="tripListH"> {localStorage.getItem("tripName")} Flights</h2>
             {props.flights.map((flight) => {
               return <Flight key={flight.id} flight={flight} />;
             })}

@@ -5,6 +5,7 @@ import NavFriend from "../friends/NavFriend";
 
 function ShoppingListDetails(props) {
   let items = props.location.state;
+  let tripName = localStorage.getItem("tripName");
 
   return (
     <>
@@ -20,18 +21,18 @@ function ShoppingListDetails(props) {
             <p className="outerp">Notes: </p>
           </div>
           <div className="tripstuffvalues">
-            <p>{items.name}</p>
-            <p>{items.cost}</p>
-            <p>{items.buyer}</p>
-            <p>{items.likes}</p>
-            <p>{items.notes}</p>
+            <p>{items.name ? items.name : "N/A"}</p>
+            <p>{items.cost ? items.cost : "N/A"}</p>
+            <p>{items.buyer ? items.buyer : "N/A"}</p>
+            <p>{items.likes ? items.likes : "N/A"}</p>
+            <p>{items.notes ? items.notes : "N/A"}</p>
           </div>
         </div>
         <div className="tripstuff2">
-          <Link to="/activities">Trip Activities</Link>
-          <Link to="/parkingLots">Trip Parking Lots</Link>
-          <Link to="/shoppingLists">Trip Shopping Lists</Link>
-          <Link to="/flights">Trip Flights</Link>
+          <Link to={{ pathname: "/activities", state: {tripName: tripName}}}>Trip Activities</Link>
+          <Link to={{ pathname: "/parkingLots", state: {tripName: tripName}}}>Trip Parking Lots</Link>
+          <Link to={{ pathname: "/shoppingLists", state: {tripName: tripName}}}>Trip Shopping Lists</Link>
+          <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>Trip Flights</Link>
         </div>
       </div>
     </>

@@ -12,8 +12,8 @@ function TripDetails(props) {
   let trip = props.location.state;
   let tripId = props.location.state.tripId;
   let id = localStorage.getItem("id");
-
   useEffect(() => {
+    localStorage.setItem("tripName", trip.tripName)
     props.getAllActivities(tripId);
     props.getAllParkingLots(tripId);
     props.getAllShoppingLists(tripId);
@@ -37,21 +37,21 @@ function TripDetails(props) {
             <p>Notes: </p>
           </div>
           <div className="tripstuffvalues">
-            <p>{trip.tripName}</p>
-            <p>{trip.tripDescription}</p>
-            <p>{trip.tripLocation}</p>
-            <p>{trip.tripCar}</p>
-            <p>{trip.tripStartDate}</p>
-            <p>{trip.tripEndDate}</p>
-            <p>{trip.tripLikes}</p>
-            <p>{trip.tripNotes}</p>
+            <p>{trip.tripName ? trip.tripName : "N/A"}</p>
+            <p>{trip.tripDescription  ? trip.tripDescription : "N/A"}</p>
+            <p>{trip.tripLocation  ? trip.tripLocation : "N/A"}</p>
+            <p>{trip.tripCar  ? trip.tripCar : "N/A"}</p>
+            <p>{trip.tripStartDate  ? trip.tripStartDate : "N/A"}</p>
+            <p>{trip.tripEndDate  ? trip.tripEndDate : "N/A"}</p>
+            <p>{trip.tripLikes  ? trip.tripLikes : "N/A"}</p>
+            <p>{trip.tripNotes  ? trip.tripNotes : "N/A"}</p>
           </div>
         </div>
         <div className="tripstuff2">
-          <Link to="/activities">Trip Activities</Link>
-          <Link to="/parkingLots">Trip Parking Lots</Link>
-          <Link to="/shoppingLists">Trip Shopping Lists</Link>
-          <Link to="/flights">Trip Flights</Link>
+          <Link to={{ pathname: "/activities", state: {tripName: localStorage.getItem("tripName")}}}>Trip Activities</Link>
+          <Link to={{ pathname: "/parkingLots", state: {tripName: localStorage.getItem("tripName")}}}>Trip Parking Lots</Link>
+          <Link to={{ pathname: "/shoppingLists", state: {tripName: localStorage.getItem("tripName")}}}>Trip Shopping Lists</Link>
+          <Link to={{ pathname: "/flights", state: {tripName: localStorage.getItem("tripName")}}}>Trip Flights</Link>
         </div>
       </div>
       <Footer />

@@ -2,31 +2,46 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../friends/NavFriend";
+import Footer from '../FooterSignUp';
 
 function ParkingLotDetails(props) {
   let parking = props.location.state;
+  let tripName = localStorage.getItem("tripName");
 
   return (
     <>
       <NavFriend />
       <div className="tripDetails">
+        <h1>{parking.parkingName}</h1>
+
         <div className="tripstuff1">
-          <h1>{parking.parkingName}</h1>
-          <p className="outerp">Parking Lot Name: <p>{parking.parkingName}</p></p>
-          <p className="outerp">Parking Lot Address: <p>{parking.parkingAddress}</p></p>
-          <p className="outerp">Parking Lot Phone: <p>{parking.parkingPhone}</p></p>
-          <p className="outerp">Parking Lot Cost: <p>{parking.parkingCost}</p></p>
-          <p className="outerp">Parking Lot Hours: <p>{parking.parkingHours}</p></p>
-          <p className="outerp">Parking Lot Likes: <p>{parking.parkingLikes}</p></p>
-          <p className="outerp">Parking Lot Notes: <p>{parking.parkingNotes}</p></p>
+          <div className="tripstuffnames">
+            <p>Parking Lot Name: </p>
+            <p>Parking Lot Address: </p>
+            <p>Parking Lot Phone: </p>
+            <p>Parking Lot Cost: </p>
+            <p>Parking Lot Hours: </p>
+            <p>Parking Lot Likes: </p>
+            <p>Parking Lot Notes: </p>
+          </div>
+          <div className="tripstuffvalues">
+            <p>{parking.parkingName ? parking.parkingName : "N/A"}</p>
+            <p>{parking.parkingAddress ? parking.parkingAddress : "N/A"}</p>
+            <p>{parking.parkingPhone ? parking.parkingPhone : "N/A"}</p>
+            <p>{parking.parkingCost ? parking.parkingCost : "N/A"}</p>
+            <p>{parking.parkingHours ? parking.parkingHours : "N/A"}</p>
+            <p>{parking.parkingLikes ? parking.parkingLikes : "N/A"}</p>
+            <p>{parking.parkingNotes ? parking.parkingNotes : "N/A"}</p>
+          </div>
         </div>
         <div className="tripstuff2">
-          <Link to="/activities">Trip Activities</Link>
-          <Link to="/parkingLots">Trip Parking Lots</Link>
-          <Link to="/shoppingLists">Trip Shopping Lists</Link>
-          <Link to="/flights">Trip Flights</Link>
+          <Link to={{ pathname: "/activities", state: {tripName: tripName}}}>Trip Activities</Link>
+          <Link to={{ pathname: "/parkingLots", state: {tripName: tripName}}}>Trip Parking Lots</Link>
+          <Link to={{ pathname: "/shoppingLists", state: {tripName: tripName}}}>Trip Shopping Lists</Link>
+          <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>Trip Flights</Link>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
