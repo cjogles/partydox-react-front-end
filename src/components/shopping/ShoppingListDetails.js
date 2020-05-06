@@ -8,9 +8,8 @@ function ShoppingListDetails(props) {
 
   return (
     <>
-    <NavFriend />
+      <NavFriend />
       <div className="tripDetails">
-        
         <div className="tripstuff1">
           <h1>Your shopping list details:</h1>
           <p>Item Names: {items.name}</p>
@@ -20,18 +19,10 @@ function ShoppingListDetails(props) {
           <p>Notes: {items.notes}</p>
         </div>
         <div className="tripstuff2">
-          <Link to="/activities">
-            Trip Activities
-          </Link>
-          <Link to="/parkingLots">
-            Trip Parking Lots
-          </Link>
-          <Link to="/shoppingLists">
-            Trip Shopping Lists
-          </Link>
-          <Link to="/flights">
-            Trip Flights
-          </Link>
+          <Link to="/activities">Trip Activities</Link>
+          <Link to="/parkingLots">Trip Parking Lots</Link>
+          <Link to="/shoppingLists">Trip Shopping Lists</Link>
+          <Link to="/flights">Trip Flights</Link>
         </div>
       </div>
     </>
