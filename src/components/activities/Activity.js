@@ -15,6 +15,10 @@ function Activity(props) {
             <h6>Description:</h6>
             <h2>{props.activity.activity_description}</h2>
           </div>
+          <div className="tripdescription">
+            <h6>Likes:</h6>
+            <h2>{props.activity.activity_upvote}</h2>
+          </div>
         </div>
         <div className="tripdiv2">
           <div>
@@ -30,7 +34,7 @@ function Activity(props) {
                   activityPhone: props.activity.activity_phone,
                   activityStartDate: props.activity.activity_start_date,
                   activityEndDate: props.activity.activity_end_date,
-                  activityLikes: props.activity.activity_upvotes,
+                  activityLikes: props.activity.activity_upvote,
                   activityNotes: props.activity.activity_notes,
                 },
               }}

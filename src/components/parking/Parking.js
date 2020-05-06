@@ -15,6 +15,10 @@ function Parking(props) {
             <h6>Parking Lot Address: </h6>
             <h2>{props.parking.parking_lot_address}</h2>
           </div>
+          <div className="tripdescription">
+            <h6>Likes: </h6>
+            <h2>{props.parking.parking_upvote}</h2>
+          </div>
         </div>
         <div className="tripdiv2">
           <div>

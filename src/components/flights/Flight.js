@@ -17,6 +17,10 @@ function Flight(props) {
             <h6>Arrival Airport: </h6>
             <h2>{props.flight.arrival_airport_name}</h2>
           </div>
+          <div  className="tripdescription">
+            <h6>Likes: </h6>
+            <h2>{props.flight.flight_combo_upvote}</h2>
+          </div>
         </div>
         <div className="tripdiv2">
             <div>

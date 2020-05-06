@@ -19,6 +19,10 @@ function Shopping(props) {
             <h6>Bought By: </h6>
             <h2>{props.shopping.item_buyer}</h2>
           </div>
+          <div className="tripdescription">
+            <h6>Likes: </h6>
+            <h2>{props.shopping.item_upvote}</h2>
+          </div>
         </div>
         <div className="tripdiv2">
           <div>
