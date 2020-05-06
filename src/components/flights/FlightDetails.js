@@ -9,8 +9,9 @@ function FlightDetails(props) {
 
   return (
     <>
+    <NavFriend />
       <div className="tripDetails">
-        <NavFriend />
+        
         <div className="tripstuff1">
           <h1>Your single flight details:</h1>
           <h2>Departure:</h2>

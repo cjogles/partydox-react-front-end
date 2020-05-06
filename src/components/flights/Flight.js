@@ -9,11 +9,11 @@ function Flight(props) {
 
       <div className="trip">
         <div className="tripdiv1">
-          <div>
+          <div className="tripdescription">
             <h6>Departure Airport:</h6>
             <h2>{props.flight.departure_airport_name}</h2>
           </div>
-          <div>
+          <div  className="tripdescription">
             <h6>Arrival Airport: </h6>
             <h2>{props.flight.arrival_airport_name}</h2>
           </div>
@@ -43,8 +43,15 @@ function Flight(props) {
                     flightCost: props.flight.total_flight_cost,
                     flightLikes: props.flight.flight_combo_upvote,
                     } 
-                    }}>View Flight Details</Link>
+                    }}><p>View Flight Details</p></Link>
             </div>
+        </div>
+        <div className="tripdiv3">
+          <div>
+            <Link to="/inviteFriend">
+              <p>Invite a Friend to Collaborate!</p>
+            </Link>
+          </div>
         </div>
       </div>
     </>
