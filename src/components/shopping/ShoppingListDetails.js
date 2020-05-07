@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../friends/NavFriend";
+import Footer from '../FooterSignUp';
 
 function ShoppingListDetails(props) {
   let items = props.location.state;
@@ -11,7 +12,27 @@ function ShoppingListDetails(props) {
     <>
       <NavFriend />
       <div className="tripDetails">
-        <h1>Your Shopping List Details:</h1>
+      <div>
+          <h1>Your Shopping List Details:</h1>
+          <div className="updateTrip">
+            <Link
+              to={{
+                pathname: "/updateShoppingList",
+                state: { userId: localStorage.getItem("id") },
+              }}
+            >
+              <p>Edit Shopping List</p>
+            </Link>{" "}
+            <Link
+              to={{
+                pathname: "/deleteShoppingList",
+                state: { userId: localStorage.getItem("id") },
+              }}
+            >
+              <p>Delete Shopping List</p>
+            </Link>{" "}
+          </div>
+        </div>
         <div className="tripstuff1">
           <div className="tripstuffnames">
             <p className="outerp">Item Names: </p>
@@ -35,6 +56,7 @@ function ShoppingListDetails(props) {
           <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>Trip Flights</Link>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

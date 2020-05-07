@@ -12,7 +12,27 @@ function ParkingLotDetails(props) {
     <>
       <NavFriend />
       <div className="tripDetails">
-        <h1>{parking.parkingName}</h1>
+      <div>
+          <h1>{parking.parkingName}</h1>
+          <div className="updateTrip">
+            <Link
+              to={{
+                pathname: "/updateParkingLot",
+                state: { userId: localStorage.getItem("id") },
+              }}
+            >
+              <p>Edit Parking Lot</p>
+            </Link>{" "}
+            <Link
+              to={{
+                pathname: "/deleteParkingLot",
+                state: { userId: localStorage.getItem("id") },
+              }}
+            >
+              <p>Delete Parking Lot</p>
+            </Link>{" "}
+          </div>
+        </div>
 
         <div className="tripstuff1">
           <div className="tripstuffnames">

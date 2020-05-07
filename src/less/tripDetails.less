@@ -6,12 +6,44 @@ div.tripDetails {
     inset 0 -11px 8px -10px rgba(0, 0, 0, 0.2);
   justify-content: space-evenly;
   align-items: center;
+  // border: solid;
   h1 {
     font-size: 2rem;
     margin-top: 3rem;
+    text-align: center;
+  }
+  div.updateTrip {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    align-items: center;
+    :hover {
+      background-color: skyblue;
+      color: black;
+      transition: 0.6s;
+      cursor: pointer;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      border: solid skyblue;
+      padding: .8rem;
+      border-radius: 2rem;
+      margin: 1rem;
+      p {
+        font-size: 1rem;
+        text-align: center;
+        // border: solid red;
+        @media @small {
+          text-align: center;
+          font-size: 1rem;
+        }
+      }
+    }
   }
   .tripstuff1 {
-    margin-top: 2rem;
+    margin-top: 1rem;
     background-color: #bae9ff;
     padding: 3rem;
     border-radius: 2rem;

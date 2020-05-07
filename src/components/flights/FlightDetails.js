@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../friends/NavFriend";
+import Footer from '../FooterSignUp';
 
 function FlightDetails(props) {
   let flight = props.location.state;
@@ -11,7 +12,27 @@ function FlightDetails(props) {
     <>
       <NavFriend />
       <div className="tripDetails">
-        <h1>Your Flight Details:</h1>
+      <div>
+          <h1>Your Flight Details:</h1>
+          <div className="updateTrip">
+            <Link
+              to={{
+                pathname: "/updateFlight",
+                state: { userId: localStorage.getItem("id") },
+              }}
+            >
+              <p>Edit Flight</p>
+            </Link>{" "}
+            <Link
+              to={{
+                pathname: "/deleteFlight",
+                state: { userId: localStorage.getItem("id") },
+              }}
+            >
+              <p>Delete Flight</p>
+            </Link>{" "}
+          </div>
+        </div>
         <div className="tripstuff1">
           <div className="tripstuffnames">
             <p>Departure Airport Name: </p>
@@ -65,6 +86,7 @@ function FlightDetails(props) {
           <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>Trip Flights</Link>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

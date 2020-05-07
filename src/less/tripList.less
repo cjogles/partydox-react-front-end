@@ -7,12 +7,59 @@ div.tripList {
   @media @small {
     margin: 0rem;
   }
-  h2.tripListH {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    margin-top: 1rem;
-    @media @small {
-      text-align: center;
+  
+  div.addtrip1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+      align-items: center;
+    // border: solid;
+    h2.tripListH {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      margin-top: 1rem;
+      // border: solid red;
+      @media @small {
+        text-align: center;
+        font-size: 1rem;
+      }
+    }
+    div.addtrip {
+      // border: solid pink;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      :hover {
+        background-color: skyblue;
+        color: black;
+        transition: 0.6s;
+        cursor: pointer;
+    }
+      a {
+        // border: solid blue;
+        text-decoration: none;
+        color: black;
+        border: solid skyblue;
+        padding: .8rem;
+        border-radius: 2rem;
+        margin: 1rem;
+        p {
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+          margin-top: 1rem;
+          text-align: center;
+          // border: solid red;
+          @media @large {
+            text-align: center;
+            font-size: 1rem;
+          }
+          @media @small {
+            text-align: center;
+            font-size: 1rem;
+          }
+        }
+      }
     }
   }
 }

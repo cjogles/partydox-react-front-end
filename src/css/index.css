@@ -668,14 +668,59 @@ div.tripList {
     margin: 0rem;
   }
 }
-div.tripList h2.tripListH {
+div.tripList div.addtrip1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+div.tripList div.addtrip1 h2.tripListH {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
   margin-top: 1rem;
 }
 @media (max-width: 320px) {
-  div.tripList h2.tripListH {
+  div.tripList div.addtrip1 h2.tripListH {
     text-align: center;
+    font-size: 1rem;
+  }
+}
+div.tripList div.addtrip1 div.addtrip {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+div.tripList div.addtrip1 div.addtrip :hover {
+  background-color: skyblue;
+  color: black;
+  transition: 0.6s;
+  cursor: pointer;
+}
+div.tripList div.addtrip1 div.addtrip a {
+  text-decoration: none;
+  color: black;
+  border: solid skyblue;
+  padding: 0.8rem;
+  border-radius: 2rem;
+  margin: 1rem;
+}
+div.tripList div.addtrip1 div.addtrip a p {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+@media (max-width: 800px) {
+  div.tripList div.addtrip1 div.addtrip a p {
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 320px) {
+  div.tripList div.addtrip1 div.addtrip a p {
+    text-align: center;
+    font-size: 1rem;
   }
 }
 .trip {
@@ -870,9 +915,41 @@ div.tripDetails {
 div.tripDetails h1 {
   font-size: 2rem;
   margin-top: 3rem;
+  text-align: center;
+}
+div.tripDetails div.updateTrip {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  align-items: center;
+}
+div.tripDetails div.updateTrip :hover {
+  background-color: skyblue;
+  color: black;
+  transition: 0.6s;
+  cursor: pointer;
+}
+div.tripDetails div.updateTrip a {
+  text-decoration: none;
+  color: black;
+  border: solid skyblue;
+  padding: 0.8rem;
+  border-radius: 2rem;
+  margin: 1rem;
+}
+div.tripDetails div.updateTrip a p {
+  font-size: 1rem;
+  text-align: center;
+}
+@media (max-width: 320px) {
+  div.tripDetails div.updateTrip a p {
+    text-align: center;
+    font-size: 1rem;
+  }
 }
 div.tripDetails .tripstuff1 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   background-color: #bae9ff;
   padding: 3rem;
   border-radius: 2rem;

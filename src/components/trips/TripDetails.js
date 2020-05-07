@@ -13,7 +13,7 @@ function TripDetails(props) {
   let tripId = props.location.state.tripId;
   let id = localStorage.getItem("id");
   useEffect(() => {
-    localStorage.setItem("tripName", trip.tripName)
+    localStorage.setItem("tripName", trip.tripName);
     props.getAllActivities(tripId);
     props.getAllParkingLots(tripId);
     props.getAllShoppingLists(tripId);
@@ -24,7 +24,27 @@ function TripDetails(props) {
     <>
       <NavFriend />
       <div className="tripDetails">
-      <h1>{trip.tripName}</h1>
+        <div>
+          <h1>{trip.tripName}</h1>
+          <div className="updateTrip">
+            <Link
+              to={{
+                pathname: "/updateTrip",
+                state: { userId: localStorage.getItem("id") },
+              }}
+            >
+              <p>Edit Trip</p>
+            </Link>{" "}
+            <Link
+              to={{
+                pathname: "/deleteTrip",
+                state: { userId: localStorage.getItem("id") },
+              }}
+            >
+              <p>Delete Trip</p>
+            </Link>{" "}
+          </div>
+        </div>
         <div className="tripstuff1">
           <div className="tripstuffnames">
             <p>Trip Name: </p>
@@ -38,20 +58,48 @@ function TripDetails(props) {
           </div>
           <div className="tripstuffvalues">
             <p>{trip.tripName ? trip.tripName : "N/A"}</p>
-            <p>{trip.tripDescription  ? trip.tripDescription : "N/A"}</p>
-            <p>{trip.tripLocation  ? trip.tripLocation : "N/A"}</p>
-            <p>{trip.tripCar  ? trip.tripCar : "N/A"}</p>
-            <p>{trip.tripStartDate  ? trip.tripStartDate : "N/A"}</p>
-            <p>{trip.tripEndDate  ? trip.tripEndDate : "N/A"}</p>
-            <p>{trip.tripLikes  ? trip.tripLikes : "N/A"}</p>
-            <p>{trip.tripNotes  ? trip.tripNotes : "N/A"}</p>
+            <p>{trip.tripDescription ? trip.tripDescription : "N/A"}</p>
+            <p>{trip.tripLocation ? trip.tripLocation : "N/A"}</p>
+            <p>{trip.tripCar ? trip.tripCar : "N/A"}</p>
+            <p>{trip.tripStartDate ? trip.tripStartDate : "N/A"}</p>
+            <p>{trip.tripEndDate ? trip.tripEndDate : "N/A"}</p>
+            <p>{trip.tripLikes ? trip.tripLikes : "N/A"}</p>
+            <p>{trip.tripNotes ? trip.tripNotes : "N/A"}</p>
           </div>
         </div>
         <div className="tripstuff2">
-          <Link to={{ pathname: "/activities", state: {tripName: localStorage.getItem("tripName")}}}>Trip Activities</Link>
-          <Link to={{ pathname: "/parkingLots", state: {tripName: localStorage.getItem("tripName")}}}>Trip Parking Lots</Link>
-          <Link to={{ pathname: "/shoppingLists", state: {tripName: localStorage.getItem("tripName")}}}>Trip Shopping Lists</Link>
-          <Link to={{ pathname: "/flights", state: {tripName: localStorage.getItem("tripName")}}}>Trip Flights</Link>
+          <Link
+            to={{
+              pathname: "/activities",
+              state: { tripName: localStorage.getItem("tripName") },
+            }}
+          >
+            Trip Activities
+          </Link>
+          <Link
+            to={{
+              pathname: "/parkingLots",
+              state: { tripName: localStorage.getItem("tripName") },
+            }}
+          >
+            Trip Parking Lots
+          </Link>
+          <Link
+            to={{
+              pathname: "/shoppingLists",
+              state: { tripName: localStorage.getItem("tripName") },
+            }}
+          >
+            Trip Shopping Lists
+          </Link>
+          <Link
+            to={{
+              pathname: "/flights",
+              state: { tripName: localStorage.getItem("tripName") },
+            }}
+          >
+            Trip Flights
+          </Link>
         </div>
       </div>
       <Footer />
