@@ -13,3 +13,29 @@ export const getAllTrips = () => (dispatch) => {
       console.log(err);
     });
 };
+
+export const getTrip = (trip, history) => (dispatch) => {
+  let id = localStorage.getItem("id");
+  AxiosWithAuth()
+    .post(`/trips/user/${id}`)
+    .then((res) => {
+      console.log("trip to add:", res.data)
+      // dispatch({ type: t.CREATE_TRIP, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const addTrip = (trip, history) => (dispatch) => {
+  let id = localStorage.getItem("id");
+  AxiosWithAuth()
+    .post(`/trips/user/${id}`)
+    .then((res) => {
+      console.log("trip to add:", res.data)
+      // dispatch({ type: t.CREATE_TRIP, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
