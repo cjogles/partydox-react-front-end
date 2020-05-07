@@ -55,10 +55,10 @@ function ParkingLotDetails(props) {
           </div>
         </div>
         <div className="tripstuff2">
-          <Link to={{ pathname: "/activities", state: {tripName: tripName}}}>Trip Activities</Link>
-          <Link to={{ pathname: "/parkingLots", state: {tripName: tripName}}}>Trip Parking Lots</Link>
-          <Link to={{ pathname: "/shoppingLists", state: {tripName: tripName}}}>Trip Shopping Lists</Link>
-          <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>Trip Flights</Link>
+          <Link to={{ pathname: "/activities", state: {tripName: tripName}}}>{tripName} activities</Link>
+          <Link to={{ pathname: "/parkingLots", state: {tripName: tripName}}}>{tripName} parking lots</Link>
+          <Link to={{ pathname: "/shoppingLists", state: {tripName: tripName}}}>{tripName} shopping lists</Link>
+          <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>{tripName} flights</Link>
         </div>
       </div>
       <Footer/>

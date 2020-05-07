@@ -74,7 +74,7 @@ function TripDetails(props) {
               state: { tripName: localStorage.getItem("tripName") },
             }}
           >
-            Trip Activities
+            {localStorage.getItem("tripName")} activities
           </Link>
           <Link
             to={{
@@ -82,7 +82,7 @@ function TripDetails(props) {
               state: { tripName: localStorage.getItem("tripName") },
             }}
           >
-            Trip Parking Lots
+            {localStorage.getItem("tripName")} parking lots
           </Link>
           <Link
             to={{
@@ -90,7 +90,7 @@ function TripDetails(props) {
               state: { tripName: localStorage.getItem("tripName") },
             }}
           >
-            Trip Shopping Lists
+            {localStorage.getItem("tripName")} shopping lists
           </Link>
           <Link
             to={{
@@ -98,7 +98,7 @@ function TripDetails(props) {
               state: { tripName: localStorage.getItem("tripName") },
             }}
           >
-            Trip Flights
+            {localStorage.getItem("tripName")} flights
           </Link>
         </div>
       </div>
