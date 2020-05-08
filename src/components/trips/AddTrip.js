@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
-import Nav from "../Nav";
+import React, { useState } from "react";
+import Nav from "../friends/NavFriend";
 import FooterSignUp from "../FooterSignUp";
 import { addTrip } from '../../actions/tripActions';
 import { connect } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function AddTrip(props) {
-  let id = localStorage.getItem("id");
+
   let history = useHistory();
+
   const [trip, setTrip] = useState({
     trip_name: "",
     trip_description: "",
@@ -29,10 +30,6 @@ function AddTrip(props) {
     props.addTrip(trip, history);
   };
 
-  useEffect(() => {
-    
-  }, [id]);
-
   return (
     <>
       <Nav />
@@ -46,67 +43,67 @@ function AddTrip(props) {
           </div>
 
           <form onSubmit={(event) => onSubmit(event)}>
-            <label htmlFor="addTripName">Trip Name:</label>
+            <label htmlFor="trip_name">Trip Name:</label>
             <input
               type="text"
-              id="addTripName"
-              name="addTripName"
+              id="trip_name"
+              name="trip_name"
               value={trip.trip_name}
               onChange={(event) => onChange(event)}
             ></input>
-            <label htmlFor="addTripDescription">Trip Description:</label>
+            <label htmlFor="trip_description">Trip Description:</label>
             <input
               type="text"
-              id="addTripDescription"
-              name="addTripDescription"
+              id="trip_description"
+              name="trip_description"
               value={trip.trip_description}
               onChange={(event) => onChange(event)}
             ></input>
-            <label htmlFor="addTripLift">Trip Lift Off Location:</label>
+            <label htmlFor="trip_lift_off_location">Trip Location:</label>
             <input
               type="text"
-              id="addTripLift"
-              name="addTripLift"
+              id="trip_lift_off_location"
+              name="trip_lift_off_location"
               value={trip.trip_lift_off_location}
               onChange={(event) => onChange(event)}
             ></input>
-            <label htmlFor="addTripCar">Trip Car:</label>
+            <label htmlFor="trip_location">Trip Lift Off Location:</label>
             <input
               type="text"
-              id="addTripCar"
-              name="addTripCar"
-              value={trip.trip_description}
+              id="trip_location"
+              name="trip_location"
+              value={trip.trip_location}
               onChange={(event) => onChange(event)}
             ></input>
-            <label htmlFor="addTripStart">Trip Start Date:</label>
+            <label htmlFor="trip_car">Trip Car:</label>
             <input
               type="text"
-              id="addTripStart"
-              name="addTripStart"
+              id="trip_car"
+              name="trip_car"
+              value={trip.trip_car}
+              onChange={(event) => onChange(event)}
+            ></input>
+            <label htmlFor="trip_start_date">Trip Start Date:</label>
+            <input
+              type="text"
+              id="trip_start_date"
+              name="trip_start_date"
               value={trip.trip_start_date}
               onChange={(event) => onChange(event)}
             ></input>
-            <label htmlFor="addTripEnd">Trip End Date:</label>
+            <label htmlFor="trip_end_date">Trip End Date:</label>
             <input
               type="text"
-              id="addTripEnd"
-              name="addTripEnd"
+              id="trip_end_date"
+              name="trip_end_date"
               value={trip.trip_end_date}
               onChange={(event) => onChange(event)}
             ></input>
-            <label htmlFor="addTripLikes">Trip Likes:</label>
+            <label htmlFor="trip_notes">Trip Notes:</label>
             <input
               type="text"
-              id="addTripLikes"
-              name="addTripLikes"
-              value={trip.trip_upvote}
-              onChange={(event) => onChange(event)}
-            ></input>
-            <label htmlFor="addTripNotes">Trip Notes:</label>
-            <input
-              type="text"
-              id="addTripNotes"
-              name="addTripNotes"
+              id="trip_notes"
+              name="trip_notes"
               value={trip.trip_notes}
               onChange={(event) => onChange(event)}
             ></input>

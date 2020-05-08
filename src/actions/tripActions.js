@@ -6,7 +6,6 @@ export const getAllTrips = () => (dispatch) => {
   AxiosWithAuth()
     .get(`/trips/user/${id}`)
     .then((res) => {
-      // console.log("axios payload:", res.data)
       dispatch({ type: t.GET_ALL_TRIPS, payload: res.data });
     })
     .catch((err) => {
@@ -14,26 +13,39 @@ export const getAllTrips = () => (dispatch) => {
     });
 };
 
-export const getTrip = (trip, history) => (dispatch) => {
+export const addTrip = (trip, history) => (dispatch) => {
+  dispatch({ type: t.ADDING_TRIP, payload: "Adding a trip to your list..." });
   let id = localStorage.getItem("id");
   AxiosWithAuth()
-    .post(`/trips/user/${id}`)
+    .post(`/trips/user/${id}`, trip)
     .then((res) => {
-      console.log("trip to add:", res.data)
-      // dispatch({ type: t.CREATE_TRIP, payload: res.data });
+      history.push("/dashboard")
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
-export const addTrip = (trip, history) => (dispatch) => {
-  let id = localStorage.getItem("id");
+export const deleteTrip = (tripId, userId, history) => (dispatch) => {
+  dispatch({ type: t.DELETING_TRIP, payload: "Deleting Your Trip..." });
   AxiosWithAuth()
-    .post(`/trips/user/${id}`)
+    .delete(`/trips/user/${userId}/trip/${tripId}`)
     .then((res) => {
-      console.log("trip to add:", res.data)
-      // dispatch({ type: t.CREATE_TRIP, payload: res.data });
+      dispatch({ type: t.DELETED_TRIP, payload: "Deleted Trip" });
+      history.push("/dashboard")
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const updateTrip = (tripId, userId, updatedTripBody, history) => (dispatch) => {
+  dispatch({ type: t.UPDATING_TRIP, payload: "Updating Your Trip..." });
+  AxiosWithAuth()
+    .put(`/trips/user/${userId}/trip/${tripId}`, updatedTripBody)
+    .then((res) => {
+      dispatch({ type: t.UPDATED_TRIP, payload: "Updated Trip" });
+      history.push("/dashboard")
     })
     .catch((err) => {
       console.log(err);

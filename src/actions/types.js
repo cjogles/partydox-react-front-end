@@ -7,10 +7,13 @@ export const GET_FRIEND = "GET_FRIEND";       // R
 export const UPDATE_FRIEND = "UPDATE_FRIEND"; // U
 export const DELETE_FRIEND = "DELETE_FRIEND"; // D
 
-export const CREATE_TRIP = "CREATE_TRIP";
+export const ADDING_TRIP = "ADDING_TRIP";
+export const ADDED_TRIP = "ADDED_TRIP";
 export const GET_TRIP = "GET_TRIP";
-export const UPDATE_TRIP = "UPDATE_TRIP";
-export const DELETE_TRIP = "DELETE_TRIP";
+export const UPDATING_TRIP = "UPDATING_TRIP";
+export const UPDATED_TRIP = "UPDATED_TRIP";
+export const DELETING_TRIP = "DELETING_TRIP";
+export const DELETED_TRIP = "DELETED_TRIP";
 export const GET_ALL_TRIPS = "GET_ALL_TRIPS";
 
 export const CREATE_ACTIVITY = "CREATE_ACTIVITY";

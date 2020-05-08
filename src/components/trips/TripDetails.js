@@ -30,7 +30,10 @@ function TripDetails(props) {
             <Link
               to={{
                 pathname: "/updateTrip",
-                state: { userId: localStorage.getItem("id") },
+                state: { 
+                  userId: localStorage.getItem("id"), 
+                  tripId: props.tripsId                
+                },
               }}
             >
               <p>Edit Trip</p>

@@ -10,7 +10,7 @@ function Dashboard(props) {
   let id = localStorage.getItem("id");
   useEffect(() => {
     props.getAllTrips();
-  }, [id]);
+  }, [props.update, props.deleteTrip]);
 
   return (
     <>
@@ -60,6 +60,12 @@ const mapStateToProps = (state) => {
     loggingInMessage: state.signUpReducer.loggingInMessage,
     trips: state.tripsReducer.trips,
     gettingTrips: state.tripsReducer.gettingTrips,
+    add: state.tripsReducer.addingTrip,
+    addMessage: state.tripsReducer.addingTripMessage,
+    update: state.tripsReducer.updatingTrip,
+    updateMessage: state.tripsReducer.updatingTripMessage,
+    deleteTrip: state.tripsReducer.deletingTrip,
+    deleteMessage: state.tripsReducer.deletingTripMessage,
   };
 };
 
