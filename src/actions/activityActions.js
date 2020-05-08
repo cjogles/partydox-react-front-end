@@ -6,8 +6,6 @@ export const getAllActivities = (tripId) => (dispatch) => {
   AxiosWithAuth()
     .get(`/activity/user/${id}/activityTrip/${tripId}`)
     .then((res) => {
-      console.log("ACTIVITIES payload:", res.data)
-      console.log("userID, tripid", id, tripId)
       dispatch({ type: t.GET_ALL_ACTIVITIES, payload: res.data });
     })
     .catch((err) => {

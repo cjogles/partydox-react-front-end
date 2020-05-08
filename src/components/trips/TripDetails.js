@@ -7,18 +7,23 @@ import { getAllActivities } from "../../actions/activityActions";
 import { getAllParkingLots } from "../../actions/parkingActions";
 import { getAllShoppingLists } from "../../actions/shoppingActions";
 import { getAllFlights } from "../../actions/flightActions";
+import { deleteTrip } from "../../actions/tripActions";
+import { useHistory } from "react-router-dom";
 
 function TripDetails(props) {
+  
+  let history = useHistory();
   let trip = props.location.state;
   let tripId = props.location.state.tripId;
-  let id = localStorage.getItem("id");
+
   useEffect(() => {
     localStorage.setItem("tripName", trip.tripName);
+    localStorage.setItem("tripId", trip.tripId);
     props.getAllActivities(tripId);
     props.getAllParkingLots(tripId);
     props.getAllShoppingLists(tripId);
     props.getAllFlights(tripId);
-  }, [id]);
+  }, [props.update, props.deleteTrip]);
 
   return (
     <>
@@ -31,21 +36,25 @@ function TripDetails(props) {
               to={{
                 pathname: "/updateTrip",
                 state: { 
-                  userId: localStorage.getItem("id"), 
-                  tripId: props.tripsId                
+                  userId: localStorage.getItem("id"),
+                  tripId: trip.tripId,
+                  tripName: trip.tripName,
+                  tripDescription: trip.tripDescription,
+                  tripLocation: trip.tripLocation,
+                  tripLiftOff: trip.tripLiftOff,
+                  tripCar: trip.tripCar,
+                  tripStartDate: trip.tripStartDate,
+                  tripEndDate: trip.tripEndDate,
+                  tripLikes: trip.tripLikes,
+                  tripNotes: trip.tripNotes,              
                 },
               }}
             >
               <p>Edit Trip</p>
             </Link>{" "}
-            <Link
-              to={{
-                pathname: "/deleteTrip",
-                state: { userId: localStorage.getItem("id") },
-              }}
-            >
+            <button onClick={() => props.deleteTrip(trip.tripId, localStorage.getItem("id"), history)}>
               <p>Delete Trip</p>
-            </Link>{" "}
+            </button>{" "}
           </div>
         </div>
         <div className="tripstuff1">
@@ -53,6 +62,7 @@ function TripDetails(props) {
             <p>Trip Name: </p>
             <p>Description: </p>
             <p>Location: </p>
+            <p>Start Off Location:</p>
             <p>Car: </p>
             <p>Start Date: </p>
             <p>End Date: </p>
@@ -63,6 +73,7 @@ function TripDetails(props) {
             <p>{trip.tripName ? trip.tripName : "N/A"}</p>
             <p>{trip.tripDescription ? trip.tripDescription : "N/A"}</p>
             <p>{trip.tripLocation ? trip.tripLocation : "N/A"}</p>
+            <p>{trip.tripLiftOff ? trip.tripLiftOff : "N/A"}</p>
             <p>{trip.tripCar ? trip.tripCar : "N/A"}</p>
             <p>{trip.tripStartDate ? trip.tripStartDate : "N/A"}</p>
             <p>{trip.tripEndDate ? trip.tripEndDate : "N/A"}</p>
@@ -113,6 +124,10 @@ function TripDetails(props) {
 const mapStateToProps = (state) => {
   return {
     trips: state.tripsReducer.trips,
+    update: state.tripsReducer.updatingTrip,
+    updateMessage: state.tripsReducer.updatingTripMessage,
+    deleteTrip: state.tripsReducer.deletingTrip,
+    deleteTripMessage: state.tripsReducer.deletingTripMessage,
   };
 };
 
@@ -121,6 +136,7 @@ const mapDispatchToProps = {
   getAllParkingLots,
   getAllFlights,
   getAllShoppingLists,
+  deleteTrip,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripDetails);

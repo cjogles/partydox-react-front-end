@@ -71,13 +71,14 @@ function Trip(props) {
             >
               <p>Edit Trip</p>
             </Link>{" "}
-            </div>
+          </div>
 
-            <div>
+          <div>
             <button onClick={() => props.deleteTrip(props.trip.id, localStorage.getItem("id"), history)}>
               <p>Delete Trip</p>
             </button>{" "}
           </div>
+          
         </div>
       </div>
     </>

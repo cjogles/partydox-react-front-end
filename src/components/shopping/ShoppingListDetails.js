@@ -3,10 +3,18 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../friends/NavFriend";
 import Footer from '../FooterSignUp';
+import { useHistory } from "react-router-dom";
+import { deleteShoppingList } from "../../actions/shoppingActions";
 
 function ShoppingListDetails(props) {
+
   let items = props.location.state;
   let tripName = localStorage.getItem("tripName");
+  let history = useHistory();
+
+  useEffect(() => {
+    props.getShoppingList();
+  }, [props.update, props.deleteTrip]);
 
   return (
     <>
@@ -18,19 +26,21 @@ function ShoppingListDetails(props) {
             <Link
               to={{
                 pathname: "/updateShoppingList",
-                state: { userId: localStorage.getItem("id") },
+                state: { 
+                  shoppingId: items.shoppingId,
+                  name: items.name,
+                  cost: items.cost,
+                  buyers: items.buyer,
+                  likes: items.likes,
+                  notes: items.notes,
+                },
               }}
             >
               <p>Edit Shopping List</p>
             </Link>{" "}
-            <Link
-              to={{
-                pathname: "/deleteShoppingList",
-                state: { userId: localStorage.getItem("id") },
-              }}
-            >
-              <p>Delete Shopping List</p>
-            </Link>{" "}
+            <button onClick={() => props.deleteShoppingList(items.shoppingId, history)}>
+              <p>Delete ShoppingList</p>
+            </button>{" "}
           </div>
         </div>
         <div className="tripstuff1">
@@ -63,7 +73,7 @@ function ShoppingListDetails(props) {
 const mapStateToProps = (state) => {
   return {};
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = { deleteShoppingList };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

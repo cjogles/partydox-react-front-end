@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { getAllTrips } from "../actions/tripActions";
 
 function Dashboard(props) {
-  let id = localStorage.getItem("id");
+  
   useEffect(() => {
     props.getAllTrips();
   }, [props.update, props.deleteTrip]);

@@ -61,9 +61,7 @@ function UpdateTrip(props) {
               placeholder={prevTrip.tripDescription}
               onChange={(event) => onChange(event)}
             ></input>
-            <label htmlFor="trip_location">
-              Trip Location:
-            </label>
+            <label htmlFor="trip_location">Trip Location:</label>
             <input
               type="text"
               id="trip_location"
@@ -111,14 +109,15 @@ function UpdateTrip(props) {
               onChange={(event) => onChange(event)}
             ></input>
             <label htmlFor="trip_notes">Trip Notes:</label>
-            <input
-              type="text"
+            <textarea
               id="trip_notes"
+              rows="4"
+              cols="40"
               name="trip_notes"
               value={trip.trip_notes}
               placeholder={prevTrip.tripNotes}
               onChange={(event) => onChange(event)}
-            ></input>
+            ></textarea>
             <button>Submit</button>
           </form>
         </div>

@@ -43,7 +43,7 @@ function Login(props) {
             ></input>
             <label htmlFor="password">Password:</label>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               value={user.password}

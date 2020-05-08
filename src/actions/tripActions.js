@@ -19,6 +19,7 @@ export const addTrip = (trip, history) => (dispatch) => {
   AxiosWithAuth()
     .post(`/trips/user/${id}`, trip)
     .then((res) => {
+      dispatch({ type: t.ADDED_TRIP, payload: "Added Trip" });
       history.push("/dashboard")
     })
     .catch((err) => {
