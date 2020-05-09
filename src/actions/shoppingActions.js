@@ -2,22 +2,31 @@ import AxiosWithAuth from "../utils/AxiosWithAuth";
 import * as t from "./types";
 
 export const getAllShoppingLists = (tripId) => (dispatch) => {
+  dispatch({ type: t.GETTING_ALL_SHOPPING_LISTS, payload: "retrieving all your shopping lists..." });
   let id = localStorage.getItem("id");
   AxiosWithAuth()
     .get(`/shopping/user/${id}/shoppingTrip/${tripId}`)
     .then((res) => {
-      dispatch({ type: t.GET_ALL_SHOPPING_LISTS, payload: res.data });
+      dispatch({ type: t.GOT_ALL_SHOPPING_LISTS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
-// export const getShoppinglist = () => (dispatch) => {
-//   let id = localStorage.getItem("id");
-//   AxiosWithAuth()
-//     .get(`/shopping/user/${id}/shoppingList`)
-// }
+export const getShoppingList = (shoppingId) => (dispatch) => {
+  dispatch({ type: t.GETTING_SHOPPING_LIST, payload: "retrieving specified shopping list..." });
+  let id = localStorage.getItem("id");
+  AxiosWithAuth()
+    .get(`/shopping/user/${id}/shopping/${shoppingId}`)
+    .then(res => {
+      console.log("retrieved shopping list", res.data)
+      // dispatch({ type: t.GOT_SHOPPING_LIST, payload: res.data });
+    })
+    .catch(err => {
+
+    })
+}
 
 export const addShoppingList = (tripId, shoppingList, history) => (dispatch) => {
   dispatch({ type: t.ADDING_SHOPPING_LIST, payload: "Adding a shopping list to your trip..." });

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../friends/NavFriend";
 import Footer from '../FooterSignUp';
 import { useHistory } from "react-router-dom";
-import { deleteShoppingList } from "../../actions/shoppingActions";
+import { deleteShoppingList, getShoppingList} from "../../actions/shoppingActions";
 
 function ShoppingListDetails(props) {
 
@@ -12,9 +12,10 @@ function ShoppingListDetails(props) {
   let tripName = localStorage.getItem("tripName");
   let history = useHistory();
 
-  useEffect(() => {
-    props.getShoppingList();
-  }, [props.update, props.deleteTrip]);
+  // useEffect(() => {
+  //   props.getShoppingList(items.shoppingId);
+  //   console.log(props.SL)
+  // }, [props.gotSL]);
 
   return (
     <>
@@ -71,9 +72,17 @@ function ShoppingListDetails(props) {
   );
 }
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    // SL: state.shoppingReducer.shoppingList,
+    // updatedSL: state.shoppingReducer.updatingShoppingList,
+    // updatedSLMessage: state.shoppingReducer.updatingShoppingListMessage,
+    // deletetedSL: state.shoppingReducer.deletingShoppingList,
+    // deletedSLMessage: state.shoppingReducer.deletingShoppingListMessage,
+    // gotSL: state.shoppingReducer.gettingShoppingList,
+    // gotSLMessage: state.shoppingReducer.gettingShoppingListMessage,
+  };
 };
-const mapDispatchToProps = { deleteShoppingList };
+const mapDispatchToProps = { deleteShoppingList, getShoppingList};
 export default connect(
   mapStateToProps,
   mapDispatchToProps

@@ -1,11 +1,15 @@
 import * as a from "../actions/types";
+import { findAllByPlaceholderText } from "@testing-library/react";
 
 let initialState = {
   shoppingLists: [],
+  shoppingList: [],
   error: false,
   errorMessage: "",
   gettingShoppingLists: false,
-  gotShoppingLists: false,
+  gettingShoppingListsMessage: "",
+  gettingShoppingList: false,
+  gettingShoppingListMessage: "",
   addingShoppingList: false,
   addingShoppingListMessage: "",
   updatingShoppingList: false,
@@ -16,11 +20,32 @@ let initialState = {
 
 const shoppingReducer = (state = initialState, action) => {
   switch (action.type) {
-    case a.GET_ALL_SHOPPING_LISTS:
+    case a.GETTING_ALL_SHOPPING_LISTS:
       return {
         ...state,
-        shoppingLists: action.payload,
+        gettingShoppingLists: true,
+        gettingShoppingListsMessage: action.payload,
       };
+    case a.GOT_ALL_SHOPPING_LISTS:
+      return {
+        ...state,
+        gettingShoppingLists: false,
+        gettingShoppingListsMessage: "",
+        shoppingLists: action.payload,
+      }
+    case a.GETTING_SHOPPING_LIST:
+      return {
+        ...state,
+        gettingShoppingList: true,
+        gettingShoppingListMessage: action.payload,
+      };
+    case a.GOT_SHOPPING_LIST:
+      return {
+        ...state,
+        gettingShoppingList: false,
+        gettingShoppingListMessage: "",
+        shoppingList: action.payload,
+      }
     case a.ADDING_SHOPPING_LIST:
       return {
         ...state,
