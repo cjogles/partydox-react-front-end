@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../../components/friends/NavFriend";
 import Footer from "../FooterSignUp";
-import { deleteTrip } from "../../actions/tripActions";
+import { deleteTrip, getTrip } from "../../actions/tripActions";
 import { useHistory } from "react-router-dom";
 
 function TripDetails(props) {
   // utils for TripDetails component
   let history = useHistory();
   let thisTrip = props.location.state.trip;
+
+  useEffect(() => {
+    props.getTrip(thisTrip.id)
+  }, [props.location.state.trip])
 
   return (
     <>
@@ -78,15 +82,15 @@ function TripDetails(props) {
         <div className="tripstuff2">
           <Link
             to={{
-              pathname: "/activities",
-              state: { tripName: thisTrip.trip_name },
+              pathname: "/activityDash",
+              state: { tripName: thisTrip.trip_name, tripId: thisTrip.id },
             }}
           >
             {thisTrip.trip_name} activities
           </Link>
           <Link
             to={{
-              pathname: "/parkingLots",
+              pathname: "/parkingDash",
               state: { tripName: thisTrip.trip_name },
             }}
           >
@@ -94,7 +98,7 @@ function TripDetails(props) {
           </Link>
           <Link
             to={{
-              pathname: "/shoppingLists",
+              pathname: "/shoppingDash",
               state: { tripName: thisTrip.trip_name },
             }}
           >
@@ -102,7 +106,7 @@ function TripDetails(props) {
           </Link>
           <Link
             to={{
-              pathname: "/flights",
+              pathname: "/flightDash",
               state: { tripName: thisTrip.trip_name },
             }}
           >
@@ -122,6 +126,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   deleteTrip,
+  getTrip,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripDetails);

@@ -1,13 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { deleteActivity } from "../../actions/activityActions";
 
 function Activity(props) {
+  // necessary utils for Activity component
+  let history = useHistory();
+
   return (
     <>
       <div className="trip">
         <div className="tripdiv1">
           <div className="tripname">
+            {/* display activity name, description
+             and likes as passed down from activity dashboard */}
             <h6>Name:</h6>
             <h2>{props.activity.activity_name}</h2>
           </div>
@@ -20,22 +27,18 @@ function Activity(props) {
             <h2>{props.activity.activity_upvote}</h2>
           </div>
         </div>
+
         <div className="tripdiv2">
           <div>
-            {/* access these props via props.location.state */}
+            {/* continue passing down the respective activity 
+                from props to activity details page     */}
             <Link
               to={{
                 pathname: "/activityDetails",
                 state: {
-                  activityId: props.activity.id,
-                  activityName: props.activity.activity_name,
-                  activityDescription: props.activity.trip_description,
-                  activityAddress: props.activity.activity_address,
-                  activityPhone: props.activity.activity_phone,
-                  activityStartDate: props.activity.activity_start_date,
-                  activityEndDate: props.activity.activity_end_date,
-                  activityLikes: props.activity.activity_upvote,
-                  activityNotes: props.activity.activity_notes,
+                  activity: props.activity,
+                  tripName: props.tripName,
+                  tripId: props.tripId,
                 },
               }}
             >
@@ -43,11 +46,44 @@ function Activity(props) {
             </Link>
           </div>
         </div>
+
         <div className="tripdiv3">
           <div>
             <Link to="/inviteFriend">
               <p>Invite a Friend to Collaborate!</p>
             </Link>
+          </div>
+
+          <div>
+            {/* continue passing down the respective activity 
+                from props to update activity page     */}
+            <Link
+              to={{
+                pathname: "/updateActivity",
+                state: {
+                  activity: props.activity,
+                },
+              }}
+            >
+              <p>Edit Activity</p>
+            </Link>{" "}
+          </div>
+
+          <div>
+            {/* onClick, delete Activity by activity id and user id and 
+            inside action creator, redirect or push to the 
+            activity dashboard */}
+            <button
+              onClick={() =>
+                props.deleteActivity(
+                  props.activity.id,
+                  localStorage.getItem("id"),
+                  history
+                )
+              }
+            >
+              <p>Delete Activity</p>
+            </button>{" "}
           </div>
         </div>
       </div>
@@ -59,6 +95,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { deleteActivity };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Activity);

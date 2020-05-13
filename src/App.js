@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import TripDetails from './components/trips/TripDetails';
-import Activities from './components/activities/Activities';
+import Activities from './components/activities/ActivityList';
 import ActivityDetails from './components/activities/ActivityDetails';
 import ParkingLots from './components/parking/ParkingLots';
 import ParkingLotDetails from './components/parking/ParkingLotDetails';
@@ -19,6 +19,10 @@ import ShoppingListDetails from './components/shopping/ShoppingListDetails';
 import Flights from './components/flights/Flights';
 import FlightDetails from './components/flights/FlightDetails';
 
+import ActivityDash from './components/activities/ActivityDash';
+// import ShoppingDash from './components/trips/ShoppingDash';
+// import FlightDash from './components/trips/FlightDash';
+// import ParkingDash from './components/trips/ParkingDash';
 import AddTrip from './components/trips/AddTrip';
 import UpdateTrip from './components/trips/UpdateTrip';
 import AddActivity from './components/activities/AddActivity';
@@ -70,6 +74,10 @@ function App() {
           <Route path="/updateFlight" component={UpdateFlight}/>
           <Route path="/addActivity" component={AddActivity}/>
           <Route path="/updateActivity" component={UpdateActivity}/>
+          <Route path="/activityDash" component={ActivityDash}/>
+          {/* <Route path="/parkingDash" component={ParkingDash}/>
+          <Route path="/shoppingDash" component={ShoppingDash}/>
+          <Route path="/flightDash" component={FlightDash}/> */}
 
         </PrivateRoute>
       </Switch>

@@ -2,6 +2,7 @@ import * as a from "../actions/types";
 
 let initialState = {
   trips: [],
+  trip: [],
   error: false,
   errorMessage: "",
   gettingTrips: false,
@@ -12,6 +13,7 @@ let initialState = {
   updatingTripMessage: "",
   deletingTrip: false,
   deletingTripMessage: "",
+  addingSingleTrip: false,
 };
 
 const tripsReducer = (state = initialState, action) => {
@@ -57,6 +59,11 @@ const tripsReducer = (state = initialState, action) => {
         deletingTrip: false,
         deletingTripMessage: "",
       };
+    case a.GET_SINGLE_TRIP:
+      return {
+        ...state,
+        trip: action.payload,
+      }
     default:
       return state;
   }

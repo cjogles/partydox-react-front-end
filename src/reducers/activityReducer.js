@@ -6,6 +6,12 @@ let initialState = {
   errorMessage: "",
   gettingActivities: false,
   gotActivities: false,
+  addingActivity: false,
+  addingActivityMessage: "",
+  updatingActivity: false,
+  updatingActivityMessage: "",
+  deletingActivity: false,
+  deletingActivityMessage: "",
 };
 
 const activityReducer = (state = initialState, action) => {
@@ -15,6 +21,42 @@ const activityReducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
       };
+      case a.ADDING_ACTIVITY:
+        return {
+          ...state,
+          addingActivity: true,
+          addingActivityMessage: action.payload,
+        };
+      case a.ADDED_ACTIVITY:
+        return {
+          ...state,
+          addingActivity: false,
+          addingActivityMessage: "",
+        };
+      case a.UPDATING_ACTIVITY:
+        return {
+          ...state,
+          updatingActivity: true,
+          updatingActivityMessage: action.payload,
+        };
+      case a.UPDATED_ACTIVITY:
+        return {
+          ...state,
+          updatingActivity: false,
+          updatingActivityMessage: "",
+        };
+      case a.DELETING_ACTIVITY:
+        return {
+          ...state,
+          deletingActivity: true,
+          deletingActivityMessage: action.payload,
+        };
+      case a.DELETED_ACTIVITY:
+        return {
+          ...state,
+          deletingActivity: false,
+          deletingActivityMessage: "",
+        };
     default:
       return state;
   }

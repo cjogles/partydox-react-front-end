@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Nav from "../friends/NavFriend";
 import FooterSignUp from "../FooterSignUp";
 import { useForm } from "react-hook-form";

@@ -2,68 +2,108 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../friends/NavFriend";
-import Footer from '../FooterSignUp';
+import Footer from "../FooterSignUp";
+import { deleteActivity } from "../../actions/activityActions";
+import { useHistory } from "react-router-dom";
 
 function ActivityDetails(props) {
-
-  let activity = props.location.state;
-  let tripName = localStorage.getItem("tripName");
+  // utils for Activity details component
+  let history = useHistory();
+  let thisActivity = props.location.state.trip;
 
   return (
     <>
       <NavFriend />
       <div className="tripDetails">
-      <div>
-          <h1>{activity.activityName}</h1>
+        {/* update and delete activity information */}
+        <div>
+          <h1>{thisActivity.activity_name}</h1>
           <div className="updateTrip">
             <Link
               to={{
                 pathname: "/updateActivity",
-                state: { userId: localStorage.getItem("id") },
+                state: { thisActivity },
               }}
             >
               <p>Edit Activity</p>
             </Link>{" "}
-            <Link
-              to={{
-                pathname: "/deleteActivity",
-                state: { userId: localStorage.getItem("id") },
-              }}
+            <button
+              onClick={() =>
+                props.deleteTrip(
+                  thisActivity.id,
+                  localStorage.getItem("id"),
+                  history
+                )
+              }
             >
               <p>Delete Activity</p>
-            </Link>{" "}
+            </button>{" "}
           </div>
         </div>
         <div className="tripstuff1">
           <div className="tripstuffnames">
-          <p className="outerp">Activity Name: </p>
-          <p className="outerp">Description: </p>
-          <p className="outerp">Address: </p>
-          <p className="outerp">Phone: </p>
-          <p className="outerp">Start Date: </p>
-          <p className="outerp">End Date: </p>
-          <p className="outerp">Likes: </p>
-          <p className="outerp">Notes: </p>
+            <p>Activity Name:</p>
+            <p>Description:</p>
+            <p>Address:</p>
+            <p>Phone:</p>
+            <p>Start Date:</p>
+            <p>End Date:</p>
+            <p>Likes:</p>
+            <p>Notes:</p>
           </div>
           <div className="tripstuffvalues">
-            <p>{activity.activityName ? activity.activityName : "N/A"}</p>
-            <p>{activity.activityDescription ? activity.activityDescription : "N/A"}</p>
-            <p>{activity.activityAddress ? activity.activityAddress : "N/A"}</p>
-            <p>{activity.activityPhone ? activity.activityPhone : "N/A"}</p>
-            <p>{activity.activityStartDate ? activity.activityStartDate : "N/A"}</p>
-            <p>{activity.activityEndDate ? activity.activityEndDate : "N/A"}</p>
-            <p>{activity.activityLikes ? activity.activityLikes : "N/A"}</p>
-            <p>{activity.activityNotes ? activity.activityNotes : "N/A"}</p>
+            <p>{thisActivity.activity_name ? thisActivity.activity_name : "N/A"}</p>
+            <p>
+              {thisActivity.activity_description
+                ? thisActivity.activity_description
+                : "N/A"}
+            </p>
+            <p>{thisActivity.activity_address ? thisActivity.activity_address : "N/A"}</p>
+            <p>{thisActivity.activity_phone ? thisActivity.activity_phone : "N/A"}</p>
+            <p>
+              {thisActivity.activity_start_date ? thisActivity.activity_start_date : "N/A"}
+            </p>
+            <p>{thisActivity.activity_end_date ? thisActivity.activity_end_date : "N/A"}</p>
+            <p>{thisActivity.activity_upvote ? thisActivity.activity_upvote : "N/A"}</p>
+            <p>{thisActivity.activity_notes ? thisActivity.activity_notes : "N/A"}</p>
           </div>
         </div>
         <div className="tripstuff2">
-          <Link to={{ pathname: "/activities", state: {tripName: tripName}}}>{tripName} activities</Link>
-          <Link to={{ pathname: "/parkingLots", state: {tripName: tripName}}}>{tripName} parking lots</Link>
-          <Link to={{ pathname: "/shoppingLists", state: {tripName: tripName}}}>{tripName} shopping lists</Link>
-          <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>{tripName} flights</Link>
+          <Link
+            to={{
+              pathname: "/activityDash",
+              state: { tripName: props.location.state.tripName, tripId: props.location.state.tripId },
+            }}
+          >
+            {props.location.state.tripName} activities
+          </Link>
+          <Link
+            to={{
+              pathname: "/parkingDash",
+              state: { tripName: props.location.state.tripName },
+            }}
+          >
+            {props.location.state.tripName} parking lots
+          </Link>
+          <Link
+            to={{
+              pathname: "/shoppingDash",
+              state: { tripName: props.location.state.tripName },
+            }}
+          >
+            {props.location.state.tripName} shopping lists
+          </Link>
+          <Link
+            to={{
+              pathname: "/flightDash",
+              state: { tripName: props.location.state.tripName },
+            }}
+          >
+            {props.location.state.tripName} flights
+          </Link>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
