@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import NavFriend from "./friends/NavFriend";
 import Nav from "./Nav";
-import Trips from "./trips/Trips";
+import TripList from "./trips/TripList";
 import Footer from "./FooterSignUp";
 import { connect } from "react-redux";
 import { getAllTrips } from "../actions/tripActions";
 
 function Dashboard(props) {
   
+  // update trips after an update/deletion/addition
   useEffect(() => {
     props.getAllTrips();
-  }, [props.update, props.deleteTrip]);
+  }, [props.update, props.deleteTrip, props.addition]);
 
   return (
     <>
@@ -40,7 +41,7 @@ function Dashboard(props) {
           <div className="dash">
             <div className="dashContainer1">
               <h2 className="dashH">Welcome to Your Dashboard!</h2>
-              <Trips trips={props.trips} />
+              <TripList trips={props.trips} />
             </div>
           </div>
           <Footer />
@@ -50,6 +51,7 @@ function Dashboard(props) {
   );
 }
 
+// necessary state and action creators for Dashboard component
 const mapStateToProps = (state) => {
   return {
     name: state.signUpReducer.friend.name,
@@ -60,7 +62,7 @@ const mapStateToProps = (state) => {
     loggingInMessage: state.signUpReducer.loggingInMessage,
     trips: state.tripsReducer.trips,
     gettingTrips: state.tripsReducer.gettingTrips,
-    add: state.tripsReducer.addingTrip,
+    addition: state.tripsReducer.addingTrip,
     addMessage: state.tripsReducer.addingTripMessage,
     update: state.tripsReducer.updatingTrip,
     updateMessage: state.tripsReducer.updatingTripMessage,

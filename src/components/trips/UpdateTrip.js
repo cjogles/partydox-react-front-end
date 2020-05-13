@@ -1,34 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Nav from "../friends/NavFriend";
 import FooterSignUp from "../FooterSignUp";
 import { updateTrip } from "../../actions/tripActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function UpdateTrip(props) {
+  // utils used by update trip component
   let history = useHistory();
-  let prevTrip = props.history.location.state;
-
-  const [trip, setTrip] = useState({
-    trip_name: prevTrip.tripName,
-    trip_description: prevTrip.tripDescription,
-    trip_location: prevTrip.tripLocation,
-    trip_lift_off_location: prevTrip.tripLiftOff,
-    trip_car: prevTrip.tripCar,
-    trip_start_date: prevTrip.tripStartDate,
-    trip_end_date: prevTrip.tripEndDate,
-    trip_upvote: prevTrip.tripLikes,
-    trip_notes: prevTrip.tripNotes,
+  let thisTrip = props.history.location.state.trip;
+  const { register, handleSubmit, errors } = useForm({
+    defaultValues: {
+      trip_name: thisTrip.trip_name,
+      trip_description: thisTrip.trip_description,
+      trip_location: thisTrip.trip_location,
+      trip_lift_off_location: thisTrip.trip_lift_off_location,
+      trip_car: thisTrip.trip_car,
+      trip_start_date: thisTrip.trip_start_date,
+      trip_end_date: thisTrip.trip_end_date,
+      trip_upvote: thisTrip.trip_upvote,
+      trip_notes: thisTrip.trip_notes,
+    },
   });
-
-  const onChange = (event) => {
-    setTrip({ ...trip, [event.target.name]: event.target.value });
-  };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    props.updateTrip(prevTrip.tripId, prevTrip.userId, trip, history);
-  };
+  const onSubmit = (trip) =>
+    props.updateTrip(thisTrip.id, localStorage.getItem("id"), trip, history);
 
   return (
     <>
@@ -39,84 +35,32 @@ function UpdateTrip(props) {
             <span role="img" aria-label="partyface">
               🥳
             </span>
-            Update {prevTrip.tripName} Trip
+            Update {thisTrip.tripName} Trip
           </div>
 
-          <form onSubmit={(event) => onSubmit(event)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="trip_name">Trip Name:</label>
-            <input
-              type="text"
-              id="trip_name"
-              name="trip_name"
-              value={trip.trip_name}
-              placeholder={prevTrip.tripName}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_name" ref={register}></input>
             <label htmlFor="trip_description">Trip Description:</label>
-            <input
-              type="text"
-              id="trip_description"
-              name="trip_description"
-              value={trip.trip_description}
-              placeholder={prevTrip.tripDescription}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_description" ref={register}></input>
             <label htmlFor="trip_location">Trip Location:</label>
-            <input
-              type="text"
-              id="trip_location"
-              name="trip_location"
-              value={trip.trip_location}
-              placeholder={prevTrip.tripLocation}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_location" ref={register}></input>
             <label htmlFor="trip_lift_off_location">
               Trip Lift Off Location:
             </label>
-            <input
-              type="text"
-              id="trip_lift_off_location"
-              name="trip_lift_off_location"
-              value={trip.trip_lift_off_location}
-              placeholder={prevTrip.tripLiftOff}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_lift_off_location" ref={register}></input>
             <label htmlFor="trip_car">Trip Car:</label>
-            <input
-              type="text"
-              id="trip_car"
-              name="trip_car"
-              value={trip.trip_car}
-              placeholder={prevTrip.tripCar}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_car" ref={register}></input>
             <label htmlFor="trip_start_date">Trip Start Date:</label>
-            <input
-              type="text"
-              id="trip_start_date"
-              name="trip_start_date"
-              value={trip.trip_start_date}
-              placeholder={prevTrip.tripStartDate}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_start_date" ref={register}></input>
             <label htmlFor="trip_end_date">Trip End Date:</label>
-            <input
-              type="text"
-              id="trip_end_date"
-              name="trip_end_date"
-              value={trip.trip_end_date}
-              placeholder={prevTrip.tripEndDate}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_end_date" ref={register}></input>
             <label htmlFor="trip_notes">Trip Notes:</label>
             <textarea
-              id="trip_notes"
               rows="4"
               cols="40"
               name="trip_notes"
-              value={trip.trip_notes}
-              placeholder={prevTrip.tripNotes}
-              onChange={(event) => onChange(event)}
+              ref={register}
             ></textarea>
             <button>Submit</button>
           </form>

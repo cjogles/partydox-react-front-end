@@ -1,118 +1,112 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NavFriend from "../../components/friends/NavFriend";
 import Footer from "../FooterSignUp";
-import { getAllActivities } from "../../actions/activityActions";
-import { getAllParkingLots } from "../../actions/parkingActions";
-import { getAllShoppingLists } from "../../actions/shoppingActions";
-import { getAllFlights } from "../../actions/flightActions";
 import { deleteTrip } from "../../actions/tripActions";
 import { useHistory } from "react-router-dom";
 
 function TripDetails(props) {
-  
+  // utils for TripDetails component
   let history = useHistory();
-  let trip = props.location.state;
-  let tripId = props.location.state.tripId;
-
-  useEffect(() => {
-    localStorage.setItem("tripName", trip.tripName);
-    localStorage.setItem("tripId", trip.tripId);
-    props.getAllActivities(tripId);
-    props.getAllParkingLots(tripId);
-    props.getAllShoppingLists(tripId);
-    props.getAllFlights(tripId);
-  }, [props.update, props.deleteTrip]);
+  let thisTrip = props.location.state.trip;
 
   return (
     <>
       <NavFriend />
       <div className="tripDetails">
+        {/* update and delete trip information */}
         <div>
-          <h1>{trip.tripName}</h1>
+          <h1>{thisTrip.trip_name}</h1>
           <div className="updateTrip">
             <Link
               to={{
                 pathname: "/updateTrip",
-                state: { 
-                  userId: localStorage.getItem("id"),
-                  tripId: trip.tripId,
-                  tripName: trip.tripName,
-                  tripDescription: trip.tripDescription,
-                  tripLocation: trip.tripLocation,
-                  tripLiftOff: trip.tripLiftOff,
-                  tripCar: trip.tripCar,
-                  tripStartDate: trip.tripStartDate,
-                  tripEndDate: trip.tripEndDate,
-                  tripLikes: trip.tripLikes,
-                  tripNotes: trip.tripNotes,              
+                state: {
+                  trip: thisTrip,
                 },
               }}
             >
               <p>Edit Trip</p>
             </Link>{" "}
-            <button onClick={() => props.deleteTrip(trip.tripId, localStorage.getItem("id"), history)}>
+            <button
+              onClick={() =>
+                props.deleteTrip(
+                  thisTrip.id,
+                  localStorage.getItem("id"),
+                  history
+                )
+              }
+            >
               <p>Delete Trip</p>
             </button>{" "}
           </div>
         </div>
+
+        {/* display single trip details here */}
         <div className="tripstuff1">
           <div className="tripstuffnames">
-            <p>Trip Name: </p>
-            <p>Description: </p>
-            <p>Location: </p>
+            <p>Trip Name:</p>
+            <p>Description:</p>
+            <p>Location:</p>
             <p>Start Off Location:</p>
-            <p>Car: </p>
-            <p>Start Date: </p>
-            <p>End Date: </p>
-            <p>Likes: </p>
-            <p>Notes: </p>
+            <p>Car:</p>
+            <p>Start Date:</p>
+            <p>End Date:</p>
+            <p>Likes:</p>
+            <p>Notes:</p>
           </div>
           <div className="tripstuffvalues">
-            <p>{trip.tripName ? trip.tripName : "N/A"}</p>
-            <p>{trip.tripDescription ? trip.tripDescription : "N/A"}</p>
-            <p>{trip.tripLocation ? trip.tripLocation : "N/A"}</p>
-            <p>{trip.tripLiftOff ? trip.tripLiftOff : "N/A"}</p>
-            <p>{trip.tripCar ? trip.tripCar : "N/A"}</p>
-            <p>{trip.tripStartDate ? trip.tripStartDate : "N/A"}</p>
-            <p>{trip.tripEndDate ? trip.tripEndDate : "N/A"}</p>
-            <p>{trip.tripLikes ? trip.tripLikes : "N/A"}</p>
-            <p>{trip.tripNotes ? trip.tripNotes : "N/A"}</p>
+            <p>{thisTrip.trip_name ? thisTrip.trip_name : "N/A"}</p>
+            <p>
+              {thisTrip.trip_description ? thisTrip.trip_description : "N/A"}
+            </p>
+            <p>{thisTrip.trip_location ? thisTrip.trip_location : "N/A"}</p>
+            <p>
+              {thisTrip.trip_lift_off_location
+                ? thisTrip.trip_lift_off_location
+                : "N/A"}
+            </p>
+            <p>{thisTrip.trip_car ? thisTrip.trip_car : "N/A"}</p>
+            <p>{thisTrip.trip_start_date ? thisTrip.trip_start_date : "N/A"}</p>
+            <p>{thisTrip.trip_end_date ? thisTrip.trip_end_date : "N/A"}</p>
+            <p>{thisTrip.trip_upvote ? thisTrip.trip_upvote : "N/A"}</p>
+            <p>{thisTrip.trip_notes ? thisTrip.trip_notes : "N/A"}</p>
           </div>
         </div>
+
         <div className="tripstuff2">
           <Link
             to={{
               pathname: "/activities",
-              state: { tripName: localStorage.getItem("tripName") },
+              state: { tripName: thisTrip.trip_name },
             }}
           >
-            {localStorage.getItem("tripName")} activities
+            {thisTrip.trip_name} activities
           </Link>
           <Link
             to={{
               pathname: "/parkingLots",
-              state: { tripName: localStorage.getItem("tripName") },
+              state: { tripName: thisTrip.trip_name },
             }}
           >
-            {localStorage.getItem("tripName")} parking lots
+            {thisTrip.trip_name} parking lots
           </Link>
           <Link
             to={{
               pathname: "/shoppingLists",
-              state: { tripName: localStorage.getItem("tripName") },
+              state: { tripName: thisTrip.trip_name },
             }}
           >
-            {localStorage.getItem("tripName")} shopping lists
+            {thisTrip.trip_name} shopping lists
           </Link>
           <Link
             to={{
               pathname: "/flights",
-              state: { tripName: localStorage.getItem("tripName") },
+              state: { tripName: thisTrip.trip_name },
             }}
           >
-            {localStorage.getItem("tripName")} flights
+            {thisTrip.trip_name} flights
           </Link>
         </div>
       </div>
@@ -121,21 +115,12 @@ function TripDetails(props) {
   );
 }
 
+// state and action creators for tripdetails component
 const mapStateToProps = (state) => {
-  return {
-    trips: state.tripsReducer.trips,
-    update: state.tripsReducer.updatingTrip,
-    updateMessage: state.tripsReducer.updatingTripMessage,
-    deleteTrip: state.tripsReducer.deletingTrip,
-    deleteTripMessage: state.tripsReducer.deletingTripMessage,
-  };
+  return {};
 };
 
 const mapDispatchToProps = {
-  getAllActivities,
-  getAllParkingLots,
-  getAllFlights,
-  getAllShoppingLists,
   deleteTrip,
 };
 

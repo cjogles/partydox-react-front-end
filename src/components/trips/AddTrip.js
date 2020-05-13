@@ -1,34 +1,16 @@
 import React, { useState } from "react";
 import Nav from "../friends/NavFriend";
 import FooterSignUp from "../FooterSignUp";
-import { addTrip } from '../../actions/tripActions';
+import { useForm } from "react-hook-form";
+import { addTrip } from "../../actions/tripActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 function AddTrip(props) {
-
-  let history = useHistory();
-
-  const [trip, setTrip] = useState({
-    trip_name: "",
-    trip_description: "",
-    trip_location: "",
-    trip_lift_off_location: "",
-    trip_car: "",
-    trip_start_date: "",
-    trip_end_date: "",
-    trip_upvote: 0,
-    trip_notes: "",
-  });
-
-  const onChange = (event) => {
-    setTrip({ ...trip, [event.target.name]: event.target.value });
-  };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    props.addTrip(trip, history);
-  };
+  // utilities for login form
+  const history = useHistory();
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (trip) => props.addTrip(trip, history);
 
   return (
     <>
@@ -42,71 +24,25 @@ function AddTrip(props) {
             Add Trip
           </div>
 
-          <form onSubmit={(event) => onSubmit(event)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="trip_name">Trip Name:</label>
-            <input
-              type="text"
-              id="trip_name"
-              name="trip_name"
-              value={trip.trip_name}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_name" ref={register({ required: true })} />
             <label htmlFor="trip_description">Trip Description:</label>
-            <input
-              type="text"
-              id="trip_description"
-              name="trip_description"
-              value={trip.trip_description}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_description" ref={register} />
             <label htmlFor="trip_lift_off_location">Trip Location:</label>
-            <input
-              type="text"
-              id="trip_lift_off_location"
-              name="trip_lift_off_location"
-              value={trip.trip_lift_off_location}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_lift_off_location" ref={register} />
             <label htmlFor="trip_location">Trip Lift Off Location:</label>
-            <input
-              type="text"
-              id="trip_location"
-              name="trip_location"
-              value={trip.trip_location}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_location" ref={register} />
             <label htmlFor="trip_car">Trip Car:</label>
-            <input
-              type="text"
-              id="trip_car"
-              name="trip_car"
-              value={trip.trip_car}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_car" ref={register} />
             <label htmlFor="trip_start_date">Trip Start Date:</label>
-            <input
-              type="text"
-              id="trip_start_date"
-              name="trip_start_date"
-              value={trip.trip_start_date}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_start_date" ref={register} />
             <label htmlFor="trip_end_date">Trip End Date:</label>
-            <input
-              type="text"
-              id="trip_end_date"
-              name="trip_end_date"
-              value={trip.trip_end_date}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="trip_end_date" ref={register} />
             <label htmlFor="trip_notes">Trip Notes:</label>
-            <input
-              type="text"
-              id="trip_notes"
-              name="trip_notes"
-              value={trip.trip_notes}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <textarea rows="4" cols="40" name="trip_notes" ref={register} />
+            {/* display the following errors for respective inputs */}
+            {errors.trip_name && <span>Trip name is required</span>}
             <button>Submit</button>
           </form>
         </div>
@@ -116,9 +52,9 @@ function AddTrip(props) {
   );
 }
 
+// AddTrip State if needed connects here
 const mapStateToProps = (state) => {
-  return {
-  };
+  return {};
 };
 
 const mapDispatchToProps = { addTrip };

@@ -544,6 +544,9 @@ html {
   height: 1.5rem;
   margin-bottom: 2rem;
 }
+.loginWrapper .login form textarea {
+  margin-bottom: 2rem;
+}
 .loginWrapper .login form div.error {
   color: red;
   font-size: 1rem;
