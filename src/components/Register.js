@@ -1,27 +1,32 @@
 import React, { useState } from "react";
 import Nav from "./Nav";
 import FooterSignUp from "./FooterSignUp";
+import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { register } from "../actions/signUpActions";
 import { Redirect, useHistory } from "react-router-dom";
 
 function Register(props) {
-  
   let history = useHistory();
-  const [user, setUser] = useState({
-    friend_name: "",
-    username: "",
-    password: "",
-  });
 
-  const onChange = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.value });
-  };
+  const { register, handleSubmit, watch, errors } = useForm();
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    props.register(user, history);
-  };
+  const onSubmit = (credentials) => props.login(credentials, history);
+
+  // const [user, setUser] = useState({
+  //   friend_name: "",
+  //   username: "",
+  //   password: "",
+  // });
+
+  // const onChange = (event) => {
+  //   setUser({ ...user, [event.target.name]: event.target.value });
+  // };
+
+  // const onSubmit = (event) => {
+  //   event.preventDefault();
+  //   props.register(user, history);
+  // };
 
   return (
     <>
@@ -36,31 +41,24 @@ function Register(props) {
             Sign Up Here
           </div>
 
-          <form onSubmit={(event) => onSubmit(event)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="friend_name">Name:</label>
-            <input
-              type="text"
-              id="friend_name"
-              name="friend_name"
-              value={user.friend_name}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="friend_name" ref={register({ required: true })} />
             <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={user.username}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="username" ref={register({ required: true })} />
+            {/* Password expression. Password must be between 4 
+            and 8 digits long and include at least one numeric digit.
+            pattern: /^(?=.*\d).{8,20}$/ */}
             <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={user.password}
-              onChange={(event) => onChange(event)}
-            ></input>
+            <input name="password" ref={register({ required: true })} />
+            {errors.friend_name && <span>Name is required</span>}
+            {errors.username && <span>Username is required</span>}
+            {errors.password && (
+              <span>
+                Password is required, needs to be between 8 and 20 characters,
+                and must contain a number{" "}
+              </span>
+            )}
             <button>Submit</button>
           </form>
         </div>

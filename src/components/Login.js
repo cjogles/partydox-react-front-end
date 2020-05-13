@@ -7,9 +7,12 @@ import { login } from "../actions/signUpActions";
 import { Redirect, useHistory } from "react-router-dom";
 
 function Login(props) {
+
   const history = useHistory();
+
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (credentials) => props.login(credentials, history)
 
   return (
     <>
@@ -26,11 +29,13 @@ function Login(props) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor='username'>Username:</label>
             <input name="username" ref={register({ required: true })} />
-            {/* Password expression. Password must be between 4 and 8 digits long and include at least one numeric digit. */}
+            {/* Password expression. Password must be between 4 
+            and 8 digits long and include at least one numeric digit.
+            pattern: /^(?=.*\d).{8,20}$/ */}
             <label htmlFor='password'>Password:</label>
             <input
               name="password"
-              ref={register({ required: true, pattern: /^(?=.*\d).{8,20}$/ })}
+              ref={register({ required: true })}
             />
             {errors.username && <span>Username is required</span>}
             {errors.password && (
@@ -39,7 +44,7 @@ function Login(props) {
                 and must contain a number{" "}
               </span>
             )}
-            <input type="submit" />
+            <button type="submit">Login</button>
           </form>
         </div>
       </div>
