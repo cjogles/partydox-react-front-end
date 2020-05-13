@@ -8,14 +8,14 @@ import { Redirect, useHistory } from "react-router-dom";
 
 function Login(props) {
 
+  // utilities for login form
   const history = useHistory();
-
   const { register, handleSubmit, watch, errors } = useForm();
-
   const onSubmit = (credentials) => props.login(credentials, history)
 
   return (
     <>
+      {/* redirect to dashboard if already logged in */}
       {props.loggedIn && <Redirect push to="/dashboard" />}
       <Nav />
       <div className="loginWrapper">
@@ -37,6 +37,7 @@ function Login(props) {
               name="password"
               ref={register({ required: true })}
             />
+            {/* display the following errors for each input */}
             {errors.username && <span>Username is required</span>}
             {errors.password && (
               <span>
@@ -53,6 +54,7 @@ function Login(props) {
   );
 }
 
+// necessary state and action creators for login component
 const mapStateToProps = (state) => {
   return {
     loggedIn: state.signUpReducer.loggedIn,

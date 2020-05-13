@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Nav from "./Nav";
 import FooterSignUp from "./FooterSignUp";
 import { useForm } from "react-hook-form";
@@ -7,29 +7,15 @@ import { register } from "../actions/signUpActions";
 import { Redirect, useHistory } from "react-router-dom";
 
 function Register(props) {
+
+  // utilities for register form
   let history = useHistory();
-
   const { register, handleSubmit, watch, errors } = useForm();
-
   const onSubmit = (credentials) => props.login(credentials, history);
-
-  // const [user, setUser] = useState({
-  //   friend_name: "",
-  //   username: "",
-  //   password: "",
-  // });
-
-  // const onChange = (event) => {
-  //   setUser({ ...user, [event.target.name]: event.target.value });
-  // };
-
-  // const onSubmit = (event) => {
-  //   event.preventDefault();
-  //   props.register(user, history);
-  // };
 
   return (
     <>
+      {/* redirect to dashboard if already logged in */}
       {props.loggedIn && <Redirect push to="/dashboard" />}
       <Nav />
       <div className="loginWrapper">
@@ -51,6 +37,7 @@ function Register(props) {
             pattern: /^(?=.*\d).{8,20}$/ */}
             <label htmlFor="password">Password:</label>
             <input name="password" ref={register({ required: true })} />
+            {/* display the following errors for each input */}
             {errors.friend_name && <span>Name is required</span>}
             {errors.username && <span>Username is required</span>}
             {errors.password && (
@@ -68,6 +55,7 @@ function Register(props) {
   );
 }
 
+// necessary state and action creators for register component
 const mapStateToProps = (state) => {
   return {
     loggedIn: state.signUpReducer.loggedIn,
