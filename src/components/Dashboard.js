@@ -55,21 +55,14 @@ function Dashboard(props) {
 // necessary state and action creators for Dashboard component
 const mapStateToProps = (state) => {
   return {
-    name: state.signUpReducer.friend.name,
-    errorMessage: state.signUpReducer.errorMessage,
-    error: state.signUpReducer.error,
-    loggedIn: state.signUpReducer.loggedIn,
+    gotTrips: state.tripsReducer.gotTrips,
     loggingIn: state.signUpReducer.loggingIn,
     loggingInMessage: state.signUpReducer.loggingInMessage,
+    error: state.signUpReducer.error,
+    errorMessage: state.signUpReducer.errorMessage,
+    loggedIn: state.signUpReducer.loggedIn,
+    name: state.signUpReducer.friend.name,
     trips: state.tripsReducer.trips,
-    gettingTrips: state.tripsReducer.gettingTrips,
-    gotTrips: state.tripsReducer.gotTrips,
-    addition: state.tripsReducer.addingTrip,
-    addMessage: state.tripsReducer.addingTripMessage,
-    update: state.tripsReducer.updatingTrip,
-    updateMessage: state.tripsReducer.updatingTripMessage,
-    deleteTrip: state.tripsReducer.deletingTrip,
-    deleteMessage: state.tripsReducer.deletingTripMessage,
   };
 };
 
