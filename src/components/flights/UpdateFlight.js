@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 function UpdateFlight(props) {
   // utils used by update flight component
   let history = useHistory();
-  // specific trip details auto populate form for editing
+  // specific flight details auto populate form for editing
   // these props are passed down from Link (react router dom) and are
   // accessible through props.location.state
   let thisFlight = props.location.state;
@@ -38,7 +38,7 @@ function UpdateFlight(props) {
   });
 
   const onSubmit = (activity) =>
-    props.updateActivity(
+    props.updateFlight(
       thisFlight.id,
       activity,
       history
@@ -76,9 +76,9 @@ function UpdateFlight(props) {
             <label htmlFor="departure_flight_notes">Departure Airport Notes:</label>
             <textarea rows="4" cols="40" name="departure_flight_notes" ref={register} />
             <label htmlFor="arrival_date">Arrival Date:</label>
-            <input name="arrival_date" autoFocus={true} ref={register({ required: true })} />
+            <input name="arrival_date" autoFocus={true} ref={register} />
             <label htmlFor="arrival_airport_name">Arrival Airport Name:</label>
-            <input name="arrival_airport_name" ref={register({ required: true })} />
+            <input name="arrival_airport_name" ref={register} />
             <label htmlFor="arrival_airport_address">Arrival Airport Address:</label>
             <input name="arrival_airport_address" ref={register} />
             <label htmlFor="arrival_airport_phone">Arrival Airport Phone:</label>
@@ -109,4 +109,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { updateFlight };
 
-export default connect(mapStateToProps, mapDispatchToProps)(updateFlight);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateFlight);

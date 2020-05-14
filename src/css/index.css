@@ -884,6 +884,16 @@ div.tripList div.addtrip1 div.addtrip a p {
   display: flex;
   align-items: center;
 }
+.trip div.tripdiv3 div button {
+  border: none;
+  background: none;
+  margin: 0;
+}
+.trip div.tripdiv3 div button p {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  padding: 2rem;
+}
 @media (max-width: 800px) {
   .trip div.tripdiv3 {
     text-align: center;
@@ -950,6 +960,21 @@ div.tripDetails div.updateTrip a p {
     text-align: center;
     font-size: 1rem;
   }
+}
+div.tripDetails div.updateTrip button {
+  border: none;
+  background: none;
+  margin: 0;
+  text-decoration: none;
+  color: black;
+  border: solid skyblue;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  margin: 1rem;
+}
+div.tripDetails div.updateTrip button p {
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
 }
 div.tripDetails .tripstuff1 {
   margin-top: 1rem;

@@ -10,7 +10,7 @@ function AddFlight(props) {
   // utilities for login form
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (flight) => props.addActivity(flight, history);
+  const onSubmit = (flight) => props.addFlight(flight, history);
 
   return (
     <>
@@ -44,9 +44,9 @@ function AddFlight(props) {
             <label htmlFor="departure_flight_notes">Departure Airport Notes:</label>
             <textarea rows="4" cols="40" name="departure_flight_notes" ref={register} />
             <label htmlFor="arrival_date">Arrival Date:</label>
-            <input name="arrival_date" autoFocus={true} ref={register({ required: true })} />
+            <input name="arrival_date" ref={register} />
             <label htmlFor="arrival_airport_name">Arrival Airport Name:</label>
-            <input name="arrival_airport_name" ref={register({ required: true })} />
+            <input name="arrival_airport_name" ref={register} />
             <label htmlFor="arrival_airport_address">Arrival Airport Address:</label>
             <input name="arrival_airport_address" ref={register} />
             <label htmlFor="arrival_airport_phone">Arrival Airport Phone:</label>

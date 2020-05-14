@@ -21,7 +21,7 @@ import FlightDetails from './components/flights/FlightDetails';
 
 import ActivityDash from './components/activities/ActivityDash';
 // import ShoppingDash from './components/trips/ShoppingDash';
-// import FlightDash from './components/trips/FlightDash';
+import FlightDash from './components/flights/FlightDash';
 // import ParkingDash from './components/trips/ParkingDash';
 import AddTrip from './components/trips/AddTrip';
 import UpdateTrip from './components/trips/UpdateTrip';
@@ -61,6 +61,7 @@ function App() {
           <Route path="/parkingDetails" component={ParkingLotDetails}/>
           <Route path="/shoppingLists" component={ShoppingLists}/>
           <Route path="/shoppingDetails" component={ShoppingListDetails}/>
+          <Route path="/flightDash" component={FlightDash}/>
           <Route path="/flights" component={FlightList}/>
           <Route path="/flightDetails" component={FlightDetails}/>
 
@@ -76,8 +77,8 @@ function App() {
           <Route path="/updateActivity" component={UpdateActivity}/>
           <Route path="/activityDash" component={ActivityDash}/>
           {/* <Route path="/parkingDash" component={ParkingDash}/>
-          <Route path="/shoppingDash" component={ShoppingDash}/>
-          <Route path="/flightDash" component={FlightDash}/> */}
+          <Route path="/shoppingDash" component={ShoppingDash}/> */}
+
 
         </PrivateRoute>
       </Switch>

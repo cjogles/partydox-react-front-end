@@ -5,7 +5,7 @@ import Axios from "axios";
 export const getAllFlights = (tripId) => (dispatch) => {
   let id = localStorage.getItem("id");
   AxiosWithAuth()
-    .get(`/flight/user/${id}/flightTrip/${tripId}`)
+    .get(`/flights/user/${id}/flightTrip/${tripId}`)
     .then((res) => {
       dispatch({ type: t.GET_ALL_FLIGHTS, payload: res.data });
     })
@@ -17,7 +17,7 @@ export const getAllFlights = (tripId) => (dispatch) => {
 export const getFlight = (flightId) => (dispatch) => {
   let id = localStorage.getItem("id")
   AxiosWithAuth()
-    .get(`/flight/user/${id}/flight/${flightId}`)
+    .get(`/flights/user/${id}/flight/${flightId}`)
     .then(res => {
       dispatch({ type: t.GET_SINGLE_FLIGHT, payload: res.data})
     })
@@ -30,7 +30,7 @@ export const addFlight = (flight, history) => (dispatch) => {
   let id = localStorage.getItem("id");
   let tripId = localStorage.getItem("tripId");
   AxiosWithAuth()
-    .post(`/flight/user/${id}/flightTrip/${tripId}`, flight)
+    .post(`/flights/user/${id}/flightTrip/${tripId}`, flight)
     .then((res) => {
       dispatch({ type: t.ADDED_FLIGHT, payload: "Added flight" });
       history.push("/flightDash")
@@ -44,7 +44,7 @@ export const deleteFlight = (flightId, history) => (dispatch) => {
   dispatch({ type: t.DELETING_FLIGHT, payload: "Deleting Your flight..." });
   let id = localStorage.getItem("id");
   AxiosWithAuth()
-    .delete(`/flight/user/${id}/flight/${flightId}`)
+    .delete(`/flights/user/${id}/flight/${flightId}`)
     .then((res) => {
       dispatch({ type: t.DELETED_FLIGHT, payload: "Deleted flight" });
       history.push("/dashboard")
@@ -59,7 +59,7 @@ export const updateFlight = (flightId, flight, history) => (dispatch) => {
   dispatch({ type: t.UPDATING_FLIGHT, payload: "Updating Your flight..." });
   let id = localStorage.getItem("id");
   AxiosWithAuth()
-    .put(`/flight/user/${id}/flight/${flightId}`, flight)
+    .put(`/flights/user/${id}/flight/${flightId}`, flight)
     .then((res) => {
       dispatch({ type: t.UPDATED_FLIGHT, payload: "Updated flight" });
       history.push("/flightDash")

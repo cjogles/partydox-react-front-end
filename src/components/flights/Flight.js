@@ -93,7 +93,7 @@ function Flight(props) {
             inside action creator, redirect or push to the 
             flight dashboard */}
             <button
-              onClick={() => props.deleteActivity(props.flight.id, history)}
+              onClick={() => props.deleteFlight(props.flight.id, history)}
             >
               <p>Delete Flight</p>
             </button>{" "}

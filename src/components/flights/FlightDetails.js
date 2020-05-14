@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import NavFriend from "../friends/NavDetails";
+import Nav from "../flights/NavFlight";
 import Footer from "../FooterSignUp";
 import { deleteFlight, getFlight } from "../../actions/flightActions";
 import { useHistory } from "react-router-dom";
@@ -11,12 +11,13 @@ function FlightDetails(props) {
   let history = useHistory();
   useEffect(() => {
     props.getFlight(props.location.state.flight.id);
-  }, []);
+    console.log("flight details rendered")
+  }, [props]);
 
   if (props.thisFlight[0] !== undefined && props.thisFlight[0] !== undefined) {
     return (
       <>
-        <NavFriend />
+        <Nav />
         <div className="tripDetails">
           {/* update and delete flight information */}
           <div>
@@ -24,7 +25,7 @@ function FlightDetails(props) {
             <div className="updateTrip">
               <Link
                 to={{
-                  pathname: "/updateActivity",
+                  pathname: "/updateFlight",
                   state: {
                     tripId: localStorage.getItem("tripId"),
                     id: props.thisFlight[0].id,
@@ -49,12 +50,12 @@ function FlightDetails(props) {
                   },
                 }}
               >
-                <p>Edit Activity</p>
+                <p>Edit Flight</p>
               </Link>{" "}
               <button
                 onClick={() => props.deleteFlight(props.thisFlight[0].id, history)}
               >
-                <p>Delete Activity</p>
+                <p>Delete Flight</p>
               </button>{" "}
             </div>
           </div>
@@ -195,7 +196,7 @@ function FlightDetails(props) {
 
 const mapStateToProps = (state) => {
   return {
-    thisFlight: state.activityReducer.activity,
+    thisFlight: state.flightReducer.flight,
     thisTrip: state.tripsReducer.trip,
   };
 };
