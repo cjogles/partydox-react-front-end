@@ -1,5 +1,6 @@
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import * as t from "./types";
+import Axios from "axios";
 
 export const getAllActivities = (tripId) => (dispatch) => {
   let id = localStorage.getItem("id");
@@ -13,9 +14,21 @@ export const getAllActivities = (tripId) => (dispatch) => {
     });
 };
 
-export const addActivity = (activity, tripId, history) => (dispatch) => {
+export const getActivity = (activityId) => (dispatch) => {
+  let id = localStorage.getItem("id")
+  AxiosWithAuth()
+    .get(`/activity/user/${id}/activity/${activityId}`)
+    .then(res => {
+      dispatch({ type: t.GET_SINGLE_ACTIVITY, payload: res.data})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+export const addActivity = (activity, history) => (dispatch) => {
   dispatch({ type: t.ADDING_ACTIVITY, payload: "Adding an Activity to your list..." });
   let id = localStorage.getItem("id");
+  let tripId = localStorage.getItem("tripId");
   AxiosWithAuth()
     .post(`/activity/user/${id}/activityTrip/${tripId}`, activity)
     .then((res) => {
@@ -34,6 +47,7 @@ export const deleteActivity = (activityId, history) => (dispatch) => {
     .delete(`/activity/user/${id}/activity/${activityId}`)
     .then((res) => {
       dispatch({ type: t.DELETED_ACTIVITY, payload: "Deleted activity" });
+      history.push("/dashboard")
       history.push("/activityDash")
     })
     .catch((err) => {

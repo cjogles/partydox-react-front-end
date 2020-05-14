@@ -61,7 +61,17 @@ function Activity(props) {
               to={{
                 pathname: "/updateActivity",
                 state: {
-                  activity: props.activity,
+                  tripId: localStorage.getItem("tripId"),
+                  id: props.activity.id,
+                  activity_name: props.activity.activity_name,
+                  activity_description:
+                    props.activity.activity_description,
+                  activity_start_date:
+                    props.activity.activity_start_date,
+                  activity_end_date: props.activity.activity_end_date,
+                  activity_address: props.activity.activity_address,
+                  activity_phone: props.activity.activity_phone,
+                  activity_notes: props.activity.activity_notes,
                 },
               }}
             >
@@ -74,13 +84,7 @@ function Activity(props) {
             inside action creator, redirect or push to the 
             activity dashboard */}
             <button
-              onClick={() =>
-                props.deleteActivity(
-                  props.activity.id,
-                  localStorage.getItem("id"),
-                  history
-                )
-              }
+              onClick={() => props.deleteActivity(props.activity.id, history)}
             >
               <p>Delete Activity</p>
             </button>{" "}

@@ -11,9 +11,11 @@ function TripDetails(props) {
   let history = useHistory();
   useEffect(() => {
     props.getTrip(props.location.state.tripId);
+    // console.log("trip id from inside trip details useeffect", props.thisTrip[0].id)
   }, []);
 
   if (props.thisTrip.length !== 0) {
+    localStorage.setItem("tripId", props.thisTrip[0].id )
     return (
       <>
         <NavFriend />
@@ -118,7 +120,8 @@ function TripDetails(props) {
             <Link to="/shoppingDash">
               {props.thisTrip[0].trip_name} shopping lists
             </Link>
-            <Link to="/flightDash">{props.thisTrip[0].trip_name} flights</Link>
+            <Link to="/flightDash">
+              {props.thisTrip[0].trip_name} flights</Link>
           </div>
         </div>
         <Footer />

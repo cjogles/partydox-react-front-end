@@ -28,7 +28,7 @@ function Login(props) {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor='username'>Username:</label>
-            <input type="text" name="username" ref={register({ required: true })} />
+            <input type="text" name="username" autoFocus={true} ref={register({ required: true })} />
             {/* Password expression. Password must be between 4 
             and 8 digits long and include at least one numeric digit.
             pattern: /^(?=.*\d).{8,20}$/ */}

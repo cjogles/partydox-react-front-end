@@ -10,7 +10,7 @@ function AddActivity(props) {
   // utilities for login form
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (activity) => props.addActivity(activity, props.location.state.tripId, history);
+  const onSubmit = (activity) => props.addActivity(activity, history);
 
   return (
     <>
@@ -26,7 +26,7 @@ function AddActivity(props) {
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="activity_name">Activity Name:</label>
-            <input name="activity_name" ref={register({ required: true })} />
+            <input name="activity_name" autoFocus={true} ref={register({ required: true })} />
             <label htmlFor="activity_description">Activity Description:</label>
             <input name="activity_description" ref={register} />
             <label htmlFor="activity_start_date">Activity Start Date:</label>

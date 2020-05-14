@@ -5,68 +5,91 @@ import ActivityList from "../activities/ActivityList";
 import Footer from "../FooterSignUp";
 import { connect } from "react-redux";
 import { getAllActivities } from "../../actions/activityActions";
+import { getTrip } from "../../actions/tripActions";
+import { useHistory, Link } from "react-router-dom";
 
 function ActivityDash(props) {
   // utils for activity dash component
   // update activities after an update/deletion/addition
+  let history = useHistory();
   useEffect(() => {
-    props.getAllActivities(props.location.state.tripId);
-  }, [props.update, props.deleteTrip, props.addition]);
+    props.getAllActivities(localStorage.getItem("tripId"));
+    props.getTrip(localStorage.getItem("tripId"));
+  }, [props.gotActivities, props.gotTrip]);
 
-  return (
-    <>
-      {/* If the axios request to retrieve all trips fails, 
+  if (props.thisTrip[0] !== undefined) {
+    return (
+      <>
+        {/* If the axios request to retrieve all trips fails, 
     show an error message, while logging in, show a 
     logging in message, otherwise show the trips. */}
 
-      {props.loggingIn ? (
-        <>
-          <Nav />
-          <div className="loggingin">{props.loggingInMessage}</div>
-          <Footer />{" "}
-        </>
-      ) : null}
-      {props.error ? (
-        <>
-          <Nav />
-          <div className="dasherror">{props.errorMessage}</div>
-          <Footer />
-        </>
-      ) : null}
+        {props.loggingIn ? (
+          <>
+            <Nav />
+            <div className="loggingin">{props.loggingInMessage}</div>
+            <Footer />{" "}
+          </>
+        ) : null}
+        {props.error ? (
+          <>
+            <Nav />
+            <div className="dasherror">{props.errorMessage}</div>
+            <Footer />
+          </>
+        ) : null}
 
-      {props.loggedIn && (
-        <>
-          <NavFriend friend={props.name} />
-          <div className="dash">
-            <div className="dashContainer1">
-              <h2 className="dashH">Welcome to your Activity List View!</h2>
-              <ActivityList
-                activities={props.activities}
-                tripName={props.location.state.tripName}
-                tripId={props.location.state.tripId}
-              />
+        {props.loggedIn && (
+          <>
+            <NavFriend friend={props.name} />
+            <div className="dash">
+              <div className="dashContainer1">
+                <h2 className="dashH">Welcome to your Activity List View!</h2>
+                <div>
+                  <Link
+                    to={{
+                      pathname: "/tripDetails",
+                      state: {
+                        tripId: localStorage.getItem("tripId"),
+                      },
+                    }}
+                  >
+                    <h2>Back to Trip Details</h2>
+                  </Link>
+                </div>
+                {/* pass trip name and trip id from Link component (react-router-dom) */}
+                <ActivityList
+                  activities={props.activities}
+                  tripName={props.thisTrip[0].trip_name}
+                  tripId={props.thisTrip[0].id}
+                />
+              </div>
             </div>
-          </div>
-          <Footer />
-        </>
-      )}
-    </>
-  );
+            <Footer />
+          </>
+        )}
+      </>
+    );
+  } else {
+    return null;
+  }
 }
 
 // necessary state and action creators for Dashboard component
 const mapStateToProps = (state) => {
   return {
-    name: state.signUpReducer.friend.name,
-    errorMessage: state.signUpReducer.errorMessage,
-    error: state.signUpReducer.error,
-    loggedIn: state.signUpReducer.loggedIn,
+    gotActivities: state.activityReducer.gotActivities,
     loggingIn: state.signUpReducer.loggingIn,
     loggingInMessage: state.signUpReducer.loggingInMessage,
+    error: state.signUpReducer.error,
+    errorMessage: state.signUpReducer.errorMessage,
+    loggedIn: state.signUpReducer.loggedIn,
+    name: state.signUpReducer.friend.name,
     activities: state.activityReducer.activities,
+    thisTrip: state.tripsReducer.trip,
   };
 };
 
-const mapDispatchToProps = { getAllActivities };
+const mapDispatchToProps = { getAllActivities, getTrip };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityDash);

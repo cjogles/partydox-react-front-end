@@ -11,7 +11,6 @@ function Dashboard(props) {
   // update trips after an update/deletion/addition
   useEffect(() => {
     props.getAllTrips();
-    console.log("I rendered dashboard!")
   }, [props.gotTrips]);
 
   return (

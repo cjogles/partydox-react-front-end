@@ -26,7 +26,7 @@ function AddTrip(props) {
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="trip_name">Trip Name:</label>
-            <input name="trip_name" ref={register({ required: true })} />
+            <input name="trip_name" autoFocus={true} ref={register({ required: true })} />
             <label htmlFor="trip_description">Trip Description:</label>
             <input name="trip_description" ref={register} />
             <label htmlFor="trip_lift_off_location">Trip Location:</label>

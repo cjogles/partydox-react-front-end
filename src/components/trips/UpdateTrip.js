@@ -50,7 +50,7 @@ function UpdateTrip(props) {
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="trip_name">Trip Name:</label>
-            <input name="trip_name" ref={register}></input>
+            <input name="trip_name" autoFocus={true} ref={register}></input>
             <label htmlFor="trip_description">Trip Description:</label>
             <input name="trip_description" ref={register}></input>
             <label htmlFor="trip_location">Trip Location:</label>

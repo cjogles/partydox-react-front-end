@@ -7,6 +7,7 @@ let initialState = {
   errorMessage: "",
   gettingTrips: false,
   gotTrips: false,
+  gotTrip: false,
   addingTrip: false,
   addingTripMessage: "",
   updatingTrip: false,
@@ -64,6 +65,7 @@ const tripsReducer = (state = initialState, action) => {
       return {
         ...state,
         trip: action.payload,
+        gotTrip: true,
       }
     default:
       return state;

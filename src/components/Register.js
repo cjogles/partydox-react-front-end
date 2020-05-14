@@ -29,7 +29,7 @@ function Register(props) {
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="friend_name">Name:</label>
-            <input name="friend_name" ref={register({ required: true })} />
+            <input name="friend_name" autoFocus={true} ref={register({ required: true })} />
             <label htmlFor="username">Username:</label>
             <input name="username" ref={register({ required: true })} />
             {/* Password expression. Password must be between 4 
