@@ -1,100 +1,205 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import NavFriend from "../friends/NavFriend";
-import Footer from '../FooterSignUp';
+import NavFriend from "../friends/NavDetails";
+import Footer from "../FooterSignUp";
+import { deleteFlight, getFlight } from "../../actions/flightActions";
+import { useHistory } from "react-router-dom";
 
 function FlightDetails(props) {
-  let flight = props.location.state;
-  let tripName = localStorage.getItem("tripName");
+  // utils for Flight details component
+  let history = useHistory();
+  useEffect(() => {
+    props.getFlight(props.location.state.flight.id);
+  }, []);
 
-  return (
-    <>
-      <NavFriend />
-      <div className="tripDetails">
-      <div>
-          <h1>Your Flight Details:</h1>
-          <div className="updateTrip">
-            <Link
-              to={{
-                pathname: "/updateFlight",
-                state: { userId: localStorage.getItem("id") },
-              }}
-            >
-              <p>Edit Flight</p>
-            </Link>{" "}
-            <Link
-              to={{
-                pathname: "/deleteFlight",
-                state: { userId: localStorage.getItem("id") },
-              }}
-            >
-              <p>Delete Flight</p>
-            </Link>{" "}
+  if (props.thisFlight[0] !== undefined && props.thisFlight[0] !== undefined) {
+    return (
+      <>
+        <NavFriend />
+        <div className="tripDetails">
+          {/* update and delete flight information */}
+          <div>
+            <h1>Your Flight Info</h1>
+            <div className="updateTrip">
+              <Link
+                to={{
+                  pathname: "/updateActivity",
+                  state: {
+                    tripId: localStorage.getItem("tripId"),
+                    id: props.thisFlight[0].id,
+                    departure_date: props.thisFlight[0].departure_date,
+                    departure_airport_name: props.thisFlight[0].departure_airport_name,
+                    departure_airport_address: props.thisFlight[0].departure_airport_address,
+                    departure_airport_phone: props.thisFlight[0].departure_airport_phone,
+                    departure_ticket_number: props.thisFlight[0].departure_ticket_number,
+                    departure_flight_number: props.thisFlight[0].departure_flight_number,
+                    departure_terminal: props.thisFlight[0].departure_terminal,
+                    departure_gate: props.thisFlight[0].departure_gate,
+                    departure_flight_notes: props.thisFlight[0].departure_flight_notes,
+                    arrival_date: props.thisFlight[0].arrival_date,
+                    arrival_airport_name: props.thisFlight[0].arrival_airport_name,
+                    arrival_airport_address: props.thisFlight[0].arrival_airport_address,
+                    arrival_airport_phone: props.thisFlight[0].arrival_airport_phone,
+                    arrival_ticket_number: props.thisFlight[0].arrival_ticket_number,
+                    arrival_flight_number: props.thisFlight[0].arrival_flight_number,
+                    arrival_terminal: props.thisFlight[0].arrival_terminal,
+                    arrival_gate: props.thisFlight[0].arrival_gate,
+                    arrival_flight_notes: props.thisFlight[0].arrival_flight_notes,
+                  },
+                }}
+              >
+                <p>Edit Activity</p>
+              </Link>{" "}
+              <button
+                onClick={() => props.deleteFlight(props.thisFlight[0].id, history)}
+              >
+                <p>Delete Activity</p>
+              </button>{" "}
+            </div>
+          </div>
+          <div className="tripstuff1">
+            <div className="tripstuffnames">
+              <p>Departure Date:</p>
+              <p>Departure Airport Name:</p>
+              <p>Departure Airport Address:</p>
+              <p>Departure Airport Phone:</p>
+              <p>Departure Airport Ticket Number:</p>
+              <p>Departure Airport Flight Number:</p>
+              <p>Departure Airport Terminal:</p>
+              <p>Departure Airport Gate:</p>
+              <p>Departure Airport Notes:</p>
+              <p>Arrival Date:</p>
+              <p>Arrival Airport Name:</p>
+              <p>Arrival Airport Address:</p>
+              <p>Arrival Airport Phone:</p>
+              <p>Arrival Airport Ticket Number:</p>
+              <p>Arrival Airport Flight Number:</p>
+              <p>Arrival Airport Terminal:</p>
+              <p>Arrival Airport Gate:</p>
+              <p>Arrival Airport Notes:</p>
+            </div>
+            <div className="tripstuffvalues">
+              <p>
+                {props.thisFlight[0].departure_date
+                  ? props.thisFlight[0].departure_date
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].departure_airport_name
+                  ? props.thisFlight[0].departure_airport_name
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].departure_airport_address
+                  ? props.thisFlight[0].departure_airport_address
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].departure_airport_phone
+                  ? props.thisFlight[0].departure_airport_phone
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].departure_ticket_number
+                  ? props.thisFlight[0].departure_ticket_number
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].departure_flight_number
+                  ? props.thisFlight[0].departure_flight_number
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].departure_terminal
+                  ? props.thisFlight[0].departure_terminal
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].departure_gate
+                  ? props.thisFlight[0].departure_gate
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].departure_flight_notes
+                  ? props.thisFlight[0].departure_flight_notes
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_date
+                  ? props.thisFlight[0].arrival_date
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_airport_name
+                  ? props.thisFlight[0].arrival_airport_name
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_airport_address
+                  ? props.thisFlight[0].arrival_airport_address
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_airport_phone
+                  ? props.thisFlight[0].arrival_airport_phone
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_ticket_number
+                  ? props.thisFlight[0].arrival_ticket_number
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_flight_number
+                  ? props.thisFlight[0].arrival_flight_number
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_terminal
+                  ? props.thisFlight[0].arrival_terminal
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_gate
+                  ? props.thisFlight[0].arrival_gate
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisFlight[0].arrival_flight_notes
+                  ? props.thisFlight[0].arrival_flight_notes
+                  : "N/A"}
+              </p>
+            </div>
+          </div>
+          <div className="tripstuff2">
+            {/* <Link to="/activityDash">
+              {props.thisTrip[0].tripName} activities
+            </Link>
+            <Link to="parkingDash">
+              {props.thisTrip[0].tripName} parking lots
+            </Link>
+            <Link to="shoppingDash">
+              {props.thisTrip[0].tripName} shopping lists
+            </Link>
+            <Link to="/flightDash">{props.thisTrip[0].tripName} flights</Link> */}
           </div>
         </div>
-        <div className="tripstuff1">
-          <div className="tripstuffnames">
-            <p>Departure Airport Name: </p>
-            <p>Departure Date: </p>
-            <p>Depature Airport Address: </p>
-            <p>Departure Airport Phone: </p>
-            <p>Departure Ticket Number: </p>
-            <p>Departure Flight Number: </p>
-            <p>Departure Terminal: </p>
-            <p>Departure Gate: </p>
-            <p>Departure Flight Notes: </p>
-            <p>Arrival Airport Name: </p>
-            <p>Arrival Date: </p>
-            <p>Arrival Airport Address: </p>
-            <p>Arrival Airport Phone: </p>
-            <p>Arrival Ticket Number:</p>
-            <p>Arrival Flight Number: </p>
-            <p>Arrival Terminal: </p>
-            <p>Arrival Gate: </p>
-            <p>Arrival Flight Notes: </p>
-            <p>Total Flights Cost: </p>
-            <p>Flight Combo Likes: </p>
-          </div>
-          <div className="tripstuffvalues">
-            <p>{flight.departureAirportName ? flight.departureAirportName : "N/A"}</p>
-            <p>{flight.departureDate ? flight.departureDate : "N/A"}</p>
-            <p>{flight.departureAirportAddress ? flight.departureAirportAddress : "N/A"}</p>
-            <p>{flight.departureAirportPhone ? flight.departureAirportPhone : "N/A"}</p>
-            <p>{flight.departureTicketNumber ? flight.departureTicketNumber : "N/A"}</p>
-            <p>{flight.departureFlightNumber ? flight.departureFlightNumber : "N/A"}</p>
-            <p>{flight.departureTerminal ? flight.departureTerminal : "N/A"}</p>
-            <p>{flight.depatureGate ? flight.depatureGate : "N/A"}</p>
-            <p>{flight.depatureNotes ? flight.depatureNotes : "N/A"}</p>
-            <p>{flight.arrivalAirportName ? flight.arrivalAirportName : "N/A"}</p>
-            <p>{flight.arrivalDate ? flight.arrivalDate : "N/A"}</p>
-            <p>{flight.arrivalAirportAddress ? flight.arrivalAirportAddress : "N/A"}</p>
-            <p>{flight.arrivalAirportPhone ? flight.arrivalAirportPhone : "N/A"}</p>
-            <p>{flight.arrivalTicketNumber ? flight.arrivalTicketNumber : "N/A"}</p>
-            <p>{flight.arrivalFlightNumber ? flight.arrivalFlightNumber : "N/A"}</p>
-            <p>{flight.arrivalTerminal ? flight.arrivalTerminal : "N/A"}</p>
-            <p>{flight.arrivalGate ? flight.arrivalGate : "N/A"}</p>
-            <p>{flight.arrivalNotes ? flight.arrivalNotes : "N/A"}</p>
-            <p>{flight.flightCost ? flight.flightCost : "N/A"}</p>
-            <p>{flight.flightLikes ? flight.flightLikes : "N/A"}</p>
-          </div>
-        </div>
-        <div className="tripstuff2">
-          <Link to={{ pathname: "/activities", state: {tripName: tripName}}}>{tripName} activities</Link>
-          <Link to={{ pathname: "/parkingLots", state: {tripName: tripName}}}>{tripName} parking lots</Link>
-          <Link to={{ pathname: "/shoppingLists", state: {tripName: tripName}}}>{tripName} shopping lists</Link>
-          <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>{tripName} flights</Link>
-        </div>
-      </div>
-      <Footer />
-    </>
-  );
+        <Footer />
+      </>
+    );
+  } else {
+    return null;
+  }
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    thisFlight: state.activityReducer.activity,
+    thisTrip: state.tripsReducer.trip,
+  };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getFlight, deleteFlight };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlightDetails);

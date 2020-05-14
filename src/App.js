@@ -16,7 +16,7 @@ import ParkingLots from './components/parking/ParkingLots';
 import ParkingLotDetails from './components/parking/ParkingLotDetails';
 import ShoppingLists from './components/shopping/ShoppingLists';
 import ShoppingListDetails from './components/shopping/ShoppingListDetails';
-import Flights from './components/flights/Flights';
+import FlightList from './components/flights/FlightList';
 import FlightDetails from './components/flights/FlightDetails';
 
 import ActivityDash from './components/activities/ActivityDash';
@@ -61,7 +61,7 @@ function App() {
           <Route path="/parkingDetails" component={ParkingLotDetails}/>
           <Route path="/shoppingLists" component={ShoppingLists}/>
           <Route path="/shoppingDetails" component={ShoppingListDetails}/>
-          <Route path="/flights" component={Flights}/>
+          <Route path="/flights" component={FlightList}/>
           <Route path="/flightDetails" component={FlightDetails}/>
 
           <Route path="/addTrip" component={AddTrip}/>
