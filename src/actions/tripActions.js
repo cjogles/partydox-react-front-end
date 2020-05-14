@@ -18,8 +18,7 @@ export const getTrip = (tripId) => dispatch => {
   AxiosWithAuth()
     .get(`/trips/user/${id}/trip/${tripId}`)
     .then(res => {
-      console.log("one trip", res.data)
-      // dispatch({ type: t.getTrip, payload: res.data})
+      dispatch({ type: t.GET_SINGLE_TRIP, payload: res.data})
     })
     .catch(err => {
       console.log(err)

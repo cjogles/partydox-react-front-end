@@ -15,7 +15,7 @@ let initialState = {
   deletingTripMessage: "",
   addingSingleTrip: false,
 };
-
+ 
 const tripsReducer = (state = initialState, action) => {
   switch (action.type) {
     case a.GET_ALL_TRIPS:

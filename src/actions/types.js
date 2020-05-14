@@ -9,7 +9,6 @@ export const DELETE_FRIEND = "DELETE_FRIEND"; // D
 
 export const ADDING_TRIP = "ADDING_TRIP";
 export const ADDED_TRIP = "ADDED_TRIP";
-export const GET_TRIP = "GET_TRIP";
 export const UPDATING_TRIP = "UPDATING_TRIP";
 export const UPDATED_TRIP = "UPDATED_TRIP";
 export const DELETING_TRIP = "DELETING_TRIP";

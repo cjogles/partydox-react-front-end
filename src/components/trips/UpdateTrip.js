@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../friends/NavFriend";
 import FooterSignUp from "../FooterSignUp";
 import { updateTrip } from "../../actions/tripActions";
@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 function UpdateTrip(props) {
   // utils used by update trip component
   let history = useHistory();
-  let thisTrip = props.history.location.state.trip;
+  let thisTrip = props.location.state;
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
       trip_name: thisTrip.trip_name,
@@ -23,8 +23,14 @@ function UpdateTrip(props) {
       trip_notes: thisTrip.trip_notes,
     },
   });
+
   const onSubmit = (trip) =>
-    props.updateTrip(thisTrip.id, localStorage.getItem("id"), trip, history);
+    props.updateTrip(
+      thisTrip.tripId,
+      localStorage.getItem("id"),
+      trip,
+      history
+    );
 
   return (
     <>
@@ -35,7 +41,7 @@ function UpdateTrip(props) {
             <span role="img" aria-label="partyface">
               🥳
             </span>
-            Update {thisTrip.tripName} Trip
+            Update {props.thisTrip.tripName} Trip
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,9 +76,10 @@ function UpdateTrip(props) {
     </>
   );
 }
-
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    thisTrip: state.tripsReducer.trip,
+  };
 };
 
 const mapDispatchToProps = { updateTrip };

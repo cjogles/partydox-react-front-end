@@ -7,7 +7,6 @@ import { deleteTrip } from "../../actions/tripActions";
 function Trip(props) {
   // necessary utils for Trip component
   let history = useHistory();
-
   return (
     <>
       <div className="trip">
@@ -32,7 +31,16 @@ function Trip(props) {
               to={{
                 pathname: "/tripDetails",
                 state: {
-                  trip: props.trip,
+                  tripId: props.trip.id,
+                  trip_name: props.trip.trip_name,
+                  trip_description: props.trip.trip_description,
+                  trip_location: props.trip.trip_location,
+                  trip_lift_off_location: props.trip.trip_lift_off_location,
+                  trip_car: props.trip.trip_car,
+                  trip_start_date: props.trip.trip_start_date,
+                  trip_end_date: props.trip.trip_end_date,
+                  trip_upvote: props.trip.trip_upvote,
+                  trip_notes: props.trip.trip_notes,
                 },
               }}
             >
@@ -55,7 +63,16 @@ function Trip(props) {
               to={{
                 pathname: "/updateTrip",
                 state: {
-                  trip: props.trip,
+                  tripId: props.trip.id,
+                  trip_name: props.trip.trip_name,
+                  trip_description: props.trip.trip_description,
+                  trip_location: props.trip.trip_location,
+                  trip_lift_off_location: props.trip.trip_lift_off_location,
+                  trip_car: props.trip.trip_car,
+                  trip_start_date: props.trip.trip_start_date,
+                  trip_end_date: props.trip.trip_end_date,
+                  trip_upvote: props.trip.trip_upvote,
+                  trip_notes: props.trip.trip_notes,
                 },
               }}
             >
@@ -87,8 +104,7 @@ function Trip(props) {
 
 // necessary state and action creators for Trip component
 const mapStateToProps = (state) => {
-  return {
-  };
+  return {};
 };
 
 const mapDispatchToProps = { deleteTrip };
