@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import NavFriend from "../activities/NavActivity";
+import NavFriend from "../friends/NavDetails";
 import Footer from "../FooterSignUp";
 import { deleteActivity, getActivity } from "../../actions/activityActions";
 import { useHistory } from "react-router-dom";
