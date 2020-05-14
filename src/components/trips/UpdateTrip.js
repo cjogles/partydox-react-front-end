@@ -9,7 +9,11 @@ import { useForm } from "react-hook-form";
 function UpdateTrip(props) {
   // utils used by update trip component
   let history = useHistory();
+  // specific trip details auto populate form for editing
+  // these props are passed down from Link (react router dom) and are
+  // accessible through props.location.state
   let thisTrip = props.location.state;
+  // useForm Hook used to create form with validation, registering it, and submittal
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
       trip_name: thisTrip.trip_name,
@@ -41,7 +45,7 @@ function UpdateTrip(props) {
             <span role="img" aria-label="partyface">
               🥳
             </span>
-            Update {props.thisTrip.tripName} Trip
+            Update {thisTrip.tripName} Trip
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,9 +81,7 @@ function UpdateTrip(props) {
   );
 }
 const mapStateToProps = (state) => {
-  return {
-    thisTrip: state.tripsReducer.trip,
-  };
+  return {};
 };
 
 const mapDispatchToProps = { updateTrip };

@@ -11,7 +11,8 @@ function Dashboard(props) {
   // update trips after an update/deletion/addition
   useEffect(() => {
     props.getAllTrips();
-  }, [props.update, props.deleteTrip, props.addition]);
+    console.log("I rendered dashboard!")
+  }, [props.gotTrips]);
 
   return (
     <>
@@ -62,6 +63,7 @@ const mapStateToProps = (state) => {
     loggingInMessage: state.signUpReducer.loggingInMessage,
     trips: state.tripsReducer.trips,
     gettingTrips: state.tripsReducer.gettingTrips,
+    gotTrips: state.tripsReducer.gotTrips,
     addition: state.tripsReducer.addingTrip,
     addMessage: state.tripsReducer.addingTripMessage,
     update: state.tripsReducer.updatingTrip,

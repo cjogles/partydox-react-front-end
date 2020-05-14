@@ -22,6 +22,7 @@ const tripsReducer = (state = initialState, action) => {
       return {
         ...state,
         trips: action.payload,
+        gotTrips: true,
       };
     case a.ADDING_TRIP:
       return {
