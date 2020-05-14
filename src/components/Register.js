@@ -10,7 +10,7 @@ function Register(props) {
 
   // utilities for register form
   let history = useHistory();
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const onSubmit = (credentials) => props.login(credentials, history);
 
   return (
