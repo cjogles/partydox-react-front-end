@@ -11,7 +11,7 @@ function Register(props) {
   // utilities for register form
   let history = useHistory();
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (credentials) => props.login(credentials, history);
+  const onSubmit = (credentials) => props.register(credentials, history);
 
   return (
     <>
@@ -36,7 +36,7 @@ function Register(props) {
             and 8 digits long and include at least one numeric digit.
             pattern: /^(?=.*\d).{8,20}$/ */}
             <label htmlFor="password">Password:</label>
-            <input name="password" ref={register({ required: true })} />
+            <input type="password" name="password" ref={register({ required: true })} />
             {/* display the following errors for each input */}
             {errors.friend_name && <span>Name is required</span>}
             {errors.username && <span>Username is required</span>}
