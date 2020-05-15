@@ -47,7 +47,7 @@ const signUpReducer = (state = initialState, action) => {
           loggedIn: false,
           loggedOut: true,
           loggingIn: false,
-          errorMessage: "Failed to Login! Try again?",
+          errorMessage: "That username is already in use, or some other error occured. Try again?",
           error: true
         }
     default:

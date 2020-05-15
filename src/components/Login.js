@@ -21,21 +21,22 @@ function Login(props) {
       <div className="loginWrapper">
         <div className="login">
           <div className="logintitle">
-            <span role="img" aria-label="partyface">
+            <span className="spanimage" role="img" aria-label="partyface">
               🥳
             </span>
             Login Here
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor='username'>Username:</label>
+            <label htmlFor='username'>Username: <br></br><span className="validate">(Must be unique)</span> </label>
             <input type="text" name="username" autoFocus={true} ref={register({ required: true })} />
             {/* Password expression. Password must be between 4 
             and 8 digits long and include at least one numeric digit.
             pattern: /^(?=.*\d).{8,20}$/ */}
-            <label htmlFor='password'>Password:</label>
+            <label htmlFor='password'>Password: <br></br><span className="validate">(include one number and 8-20 characters in length)</span> </label>
             <input
               type="password"
               name="password"
+              pattern={/^(?=.*\d).{8,20}$/}
               ref={register({ required: true })}
             />
             {/* display the following errors for each input */}
