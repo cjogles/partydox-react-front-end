@@ -921,6 +921,12 @@ div.tripList div.addtrip1 div.addtrip a p {
   display: flex;
   align-items: center;
 }
+@media (max-width: 800px) {
+  .trip div.tripdiv3 {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .trip div.tripdiv3 div button {
   border: none;
   background: none;
@@ -1038,6 +1044,11 @@ div.tripDetails .tripstuff2 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 800px) {
+  div.tripDetails .tripstuff2 {
+    flex-direction: column;
+  }
 }
 div.tripDetails .tripstuff2 :hover {
   background-color: skyblue;
