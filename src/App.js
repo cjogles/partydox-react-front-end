@@ -12,7 +12,7 @@ import Dashboard from "./components/Dashboard";
 import TripDetails from './components/trips/TripDetails';
 import Activities from './components/activities/ActivityList';
 import ActivityDetails from './components/activities/ActivityDetails';
-import ParkingLots from './components/parking/ParkingLots';
+import ParkingLots from './components/parking/ParkingList';
 import ParkingLotDetails from './components/parking/ParkingLotDetails';
 import ShoppingLists from './components/shopping/ShoppingLists';
 import ShoppingListDetails from './components/shopping/ShoppingListDetails';
@@ -22,7 +22,7 @@ import FlightDetails from './components/flights/FlightDetails';
 import ActivityDash from './components/activities/ActivityDash';
 // import ShoppingDash from './components/trips/ShoppingDash';
 import FlightDash from './components/flights/FlightDash';
-// import ParkingDash from './components/trips/ParkingDash';
+import ParkingDash from './components/parking/ParkingDash';
 import AddTrip from './components/trips/AddTrip';
 import UpdateTrip from './components/trips/UpdateTrip';
 import AddActivity from './components/activities/AddActivity';
@@ -69,15 +69,15 @@ function App() {
           <Route path="/updateTrip" component={UpdateTrip}/>
           <Route path="/addShoppingList" component={AddShoppingList}/>
           <Route path="/updateShoppingList" component={UpdateShoppingList}/>
-          <Route path="/addParkingLot" component={AddParkingLot}/>
+          <Route path="/addParking" component={AddParkingLot}/>
           <Route path="/updateParkingLot" component={UpdateParkingLot}/>
           <Route path="/addFlight" component={AddFlight}/>
           <Route path="/updateFlight" component={UpdateFlight}/>
           <Route path="/addActivity" component={AddActivity}/>
           <Route path="/updateActivity" component={UpdateActivity}/>
           <Route path="/activityDash" component={ActivityDash}/>
-          {/* <Route path="/parkingDash" component={ParkingDash}/>
-          <Route path="/shoppingDash" component={ShoppingDash}/> */}
+          <Route path="/parkingDash" component={ParkingDash}/>
+          {/* <Route path="/shoppingDash" component={ShoppingDash}/> */}
 
 
         </PrivateRoute>

@@ -1,6 +1,5 @@
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import * as t from "./types";
-import Axios from "axios";
 
 export const getAllFlights = (tripId) => (dispatch) => {
   let id = localStorage.getItem("id");

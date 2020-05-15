@@ -12,7 +12,7 @@ function FlightDetails(props) {
   useEffect(() => {
     props.getFlight(props.location.state.flight.id);
     console.log("flight details rendered")
-  }, [props]);
+  }, []);
 
   if (props.thisFlight[0] !== undefined && props.thisFlight[0] !== undefined) {
     return (

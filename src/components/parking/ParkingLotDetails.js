@@ -1,75 +1,115 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import NavFriend from "../friends/NavFriend";
-import Footer from '../FooterSignUp';
+import Nav from "../parking/NavParking";
+import Footer from "../FooterSignUp";
+import { deleteParking, getParking } from "../../actions/parkingActions";
+import { useHistory } from "react-router-dom";
 
 function ParkingLotDetails(props) {
-  let parking = props.location.state;
-  let tripName = localStorage.getItem("tripName");
+  let history = useHistory();
+  useEffect(() => {
+    props.getParking(props.location.state.parking.id);
+  }, []);
 
-  return (
-    <>
-      <NavFriend />
-      <div className="tripDetails">
-      <div>
-          <h1>{parking.parkingName}</h1>
-          <div className="updateTrip">
-            <Link
-              to={{
-                pathname: "/updateParkingLot",
-                state: { userId: localStorage.getItem("id") },
-              }}
-            >
-              <p>Edit Parking Lot</p>
-            </Link>{" "}
-            <Link
-              to={{
-                pathname: "/deleteParkingLot",
-                state: { userId: localStorage.getItem("id") },
-              }}
-            >
-              <p>Delete Parking Lot</p>
-            </Link>{" "}
+  if (props.thisTrip[0] !== undefined && props.thisParking[0] !== undefined) {
+    return (
+      <>
+        <Nav />
+        <div className="tripDetails">
+          <div>
+            <h1>Your Parking Lot Info</h1>
+            <div className="updateTrip">
+              <Link
+                to={{
+                  pathname: "/updateParkingLot",
+                  state: {
+                    tripId: localStorage.getItem("tripId"),
+                    id: props.thisParking[0].id,
+                    parking_lot_name: props.thisParking[0].parking_lot_name,
+                    parking_lot_address: props.thisParking[0].parking_lot_address,
+                    parking_lot_phone: props.thisParking[0].parking_lot_phone,
+                    parking_lot_cost: props.thisParking[0].parking_lot_cost,
+                    parking_lot_hours: props.thisParking[0].parking_lot_hours,
+                    parking_notes: props.thisParking[0].parking_notes,
+                  },
+                }}
+              >
+                <p>Edit Parking Lot</p>
+              </Link>{" "}
+              <button
+                onClick={() => props.deleteParking(props.thisParking[0].id, history)}
+              >
+                <p>Delete Parking Lot</p>
+              </button>{" "}
+            </div>
+          </div>
+          <div className="tripstuff1">
+            <div className="tripstuffnames">
+              <p>Parking Lot Name:</p>
+              <p>Parking Lot Address:</p>
+              <p>Parking Lot Phone:</p>
+              <p>Parking Lot Cost:</p>
+              <p>Parking Lot Hours:</p>
+              <p>Parking Lot Likes:</p>
+              <p>Parking Lot Notes:</p>
+            </div>
+            <div className="tripstuffvalues">
+              <p>
+                {props.thisParking[0].parking_lot_name
+                  ? props.thisParking[0].parking_lot_name
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisParking[0].parking_lot_address
+                  ? props.thisParking[0].parking_lot_address
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisParking[0].parking_lot_phone
+                  ? props.thisParking[0].parking_lot_phone
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisParking[0].parking_lot_cost
+                  ? props.thisParking[0].parking_lot_cost
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisParking[0].parking_lot_hours
+                  ? props.thisParking[0].parking_lot_hours
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisParking[0].parking_upvote
+                  ? props.thisParking[0].parking_upvote
+                  : "N/A"}
+              </p>
+              <p>
+                {props.thisParking[0].parking_notes
+                  ? props.thisParking[0].parking_notes
+                  : "N/A"}
+              </p>
+            </div>
+          </div>
+          <div className="tripstuff2">
           </div>
         </div>
-
-        <div className="tripstuff1">
-          <div className="tripstuffnames">
-            <p>Parking Lot Name: </p>
-            <p>Parking Lot Address: </p>
-            <p>Parking Lot Phone: </p>
-            <p>Parking Lot Cost: </p>
-            <p>Parking Lot Hours: </p>
-            <p>Parking Lot Likes: </p>
-            <p>Parking Lot Notes: </p>
-          </div>
-          <div className="tripstuffvalues">
-            <p>{parking.parkingName ? parking.parkingName : "N/A"}</p>
-            <p>{parking.parkingAddress ? parking.parkingAddress : "N/A"}</p>
-            <p>{parking.parkingPhone ? parking.parkingPhone : "N/A"}</p>
-            <p>{parking.parkingCost ? parking.parkingCost : "N/A"}</p>
-            <p>{parking.parkingHours ? parking.parkingHours : "N/A"}</p>
-            <p>{parking.parkingLikes ? parking.parkingLikes : "N/A"}</p>
-            <p>{parking.parkingNotes ? parking.parkingNotes : "N/A"}</p>
-          </div>
-        </div>
-        <div className="tripstuff2">
-          <Link to={{ pathname: "/activities", state: {tripName: tripName}}}>{tripName} activities</Link>
-          <Link to={{ pathname: "/parkingLots", state: {tripName: tripName}}}>{tripName} parking lots</Link>
-          <Link to={{ pathname: "/shoppingLists", state: {tripName: tripName}}}>{tripName} shopping lists</Link>
-          <Link to={{ pathname: "/flights", state: {tripName: tripName}}}>{tripName} flights</Link>
-        </div>
-      </div>
-      <Footer/>
-    </>
-  );
+        <Footer />
+      </>
+    );
+  } else {
+    return null;
+  }
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    thisParking: state.parkingReducer.parking,
+    thisTrip: state.tripsReducer.trip,
+  };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getParking, deleteParking };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParkingLotDetails);

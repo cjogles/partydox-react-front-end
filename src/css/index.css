@@ -547,6 +547,9 @@ html {
 .loginWrapper .login form textarea {
   margin-bottom: 2rem;
 }
+.loginWrapper .login form select {
+  margin-bottom: 2rem;
+}
 .loginWrapper .login form div.error {
   color: red;
   font-size: 1rem;
