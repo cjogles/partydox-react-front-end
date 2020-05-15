@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "../friends/NavFriend";
+import Nav from "../friends/NavDetails";
 import FooterSignUp from "../FooterSignUp";
 import { useForm } from "react-hook-form";
 import { addActivity } from "../../actions/activityActions";
