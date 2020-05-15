@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from "react";
-import Nav from "../friends/NavFriend";
+import React from "react";
+import Nav from "../shopping/NavShopping";
 import FooterSignUp from "../FooterSignUp";
-import { updateShoppingList } from "../../actions/shoppingActions";
+import { updateShopping } from "../../actions/shoppingActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function UpdateShoppingList(props) {
-
   let history = useHistory();
-  let prevShoppingList = props.history.location.state;
-
-  const [shoppingList, setShoppingList] = useState({
-    item_name: prevShoppingList.name ? prevShoppingList.name : '',
-    item_cost: prevShoppingList.cost ? prevShoppingList.cost : '',
-    item_buyer: prevShoppingList.buyer ? prevShoppingList.buyer : '',
-    item_upvote: prevShoppingList.likes ? prevShoppingList.likes : 0,
-    item_notes: prevShoppingList.notes ? prevShoppingList.notes : '',
+  let thisShopping = props.location.state;
+  const { register, handleSubmit, errors } = useForm({
+    defaultValues: {
+      item_name: thisShopping.item_name,
+      item_cost: thisShopping.item_cost,
+      item_buyer: thisShopping.item_buyer,
+      item_notes: thisShopping.item_notes,
+    },
   });
 
-  const onChange = (event) => {
-    setShoppingList({ ...shoppingList, [event.target.name]: event.target.value });
-  };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    props.updateShoppingList(prevShoppingList.shoppingId, shoppingList, history);
-  };
+  const onSubmit = (shoppingList) =>
+    props.updateShopping(thisShopping.id, shoppingList, history);
 
   return (
     <>
@@ -39,46 +33,25 @@ function UpdateShoppingList(props) {
             Update Shopping List
           </div>
 
-          <form onSubmit={(event) => onSubmit(event)}>
-            <label htmlFor="item_name">Item Names:</label>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="item_name">Shopping List Items:</label>
             <textarea
               rows="4"
               cols="40"
-              id="item_name"
               name="item_name"
-              value={shoppingList.item_name}
-              placeholder={prevShoppingList.name}
-              onChange={(event) => onChange(event)}
-            ></textarea>
+              autoFocus={true}
+              ref={register({ required: true })}
+            />
             <label htmlFor="item_cost">Items Total Cost:</label>
-            <input
-              type="text"
-              id="item_cost"
-              name="item_cost"
-              value={shoppingList.item_cost}
-              placeholder={prevShoppingList.cost}
-              onChange={(event) => onChange(event)}
-            ></input>
-            <label htmlFor="item_buyer">Buyers Names:</label>
-            <input
-               type="text"
-               id="item_buyer"
-               name="item_buyer"
-               value={shoppingList.item_buyer}
-               placeholder={prevShoppingList.buyers}
-               onChange={(event) => onChange(event)}
-            ></input>
-            <label htmlFor="item_notes">Notes:</label>
-            <textarea
-              rows="4"
-              cols="40"
-              type="text"
-              id="item_notes"
-              name="item_notes"
-              value={shoppingList.item_notes}
-              placeholder={prevShoppingList.notes}
-              onChange={(event) => onChange(event)}
-            ></textarea>
+            <input name="item_cost" ref={register} />
+            <label htmlFor="item_buyer">Who bought these items?</label>
+            <input name="item_buyer" ref={register} />
+            <label htmlFor="item_notes">Shopping Notes:</label>
+            <textarea rows="4" cols="40" name="item_notes" ref={register} />
+            {/* display the following errors for respective inputs */}
+            {errors.item_name && (
+              <span>Shopping items are required</span>
+            )}
             <button>Submit</button>
           </form>
         </div>
@@ -87,11 +60,10 @@ function UpdateShoppingList(props) {
     </>
   );
 }
-
 const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { updateShoppingList };
+const mapDispatchToProps = { updateShopping };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateShoppingList);

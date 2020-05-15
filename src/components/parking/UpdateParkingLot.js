@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Nav from "../friends/NavFriend";
+import Nav from "../parking/NavParking";
 import FooterSignUp from "../FooterSignUp";
 import { updateParking } from "../../actions/parkingActions";
 import { connect } from "react-redux";

@@ -1,59 +1,42 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Shopping from "./Shopping";
 import { connect } from "react-redux";
-import NavFriend from "../friends/NavFriend";
-import Footer from "../FooterSignUp";
 import { Link } from "react-router-dom";
-import { getAllShoppingLists } from "../../actions/shoppingActions";
 
 function ShoppingLists(props) {
-
-
-  useEffect(() => {
-    props.getAllShoppingLists(localStorage.getItem("tripId"));
-    console.log("useEffect ran in shoppingLists component")
-  }, [props.gettingAllSL]);
-
   return (
     <>
-      <NavFriend />
-      <div className="dash">
-        <div className="dashContainer1">
-          <h2 className="dashH">Welcome!</h2>
-          <div className="tripList">
-            <div className="addtrip1">
-              <h2 className="tripListH">
-                {localStorage.getItem("tripName")} shopping lists below:{" "}
-              </h2>
-              <div className="addtrip">
-                <Link
-                  to={{
-                    pathname: "/addShoppingList",
-                    state: { userId: localStorage.getItem("id") },
-                  }}
-                >
-                  <p>Add a Shopping List</p>
-                </Link>
-              </div>
-            </div>
-            {props.shoppingLists.map((shopping) => {
-              return <Shopping key={shopping.id} shopping={shopping} />;
-            })}
+      <div className="tripList">
+        <div className="addtrip1">
+          <h2 className="tripListH">
+            {props.tripName} shopping lists below:{" "}
+          </h2>
+          <div className="addtrip">
+            <Link to={{
+                pathname: "/addShoppingList",
+                state: {
+                  tripId: props.tripId,
+                },
+              }}>
+              <p>Add a Shopping List</p>
+            </Link>
           </div>
         </div>
+        {/* map through the list of users shopping lists as provided 
+                via prop drilling from the shopping dashboard */}
+        {props.shoppings.map((shopping) => {
+          return <Shopping key={shopping.id} shopping={shopping} tripName={props.tripName} tripId={props.tripId}/>;
+        })}
       </div>
-      <Footer />
     </>
   );
 }
 
+// necessary state and action creators for shopping list component
 const mapStateToProps = (state) => {
-  return {
-    shoppingLists: state.shoppingReducer.shoppingLists,
-    gettingAllSL: state.shoppingReducer.gettingShoppingLists,
-  };
+  return {};
 };
 
-const mapDispatchToProps = { getAllShoppingLists };
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingLists);

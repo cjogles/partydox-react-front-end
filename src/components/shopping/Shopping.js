@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { useHistory } from 'react-router-dom';
-import { deleteShoppingList } from '../../actions/shoppingActions';
+import { useHistory } from "react-router-dom";
+import { deleteShopping } from "../../actions/shoppingActions";
 
 function Shopping(props) {
-
+  // necessary utils for Activity component
   let history = useHistory();
 
   return (
@@ -13,42 +13,40 @@ function Shopping(props) {
       <div className="trip">
         <div className="tripdiv1">
           <div className="tripname">
-            <h6>Item Names:</h6>
+            {/* display Shopping airports names, dates
+             and likes as passed down from activity dashboard */}
+            <h6>Shopping Items Bought:</h6>
             <h2>{props.shopping.item_name}</h2>
           </div>
           <div className="tripdescription">
-            <h6>Items Total Cost: </h6>
+            <h6>Total Cost:</h6>
             <h2>{props.shopping.item_cost}</h2>
           </div>
           <div className="tripdescription">
-            <h6>Bought By: </h6>
+            <h6>Who bought items:</h6>
             <h2>{props.shopping.item_buyer}</h2>
           </div>
-          <div className="tripdescription">
-            <h6>Likes: </h6>
-            <h2>{props.shopping.item_upvote}</h2>
-          </div>
         </div>
+
         <div className="tripdiv2">
           <div>
-            {/* access these props via props.location.state down the component tree */}
+            {/* continue passing down the respective Shopping 
+                from props to Shopping details page     */}
             <Link
               to={{
                 pathname: "/shoppingDetails",
                 state: {
-                  shoppingId: props.shopping.id,
-                  name: props.shopping.item_name,
-                  cost: props.shopping.item_cost,
-                  buyer: props.shopping.item_buyer,
-                  likes: props.shopping.item_upvote,
-                  notes: props.shopping.item_notes,
+                  shopping: props.shopping,
+                  tripName: props.tripName,
+                  tripId: props.tripId,
                 },
               }}
             >
-              <p>View Shopping List Details</p>
+              <p>View Shopping Details</p>
             </Link>
           </div>
         </div>
+
         <div className="tripdiv3">
           <div>
             <Link to="/inviteFriend">
@@ -57,16 +55,18 @@ function Shopping(props) {
           </div>
 
           <div>
+            {/* continue passing down the respective Shopping 
+                from props to update Shopping page     */}
             <Link
               to={{
                 pathname: "/updateShoppingList",
                 state: {
-                  shoppingId: props.shopping.id,
-                  name: props.shopping.item_name,
-                  cost: props.shopping.item_cost,
-                  buyer: props.shopping.item_buyer,
-                  likes: props.shopping.item_upvote,
-                  notes: props.shopping.item_notes,
+                  tripId: localStorage.getItem("tripId"),
+                  id: props.shopping.id,
+                  item_name: props.shopping.item_name,
+                  item_cost: props.shopping.item_cost,
+                  item_buyer: props.shopping.item_buyer,
+                  item_notes: props.shopping.item_notes,
                 },
               }}
             >
@@ -75,11 +75,15 @@ function Shopping(props) {
           </div>
 
           <div>
-            <button onClick={() => props.deleteShoppingList(props.shopping.id, history)}>
+            {/* onClick, delete Shopping by Shopping id  and 
+            inside action creator, redirect or push to the 
+            Shopping dashboard */}
+            <button
+              onClick={() => props.deleteShopping(props.shopping.id, history)}
+            >
               <p>Delete Shopping List</p>
             </button>{" "}
           </div>
-
         </div>
       </div>
     </>
@@ -90,6 +94,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { deleteShoppingList };
+const mapDispatchToProps = { deleteShopping };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shopping);
