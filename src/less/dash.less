@@ -40,4 +40,38 @@ div.dasherror {
       }
     }
   }
+  div.dashDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    div.dashDetails {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      :hover {
+        background-color: skyblue;
+        color: black;
+        transition: 0.6s;
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+        border: solid skyblue;
+        padding: 0.8rem;
+        border-radius: 2rem;
+        p {
+          font-size: 1rem;
+          text-align: center;
+          // border: solid red;
+          @media @small {
+            text-align: center;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
 }

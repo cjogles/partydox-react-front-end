@@ -40,9 +40,9 @@ function ParkingDash(props) {
           <>
             <NavFriend friend={props.name} />
             <div className="dash">
-              <div className="dashContainer1">
+              <div className="dashContainer1 dashDetailsContainer">
                 <h2 className="dashH">Welcome to your Parking Lot List View!</h2>
-                <div>
+                <div className="dashDetails">
                   <Link
                     to={{
                       pathname: "/tripDetails",
@@ -51,7 +51,7 @@ function ParkingDash(props) {
                       },
                     }}
                   >
-                    <h2>Back to Trip Details</h2>
+                    <p>Back to Trip Details</p>
                   </Link>
                 </div>
                 {/* pass trip name and trip id from Link component (react-router-dom) */}

@@ -43,9 +43,9 @@ function ActivityDash(props) {
           <>
             <NavFriend friend={props.name} />
             <div className="dash">
-              <div className="dashContainer1">
+              <div className="dashContainer1 dashDetailsContainer">
                 <h2 className="dashH">Welcome to your Activity List View!</h2>
-                <div>
+                <div className="dashDetails">
                   <Link
                     to={{
                       pathname: "/tripDetails",
