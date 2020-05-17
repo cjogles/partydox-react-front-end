@@ -604,13 +604,14 @@ div.dasherror {
   margin-left: 10%;
 }
 .dash div.dashContainer1 h2.dashH {
-  font-size: 2rem;
+  font-size: 3.5rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
-  margin-left: 2rem;
+  text-align: center;
 }
-@media (max-width: 320px) {
+@media (max-width: 800px) {
   .dash div.dashContainer1 h2.dashH {
+    font-size: 2rem;
     text-align: center;
     margin-left: 0rem;
   }
@@ -625,6 +626,7 @@ div.dasherror {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: 2rem;
 }
 .dash div.dashDetailsContainer div.dashDetails :hover {
   background-color: skyblue;

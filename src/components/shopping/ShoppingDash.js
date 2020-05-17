@@ -7,9 +7,11 @@ import { connect } from "react-redux";
 import { getAllShopping } from "../../actions/shoppingActions";
 import { getTrip } from "../../actions/tripActions";
 import { Link } from "react-router-dom";
+import { getFriend } from "../../actions/friendActions";
 
 function ShoppingDash(props) {
   useEffect(() => {
+    props.getFriend();
     props.getAllShopping(localStorage.getItem("tripId"));
     props.getTrip(localStorage.getItem("tripId"));
   }, [props.gotShoppings, props.gotTrip]);
@@ -41,7 +43,7 @@ function ShoppingDash(props) {
             <NavFriend friend={props.name} />
             <div className="dash">
               <div className="dashContainer1 dashDetailsContainer">
-                <h2 className="dashH">Welcome to your Shopping List View!</h2>
+                {/* <h2 className="dashH">Welcome to your Shopping List View!</h2> */}
                 <div className="dashDetails">
                   <Link
                     to={{
@@ -87,6 +89,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { getAllShopping, getTrip };
+const mapDispatchToProps = { getAllShopping, getTrip, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingDash);

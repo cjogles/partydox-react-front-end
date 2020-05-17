@@ -7,9 +7,11 @@ import { connect } from "react-redux";
 import { getAllParking } from "../../actions/parkingActions";
 import { getTrip } from "../../actions/tripActions";
 import { Link } from "react-router-dom";
+import { getFriend } from '../../actions/friendActions';
 
 function ParkingDash(props) {
   useEffect(() => {
+    props.getFriend();
     props.getAllParking(localStorage.getItem("tripId"));
     props.getTrip(localStorage.getItem("tripId"));
   }, [props.gotFlights, props.gotTrip]);
@@ -41,7 +43,7 @@ function ParkingDash(props) {
             <NavFriend friend={props.name} />
             <div className="dash">
               <div className="dashContainer1 dashDetailsContainer">
-                <h2 className="dashH">Welcome to your Parking Lot List View!</h2>
+                {/* <h2 className="dashH">Welcome to your Parking Lot List View!</h2> */}
                 <div className="dashDetails">
                   <Link
                     to={{
@@ -87,6 +89,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { getAllParking, getTrip };
+const mapDispatchToProps = { getAllParking, getTrip, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParkingDash);

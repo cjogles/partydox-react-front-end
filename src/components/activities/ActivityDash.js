@@ -7,12 +7,14 @@ import { connect } from "react-redux";
 import { getAllActivities } from "../../actions/activityActions";
 import { getTrip } from "../../actions/tripActions";
 import { useHistory, Link } from "react-router-dom";
+import { getFriend } from '../../actions/friendActions';
 
 function ActivityDash(props) {
   // utils for activity dash component
   // update activities after an update/deletion/addition
   let history = useHistory();
   useEffect(() => {
+    props.getFriend();
     props.getAllActivities(localStorage.getItem("tripId"));
     props.getTrip(localStorage.getItem("tripId"));
   }, [props.gotActivities, props.gotTrip]);
@@ -44,7 +46,7 @@ function ActivityDash(props) {
             <NavFriend friend={props.name} />
             <div className="dash">
               <div className="dashContainer1 dashDetailsContainer">
-                <h2 className="dashH">Welcome to your Activity List View!</h2>
+                {/* <h2 className="dashH">Welcome to your Activity List View!</h2> */}
                 <div className="dashDetails">
                   <Link
                     to={{
@@ -90,6 +92,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { getAllActivities, getTrip };
+const mapDispatchToProps = { getAllActivities, getTrip, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityDash);

@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useEffect} from "react";
 import Nav from "../friends/NavFriend";
 import FooterSignUp from "../FooterSignUp";
 import { useForm } from "react-hook-form";
 import { addTrip } from "../../actions/tripActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { getFriend } from '../../actions/friendActions';
 
 function AddTrip(props) {
   // utilities for login form
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (trip) => props.addTrip(trip, history);
-
+  useEffect(() => {
+    props.getFriend();
+  })
   return (
     <>
       <Nav />
       <div className="loginWrapper">
         <div className="login">
           <div className="logintitle">
-            <span role="img" aria-label="partyface">
+            <span className="spanimage" role="img" aria-label="partyface">
               🥳
             </span>
             Add Trip
@@ -57,6 +60,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { addTrip };
+const mapDispatchToProps = { addTrip, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTrip);

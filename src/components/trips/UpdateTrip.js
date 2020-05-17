@@ -5,8 +5,13 @@ import { updateTrip } from "../../actions/tripActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { getFriend } from '../../actions/friendActions';
 
 function UpdateTrip(props) {
+
+  useEffect(() => {
+    props.getFriend();
+  })
   // utils used by update trip component
   let history = useHistory();
   // specific trip details auto populate form for editing
@@ -42,7 +47,7 @@ function UpdateTrip(props) {
       <div className="loginWrapper">
         <div className="login">
           <div className="logintitle">
-            <span role="img" aria-label="partyface">
+            <span className="spanimage" role="img" aria-label="partyface">
               🥳
             </span>
             Update {thisTrip.tripName} Trip
@@ -84,6 +89,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { updateTrip };
+const mapDispatchToProps = { updateTrip, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateTrip);

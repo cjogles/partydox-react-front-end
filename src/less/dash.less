@@ -30,11 +30,12 @@ div.dasherror {
     margin-right: 10%;
     margin-left: 10%;
     h2.dashH {
-      font-size: 2rem;
+      font-size: 3.5rem;
       margin-top: 2rem;
       margin-bottom: 2rem;
-      margin-left: 2rem;
-      @media @small {
+      text-align: center;
+      @media @large {
+        font-size: 2rem;
         text-align: center;
         margin-left: 0rem;
       }
@@ -50,12 +51,14 @@ div.dasherror {
       flex-direction: row;
       justify-content: space-evenly;
       align-items: center;
+      margin-top: 2rem;
       :hover {
         background-color: skyblue;
         color: black;
         transition: 0.6s;
         cursor: pointer;
       }
+
       a {
         text-decoration: none;
         color: black;

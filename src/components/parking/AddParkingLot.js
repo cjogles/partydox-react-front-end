@@ -23,7 +23,7 @@ function AddParkingLot(props) {
       <div className="loginWrapper">
         <div className="login">
           <div className="logintitle">
-            <span role="img" aria-label="partyface">
+            <span className="spanimage" role="img" aria-label="partyface">
               🥳
             </span>
             Add Parking Lot
