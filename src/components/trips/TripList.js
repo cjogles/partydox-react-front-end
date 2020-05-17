@@ -8,7 +8,7 @@ function TripList(props) {
     <>
       <div className="tripList">
         <div className="addtrip1">
-          <h2 className="tripListH">See Your Trips Here: </h2>
+          <h2 className="tripListH">Your Current Trip List: </h2>
           <div className="addtrip">
             <Link to="/addTrip">
               <p>Add a Trip</p>
