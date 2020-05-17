@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "./Nav";
 import FooterSignUp from "./FooterSignUp";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { login } from "../actions/signUpActions";
 import { Redirect, useHistory } from "react-router-dom";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  username: yup.string().required("Please enter your username"),
+  password: yup
+    .string()
+    .required("Please enter your password")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
+});
 
 function Login(props) {
-
   // utilities for login form
   const history = useHistory();
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (credentials) => props.login(credentials, history)
+  const [startedForm, setStartedForm] = useState(false);
+  const { register, handleSubmit, errors } = useForm({
+    validationSchema: schema,
+  });
+  const onSubmit = (credentials) => {
+    props.login(credentials, history);
+  };
 
   return (
     <>
@@ -26,25 +42,26 @@ function Login(props) {
             </span>
             Login Here
           </div>
+
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor='username'>Username: <br></br><span className="validate">(Must be unique)</span> </label>
-            <input type="text" name="username" autoFocus={true} ref={register({ required: true })} />
-            {/* Password expression. Password must be between 4 
-            and 8 digits long and include at least one numeric digit.
-            pattern: /^(?=.*\d).{8,20}$/ */}
-            <label htmlFor='password'>Password: <br></br><span className="validate">(include one number and 8-20 characters in length)</span> </label>
+            <label htmlFor="username">Username: </label>
+            <input
+              type="text"
+              name="username"
+              autoFocus={true}
+              ref={register({ required: true })}
+            />
+            {errors.username && <span>Please enter your username</span>}
+            <label htmlFor="password">Password: </label>
             <input
               type="password"
               name="password"
-              pattern={/^(?=.*\d).{8,20}$/}
               ref={register({ required: true })}
             />
-            {/* display the following errors for each input */}
-            {errors.username && <span>Username is required</span>}
             {errors.password && (
               <span>
-                Password is required, needs to be between 8 and 20 characters,
-                and must contain a number{" "}
+                {/* Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character{" "} */}
+                {errors.password.message.toString()}
               </span>
             )}
             <button type="submit">Login</button>

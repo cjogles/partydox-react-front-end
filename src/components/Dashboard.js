@@ -5,11 +5,14 @@ import TripList from "./trips/TripList";
 import Footer from "./FooterSignUp";
 import { connect } from "react-redux";
 import { getAllTrips } from "../actions/tripActions";
+import { Redirect } from 'react-router-dom';
+import { getFriend } from '../actions/friendActions';
 
 function Dashboard(props) {
   
   // update trips after an update/deletion/addition
   useEffect(() => {
+    props.getFriend();
     props.getAllTrips();
   }, [props.gotTrips]);
 
@@ -35,7 +38,7 @@ function Dashboard(props) {
         </>
       ) : null}
 
-      {props.loggedIn && (
+      {props.loggedIn ? (
         <>
           <NavFriend friend={props.name} />
           <div className="dash">
@@ -46,7 +49,8 @@ function Dashboard(props) {
           </div>
           <Footer />
         </>
-      )}
+      ) : <Redirect push to="/login"/>};
+      
     </>
   );
 }
@@ -54,6 +58,7 @@ function Dashboard(props) {
 // necessary state and action creators for Dashboard component
 const mapStateToProps = (state) => {
   return {
+    friend: state.signUpReducer.friend,
     gotTrips: state.tripsReducer.gotTrips,
     loggingIn: state.signUpReducer.loggingIn,
     loggingInMessage: state.signUpReducer.loggingInMessage,
@@ -65,6 +70,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { getAllTrips };
+const mapDispatchToProps = { getAllTrips, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

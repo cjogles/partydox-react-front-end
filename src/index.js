@@ -10,7 +10,6 @@ import App from "./App";
 import ScrollToTop from './utils/ScrollToTop';
 import reducer from './reducers';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Router>

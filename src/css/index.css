@@ -566,6 +566,9 @@ html {
   color: red;
   font-size: 1rem;
 }
+.loginWrapper .login form span {
+  margin-bottom: 1rem;
+}
 div.loggingin {
   overflow: hidden;
   margin: auto;
