@@ -5,13 +5,14 @@ import NavFriend from "../../components/friends/NavFriend";
 import Footer from "../FooterSignUp";
 import { deleteTrip, getTrip } from "../../actions/tripActions";
 import { useHistory } from "react-router-dom";
+import { getFriend } from '../../actions/friendActions';
 
 function TripDetails(props) {
   // utils for TripDetails component
   let history = useHistory();
   useEffect(() => {
+    props.getFriend();
     props.getTrip(props.location.state.tripId);
-    // console.log("trip id from inside trip details useeffect", props.thisTrip[0].id)
   }, []);
 
   if (props.thisTrip.length !== 0) {
@@ -143,6 +144,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   deleteTrip,
   getTrip,
+  getFriend,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripDetails);
