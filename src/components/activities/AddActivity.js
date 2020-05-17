@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../friends/NavDetails";
 import FooterSignUp from "../FooterSignUp";
 import { useForm } from "react-hook-form";
 import { addActivity } from "../../actions/activityActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { getFriend } from '../../actions/friendActions';
 
 function AddActivity(props) {
   // utilities for login form
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (activity) => props.addActivity(activity, history);
-
+  useEffect(() => {
+    props.getFriend();
+  })
   return (
     <>
       <Nav />
@@ -55,6 +58,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { addActivity };
+const mapDispatchToProps = { addActivity, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddActivity);

@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../shopping/NavShopping";
 import FooterSignUp from "../FooterSignUp";
 import { useForm } from "react-hook-form";
 import { addShopping } from "../../actions/shoppingActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { getFriend } from '../../actions/friendActions';
 
 function AddShoppingList(props) {
   // utilities for adding parking lot form
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (shoppingList) => props.addShopping(shoppingList, history);
-
+  useEffect(() => {
+    props.getFriend();
+  })
   return (
     <>
       <Nav />
@@ -57,6 +60,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { addShopping };
+const mapDispatchToProps = { addShopping, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddShoppingList);

@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../flights/NavFlight";
 import FooterSignUp from "../FooterSignUp";
 import { useForm } from "react-hook-form";
 import { addFlight } from "../../actions/flightActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { getFriend } from '../../actions/friendActions'
 
 function AddFlight(props) {
   // utilities for login form
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (flight) => props.addFlight(flight, history);
-
+  useEffect(() => {
+    props.getFriend();
+  })
   return (
     <>
       <Nav />
@@ -77,6 +80,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { addFlight };
+const mapDispatchToProps = { addFlight, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddFlight);

@@ -6,6 +6,7 @@ import { addParking } from "../../actions/parkingActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAllActivities } from '../../actions/activityActions';
+import { getFriend } from '../../actions/friendActions';
 
 function AddParkingLot(props) {
   // utilities for adding parking lot form
@@ -14,6 +15,7 @@ function AddParkingLot(props) {
   const onSubmit = (parking) => props.addParking(parking, history);
 //   const onSubmit = (parking) => console.log(parking);
   useEffect(() => {
+      props.getFriend();
       props.getAllActivities(localStorage.getItem("tripId"))
   }, [])
 
@@ -66,6 +68,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { addParking, getAllActivities };
+const mapDispatchToProps = { addParking, getAllActivities, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddParkingLot);

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../shopping/NavShopping";
 import FooterSignUp from "../FooterSignUp";
 import { updateShopping } from "../../actions/shoppingActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { getFriend } from '../../actions/friendActions';
 
 function UpdateShoppingList(props) {
   let history = useHistory();
@@ -17,7 +18,9 @@ function UpdateShoppingList(props) {
       item_notes: thisShopping.item_notes,
     },
   });
-
+  useEffect(() => {
+    props.getFriend();
+  })
   const onSubmit = (shoppingList) =>
     props.updateShopping(thisShopping.id, shoppingList, history);
 
@@ -64,6 +67,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { updateShopping };
+const mapDispatchToProps = { updateShopping, getFriend};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateShoppingList);

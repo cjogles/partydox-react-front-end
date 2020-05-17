@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../flights/NavFlight";
 import FooterSignUp from "../FooterSignUp";
 import { updateFlight } from "../../actions/flightActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { getFriend } from '../../actions/friendActions'
 
 function UpdateFlight(props) {
+  useEffect(() => {
+    props.getFriend();
+  })
   // utils used by update flight component
   let history = useHistory();
   // specific flight details auto populate form for editing
@@ -107,6 +111,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { updateFlight };
+const mapDispatchToProps = { updateFlight, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateFlight);

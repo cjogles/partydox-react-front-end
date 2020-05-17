@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { getAllActivities } from "../../actions/activityActions";
+import { getFriend } from '../../actions/friendActions';
 
 function UpdateParkingLot(props) {
   let history = useHistory();
@@ -22,6 +23,7 @@ function UpdateParkingLot(props) {
   });
 
   useEffect(() => {
+    props.getFriend();
     props.getAllActivities(localStorage.getItem("tripId"));
   }, []);
 
@@ -86,6 +88,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { updateParking, getAllActivities };
+const mapDispatchToProps = { updateParking, getAllActivities, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateParkingLot);

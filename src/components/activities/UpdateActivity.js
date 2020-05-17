@@ -5,6 +5,7 @@ import { updateActivity } from "../../actions/activityActions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { getFriend } from '../../actions/friendActions';
 
 function UpdateActivity(props) {
   // utils used by update trip component
@@ -25,7 +26,9 @@ function UpdateActivity(props) {
         activity_notes: thisActivity.activity_notes,
     },
   });
-
+  useEffect(() => {
+    props.getFriend();
+  })
   const onSubmit = (activity) =>
     props.updateActivity(
       thisActivity.id,
@@ -79,6 +82,6 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = { updateActivity };
+const mapDispatchToProps = { updateActivity, getFriend };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateActivity);
