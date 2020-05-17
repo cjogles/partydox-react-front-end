@@ -44,7 +44,7 @@ function Trip(props) {
                 },
               }}
             >
-              <p>View Trip Details</p>
+              <p>Add and See More!</p>
             </Link>
           </div>
         </div>

@@ -909,6 +909,8 @@ div.tripList div.addtrip1 div.addtrip a p {
   }
 }
 .trip div.tripdiv2 {
+  font-size: 3rem;
+  border: solid skyblue;
   display: flex;
   align-items: center;
 }
@@ -931,8 +933,15 @@ div.tripList div.addtrip1 div.addtrip a p {
   color: black;
 }
 .trip div.tripdiv2 a p {
-  font-size: 1rem;
+  font-size: 2rem;
   padding: 2rem;
+  text-align: center;
+}
+@media (max-width: 800px) {
+  .trip div.tripdiv2 a p {
+    font-size: 1.4rem;
+    padding: 1rem;
+  }
 }
 .trip div.tripdiv3 {
   display: flex;
