@@ -33,9 +33,9 @@ function AddActivity(props) {
             <label htmlFor="activity_description">Activity Description:</label>
             <input name="activity_description" ref={register} />
             <label htmlFor="activity_start_date">Activity Start Date:</label>
-            <input name="activity_start_date" ref={register} />
+            <input type="datetime-local" name="activity_start_date" ref={register} />
             <label htmlFor="activity_end_date">Activity End Date:</label>
-            <input name="activity_end_date" ref={register} />
+            <input type="datetime-local" name="activity_end_date" ref={register} />
             <label htmlFor="activity_address">Activity Address:</label>
             <input name="activity_address" ref={register} />
             <label htmlFor="activity_phone">Activity Phone:</label>
