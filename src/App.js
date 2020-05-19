@@ -33,6 +33,7 @@ import AddFlight from './components/flights/AddFlight';
 import UpdateFlight from './components/flights/UpdateFlight';
 import AddParkingLot from './components/parking/AddParkingLot';
 import UpdateParkingLot from './components/parking/UpdateParkingLot';
+import Profile from './components/friends/Profile';
 
 import "./css/index.css";
 
@@ -78,7 +79,7 @@ function App() {
           <Route path="/activityDash" component={ActivityDash}/>
           <Route path="/parkingDash" component={ParkingDash}/>
           <Route path="/shoppingDash" component={ShoppingDash}/>
-
+          <Route path="/profile" component={Profile}/>
 
         </PrivateRoute>
       </Switch>

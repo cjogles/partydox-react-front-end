@@ -5,11 +5,10 @@ import TripList from "./trips/TripList";
 import Footer from "./FooterSignUp";
 import { connect } from "react-redux";
 import { getAllTrips } from "../actions/tripActions";
-import { Redirect } from 'react-router-dom';
-import { getFriend } from '../actions/friendActions';
+import { Redirect } from "react-router-dom";
+import { getFriend } from "../actions/friendActions";
 
 function Dashboard(props) {
-  
   // update trips after an update/deletion/addition
   useEffect(() => {
     props.getFriend();
@@ -18,18 +17,10 @@ function Dashboard(props) {
 
   return (
     <>
-    
-    {/* If the axios request to retrieve all trips fails, 
+      {/* If the axios request to retrieve all trips fails, 
     show an error message, while logging in, show a 
     logging in message, otherwise show the trips. */}
-
-      {props.loggingIn ? (
-        <>
-          <Nav />
-          <div className="loggingin">{props.loggingInMessage}</div>
-          <Footer />{" "}
-        </>
-      ) : null}
+      {props.loggingIn ? <>c</> : null}
       {props.error ? (
         <>
           <Nav />
@@ -37,7 +28,6 @@ function Dashboard(props) {
           <Footer />
         </>
       ) : null}
-
       {props.loggedIn ? (
         <>
           <NavFriend friend={props.name} />
@@ -49,8 +39,14 @@ function Dashboard(props) {
           </div>
           <Footer />
         </>
-      ) : <Redirect push to="/login"/>};
-      
+      ) : (
+        <>
+          <Nav />
+          <div className="dasherror">Logging you in!</div>
+          <Footer />
+        </>
+      )}
+      ;
     </>
   );
 }

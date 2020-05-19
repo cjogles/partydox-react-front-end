@@ -12,7 +12,7 @@ export const login = (credentials, history) => (dispatch) => {
       localStorage.setItem("username", res.data.username);
       localStorage.setItem("name", res.data.name);
       dispatch({ type: t.LOGIN_SUCCESS, payload: res.data });
-      console.log("login ran", res)
+      // console.log("login ran", res)
     })
     .catch((err) => {
       dispatch({ type: t.LOGIN_FAIL, payload: err})
