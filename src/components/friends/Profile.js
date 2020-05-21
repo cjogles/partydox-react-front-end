@@ -9,7 +9,7 @@ function Profile(props) {
   useEffect(() => {
     props.getFriend();
   });
-
+  let blob = new Blob([content], {type: "image/png"})
   return (
     <>
       <NavFriend friend={props.name} />
@@ -24,6 +24,29 @@ function Profile(props) {
                 </Link>
               </div>
             </div>
+            <div className="trip">
+              <div className="tripdiv1">
+                <div className="tripname">
+                  <h6>Name:</h6>
+                  <h2>{props.name}</h2>
+                </div>
+                <div className="tripdescription">
+                  <h6>Username:</h6>
+                  <h2>{props.username}</h2>
+                </div>
+              </div>
+              <div className="tripdiv3">
+                <div>
+                  <a><img src={props.profile_pic}></img></a>
+                </div>
+                <div>
+                  <a href={`tel:${props.phone}`}><p>{props.phone}</p></a>
+                </div>
+                <div>
+                  <a href={`mailto:${props.email}?Subject=Hello%20Friend`}><p>{props.email}</p></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -36,6 +59,10 @@ function Profile(props) {
 const mapStateToProps = (state) => {
   return {
     name: state.signUpReducer.friend.name,
+    username: state.signUpReducer.friend.username,
+    email: state.signUpReducer.friend.email,
+    phone: state.signUpReducer.friend.phone,
+    profile_pic: state.signUpReducer.friend.profile_pic,
   };
 };
 

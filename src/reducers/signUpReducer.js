@@ -4,7 +4,10 @@ let initialState = {
   friend: {
     id: 0,
     name: "",
-    username: ""
+    username: "",
+    profile_pic: "",
+    email: "",
+    phone: "",
   },
   loggedIn: false,
   loggedOut: true,
