@@ -28,7 +28,7 @@ function UpdateActivity(props) {
   });
   useEffect(() => {
     props.getFriend();
-  })
+  }, [])
   const onSubmit = (activity) =>
     props.updateActivity(
       thisActivity.id,

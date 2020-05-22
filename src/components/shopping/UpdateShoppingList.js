@@ -20,7 +20,7 @@ function UpdateShoppingList(props) {
   });
   useEffect(() => {
     props.getFriend();
-  })
+  }, [])
   const onSubmit = (shoppingList) =>
     props.updateShopping(thisShopping.id, shoppingList, history);
 

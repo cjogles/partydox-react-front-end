@@ -4,28 +4,22 @@ import FooterSignUp from "../FooterSignUp";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { updateProfile } from '../../actions/friendActions';
 
 function UpdateProfile(props) {
-
-  useEffect(() => {
-    props.getFriend();
-  })
   let history = useHistory();
-  let thisProfile = props.location.state;
+  let thisProfile = props.friend;
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
       username: thisProfile.username,
       friend_name: thisProfile.friend_name,
       friend_profile_pic: thisProfile.friend_profile_pic,
       friend_email: thisProfile.friend_email,
-      friend_phone: thisProfile.friend_phone
+      friend_phone: thisProfile.friend_phone,
     },
   });
 
-  const onSubmit = (trip) =>
-    props.updateProfile(
-      history
-    );
+  const onSubmit = () => props.updateProfile();
 
   return (
     <>
@@ -36,33 +30,20 @@ function UpdateProfile(props) {
             <span className="spanimage" role="img" aria-label="partyface">
               🥳
             </span>
-            Update {thisProfile.tripName} Trip
+            Update {thisProfile.tripName} Profile
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="trip_name">Trip Name:</label>
-            <input name="trip_name" autoFocus={true} ref={register}></input>
-            <label htmlFor="trip_description">Trip Description:</label>
-            <input name="trip_description" ref={register}></input>
-            <label htmlFor="trip_location">Trip Location:</label>
-            <input name="trip_location" ref={register}></input>
-            <label htmlFor="trip_lift_off_location">
-              Trip Lift Off Location:
-            </label>
-            <input name="trip_lift_off_location" ref={register}></input>
-            <label htmlFor="trip_car">Trip Car:</label>
-            <input name="trip_car" ref={register}></input>
-            <label htmlFor="trip_start_date">Trip Start Date:</label>
-            <input type="datetime-local" name="trip_start_date" ref={register}></input>
-            <label htmlFor="trip_end_date">Trip End Date:</label>
-            <input type="datetime-local" name="trip_end_date" ref={register}></input>
-            <label htmlFor="trip_notes">Trip Notes:</label>
-            <textarea
-              rows="4"
-              cols="40"
-              name="trip_notes"
-              ref={register}
-            ></textarea>
+            <label htmlFor="friend_name">Name:</label>
+            <input name="friend_name" autoFocus={true} ref={register}></input>
+            <label htmlFor="username">Username:</label>
+            <input name="username" ref={register}></input>
+            <label htmlFor="friend_phone">Phone:</label>
+            <input name="friend_phone" ref={register}></input>
+            <label htmlFor="friend_email">Email:</label>
+            <input name="friend_email" ref={register}></input>
+            <label htmlFor="friend_profile_pic">Profile Pic:</label>
+            <input encType='multipart/form-data' type="file" name="friend_profile_pic" ref={register}></input>
             <button>Submit</button>
           </form>
         </div>
@@ -72,9 +53,11 @@ function UpdateProfile(props) {
   );
 }
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    friend: state.signUpReducer.friend,
+  };
 };
 
-const mapDispatchToProps = { };
+const mapDispatchToProps = { updateProfile };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateProfile);

@@ -14,7 +14,7 @@ function AddShoppingList(props) {
   const onSubmit = (shoppingList) => props.addShopping(shoppingList, history);
   useEffect(() => {
     props.getFriend();
-  })
+  }, [])
   return (
     <>
       <Nav />

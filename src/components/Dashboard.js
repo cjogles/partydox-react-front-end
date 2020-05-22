@@ -5,7 +5,6 @@ import TripList from "./trips/TripList";
 import Footer from "./FooterSignUp";
 import { connect } from "react-redux";
 import { getAllTrips } from "../actions/tripActions";
-import { Redirect } from "react-router-dom";
 import { getFriend } from "../actions/friendActions";
 
 function Dashboard(props) {

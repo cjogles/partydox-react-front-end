@@ -11,7 +11,7 @@ function UpdateTrip(props) {
 
   useEffect(() => {
     props.getFriend();
-  })
+  }, [])
   // utils used by update trip component
   let history = useHistory();
   // specific trip details auto populate form for editing

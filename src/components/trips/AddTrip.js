@@ -14,7 +14,7 @@ function AddTrip(props) {
   const onSubmit = (trip) => props.addTrip(trip, history);
   useEffect(() => {
     props.getFriend();
-  })
+  }, [])
   return (
     <>
       <Nav />

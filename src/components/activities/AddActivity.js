@@ -14,7 +14,7 @@ function AddActivity(props) {
   const onSubmit = (activity) => props.addActivity(activity, history);
   useEffect(() => {
     props.getFriend();
-  })
+  }, [])
   return (
     <>
       <Nav />

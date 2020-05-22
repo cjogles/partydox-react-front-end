@@ -14,7 +14,7 @@ function AddFlight(props) {
   const onSubmit = (flight) => props.addFlight(flight, history);
   useEffect(() => {
     props.getFriend();
-  })
+  }, [])
   return (
     <>
       <Nav />

@@ -10,7 +10,7 @@ import { getFriend } from '../../actions/friendActions'
 function UpdateFlight(props) {
   useEffect(() => {
     props.getFriend();
-  })
+  }, [])
   // utils used by update flight component
   let history = useHistory();
   // specific flight details auto populate form for editing

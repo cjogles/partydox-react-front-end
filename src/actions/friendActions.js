@@ -15,6 +15,7 @@ export const getFriend = () => (dispatch) => {
 
 export const updateProfile = (updatedProfile) => (dispatch) => {
   let id = localStorage.getItem("id");
+  console.log("request body for updating profile:", updatedProfile)
   AxiosWithAuth()
     .put(`/friends/user/${id}`, updatedProfile)
     .then((res) => {
