@@ -1,13 +1,14 @@
 import * as a from "../actions/types";
+import { act } from "react-dom/test-utils";
 
 let initialState = {
   friend: {
     id: 0,
-    name: "",
+    friend_name: "",
     username: "",
-    profile_pic: "",
-    email: "",
-    phone: "",
+    friend_profile_pic: "",
+    friend_email: "",
+    friend_phone: "",
   },
   loggedIn: false,
   loggedOut: true,
@@ -25,10 +26,22 @@ const signUpReducer = (state = initialState, action) => {
         friend: {
           ...state.friend,
           id: localStorage.getItem("id"),
-          name: localStorage.getItem("name"),
+          friend_name: localStorage.getItem("name"),
           username: localStorage.getItem("username"),
+          friend_profile_pic: action.payload.friend_profile_pic,
+          friend_email: action.payload.friend_email,
+          friend_phone: action.payload.friend_phone
         },
         loggedIn: true,
+      }
+    case a.UPDATE_FRIEND:
+      return {
+        ...state,
+        friend: {
+          ...state.friend,
+          id: localStorage.getItem("id"),
+
+        }
       }
     case a.LOGIN_START:
       return {
@@ -46,8 +59,11 @@ const signUpReducer = (state = initialState, action) => {
         friend: {
           ...state.friend,
           id: action.payload.id,
-          name: action.payload.name,
+          friend_name: action.payload.friend_name,
           username: action.payload.username,
+          friend_profile_pic: action.payload.friend_profile_pic,
+          friend_email: action.payload.friend_email,
+          friend_phone: action.payload.friend_phone,
         },
         loggedIn: true,
         loggedOut: false,

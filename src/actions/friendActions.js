@@ -12,3 +12,15 @@ export const getFriend = () => (dispatch) => {
       console.log(err);
     });
 };
+
+export const updateProfile = (updatedProfile) => (dispatch) => {
+  let id = localStorage.getItem("id");
+  AxiosWithAuth()
+    .put(`/friends/user/${id}`, updatedProfile)
+    .then((res) => {
+      dispatch({ type: t.UPDATE_FRIEND, payload: res.data[0] });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

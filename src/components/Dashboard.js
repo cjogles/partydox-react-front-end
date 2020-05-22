@@ -20,7 +20,7 @@ function Dashboard(props) {
       {/* If the axios request to retrieve all trips fails, 
     show an error message, while logging in, show a 
     logging in message, otherwise show the trips. */}
-      {props.loggingIn ? <>c</> : null}
+      {props.loggingIn ? <></> : null}
       {props.error ? (
         <>
           <Nav />

@@ -59,7 +59,7 @@ function NavShopping(props) {
 const mapStateToProps = (state) => {
   return {
     id: state.signUpReducer.friend.id,
-    name: state.signUpReducer.friend.name,
+    name: state.signUpReducer.friend.friend_name,
     username: state.signUpReducer.friend.username,
   };
 };

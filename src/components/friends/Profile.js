@@ -9,7 +9,7 @@ function Profile(props) {
   useEffect(() => {
     props.getFriend();
   });
-  let blob = new Blob([content], {type: "image/png"})
+  
   return (
     <>
       <NavFriend friend={props.name} />
@@ -58,10 +58,10 @@ function Profile(props) {
 // add parking lot State if needed connects here
 const mapStateToProps = (state) => {
   return {
-    name: state.signUpReducer.friend.name,
+    name: state.signUpReducer.friend.friend_name,
     username: state.signUpReducer.friend.username,
-    email: state.signUpReducer.friend.email,
-    phone: state.signUpReducer.friend.phone,
+    email: state.signUpReducer.friend.friend_email,
+    phone: state.signUpReducer.friend.friend_phone,
     profile_pic: state.signUpReducer.friend.profile_pic,
   };
 };
