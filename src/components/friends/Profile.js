@@ -36,7 +36,6 @@ function Profile(props) {
                 to={{
                   pathname: "/updateProfile",
                   state: {
-                    tripId: props.friend.friend_phone,
                     friend: props.friend,
                   },
                 }}
@@ -55,7 +54,6 @@ function Profile(props) {
                 to={{
                   pathname: "/updateProfile",
                   state: {
-                    tripId: props.friend.friend_phone,
                     friend: props.friend,
                   },
                 }}
@@ -74,7 +72,6 @@ function Profile(props) {
                 to={{
                   pathname: "/updateProfile",
                   state: {
-                    tripId: props.tripId,
                     friend: props.friend,
                   },
                 }}

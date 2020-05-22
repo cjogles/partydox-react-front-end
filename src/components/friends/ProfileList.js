@@ -14,6 +14,7 @@ function ProfileList(props) {
               to={{
                 pathname: "/updateProfile",
                 state: {
+                  friend: props.profile,
                   tripId: props.tripId,
                 },
               }}

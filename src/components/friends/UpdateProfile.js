@@ -8,18 +8,18 @@ import { updateProfile } from '../../actions/friendActions';
 
 function UpdateProfile(props) {
   let history = useHistory();
-  let thisProfile = props.friend;
+  let thisProfile = props.location.state;
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
-      username: thisProfile.username,
-      friend_name: thisProfile.friend_name,
-      friend_profile_pic: thisProfile.friend_profile_pic,
-      friend_email: thisProfile.friend_email,
-      friend_phone: thisProfile.friend_phone,
+      username: thisProfile.friend.username,
+      friend_name: thisProfile.friend.friend_name,
+      friend_profile_pic: thisProfile.friend.friend_profile_pic,
+      friend_email: thisProfile.friend.friend_email,
+      friend_phone: thisProfile.friend.friend_phone,
     },
   });
 
-  const onSubmit = () => props.updateProfile();
+  const onSubmit = (profile) => props.updateProfile(profile);
 
   return (
     <>

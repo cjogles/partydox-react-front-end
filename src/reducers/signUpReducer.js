@@ -26,8 +26,8 @@ const signUpReducer = (state = initialState, action) => {
         friend: {
           ...state.friend,
           id: localStorage.getItem("id"),
-          friend_name: localStorage.getItem("name"),
-          username: localStorage.getItem("username"),
+          friend_name: action.payload.friend_name,
+          username: action.payload.username,
           friend_profile_pic: action.payload.friend_profile_pic,
           friend_email: action.payload.friend_email,
           friend_phone: action.payload.friend_phone
@@ -40,8 +40,13 @@ const signUpReducer = (state = initialState, action) => {
         friend: {
           ...state.friend,
           id: localStorage.getItem("id"),
-
-        }
+          friend_name: action.payload.friend_name,
+          username: action.payload.username,
+          friend_profile_pic: action.payload.friend_profile_pic,
+          friend_email: action.payload.friend_email,
+          friend_phone: action.payload.friend_phone
+        },
+        loggedIn: true,
       }
     case a.LOGIN_START:
       return {

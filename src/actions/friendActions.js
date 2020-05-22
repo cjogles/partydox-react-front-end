@@ -19,7 +19,7 @@ export const updateProfile = (updatedProfile) => (dispatch) => {
   AxiosWithAuth()
     .put(`/friends/user/${id}`, updatedProfile)
     .then((res) => {
-      dispatch({ type: t.UPDATE_FRIEND, payload: res.data[0] });
+      dispatch({ type: t.UPDATE_FRIEND, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
