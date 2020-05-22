@@ -65,6 +65,12 @@ const activityReducer = (state = initialState, action) => {
         activity: action.payload,
         gotActivity: true,
       };
+    case a.RESET_STORE:
+      return {
+        ...state,
+        activities: [],
+        activity: [],
+      }
     default:
       return state;
   }

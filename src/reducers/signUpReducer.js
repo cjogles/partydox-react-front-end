@@ -30,10 +30,10 @@ const signUpReducer = (state = initialState, action) => {
           username: action.payload.username,
           friend_profile_pic: action.payload.friend_profile_pic,
           friend_email: action.payload.friend_email,
-          friend_phone: action.payload.friend_phone
+          friend_phone: action.payload.friend_phone,
         },
         loggedIn: true,
-      }
+      };
     case a.UPDATE_FRIEND:
       return {
         ...state,
@@ -44,10 +44,10 @@ const signUpReducer = (state = initialState, action) => {
           username: action.payload.username,
           friend_profile_pic: action.payload.friend_profile_pic,
           friend_email: action.payload.friend_email,
-          friend_phone: action.payload.friend_phone
+          friend_phone: action.payload.friend_phone,
         },
         loggedIn: true,
-      }
+      };
     case a.LOGIN_START:
       return {
         ...state,
@@ -56,8 +56,8 @@ const signUpReducer = (state = initialState, action) => {
         loggingIn: true,
         loggingInMessage: action.payload,
         errorMessage: "",
-        error: false
-      }
+        error: false,
+      };
     case a.LOGIN_SUCCESS:
       return {
         ...state,
@@ -76,15 +76,21 @@ const signUpReducer = (state = initialState, action) => {
         errorMessage: "",
         error: false,
       };
-      case a.LOGIN_FAIL:
-        return {
-          ...state,
-          loggedIn: false,
-          loggedOut: true,
-          loggingIn: false,
-          errorMessage: "Try Logging In/Registering Again. Invalid Credentials for login, or username already in use for register.",
-          error: true
-        }
+    case a.LOGIN_FAIL:
+      return {
+        ...state,
+        loggedIn: false,
+        loggedOut: true,
+        loggingIn: false,
+        errorMessage:
+          "Try Logging In/Registering Again. Invalid Credentials for login, or username already in use for register.",
+        error: true,
+      };
+    case a.RESET_STORE:
+      return {
+        ...state,
+        friend: {},
+      };
     default:
       return state;
   }

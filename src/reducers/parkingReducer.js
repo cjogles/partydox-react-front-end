@@ -65,6 +65,12 @@ const parkingReducer = (state = initialState, action) => {
         parking: action.payload,
         gotParking: true,
       };
+    case a.RESET_STORE:
+      return {
+        ...state,
+        parkings: [],
+        parking: [],
+      };
     default:
       return state;
   }

@@ -65,6 +65,12 @@ const flightReducer = (state = initialState, action) => {
         flight: action.payload,
         gotFlight: true,
       };
+    case a.RESET_STORE:
+      return {
+        ...state,
+        flights: [],
+        flight: [],
+      };
     default:
       return state;
   }

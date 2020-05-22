@@ -1,6 +1,7 @@
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+export const RESET_STORE = "RESET_STORE";
 
 export const CREATE_FRIEND = "CREATE_FRIEND"; // C
 export const GET_FRIEND = "GET_FRIEND";       // R

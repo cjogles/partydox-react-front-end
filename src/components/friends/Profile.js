@@ -2,8 +2,6 @@ import React from "react";
 import { getFriend } from "../../actions/friendActions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import NavFriend from "../friends/NavFriend";
-import FooterSignUp from "../FooterSignUp";
 import { Redirect, useHistory } from "react-router-dom";
 
 function Profile(props) {

@@ -32,7 +32,6 @@ function Dashboard(props) {
           <NavFriend friend={props.name} />
           <div className="dash">
             <div className="dashContainer1">
-              {/* <h2 className="dashH">Trip List!</h2> */}
               <TripList trips={props.trips} />
             </div>
           </div>

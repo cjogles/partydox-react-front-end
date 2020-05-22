@@ -6,10 +6,9 @@ import Footer from "../FooterSignUp";
 import { connect } from "react-redux";
 import { getTrip } from "../../actions/tripActions";
 import { useHistory, Link } from "react-router-dom";
-import { getFriend } from '../../actions/friendActions';
+import { getFriend } from "../../actions/friendActions";
 
 function ProfileDash(props) {
-
   let history = useHistory();
   useEffect(() => {
     props.getFriend();
@@ -68,7 +67,12 @@ function ProfileDash(props) {
       </>
     );
   } else {
-    return null;
+    return (
+      <>
+        <Nav />
+        <div className="dasherror">{props.errorMessage}</div>
+      </>
+    );
   }
 }
 

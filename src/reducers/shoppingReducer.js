@@ -65,6 +65,12 @@ const shoppingReducer = (state = initialState, action) => {
         shopping: action.payload,
         gotShopping: true,
       };
+    case a.RESET_STORE:
+      return {
+        ...state,
+        shoppings: [],
+        shopping: [],
+      };
     default:
       return state;
   }

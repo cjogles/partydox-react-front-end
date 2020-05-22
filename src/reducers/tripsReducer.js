@@ -16,7 +16,7 @@ let initialState = {
   deletingTripMessage: "",
   addingSingleTrip: false,
 };
- 
+
 const tripsReducer = (state = initialState, action) => {
   switch (action.type) {
     case a.GET_ALL_TRIPS:
@@ -66,7 +66,13 @@ const tripsReducer = (state = initialState, action) => {
         ...state,
         trip: action.payload,
         gotTrip: true,
-      }
+      };
+    case a.RESET_STORE:
+      return {
+        ...state,
+        trips: [],
+        trip: [],
+      };
     default:
       return state;
   }

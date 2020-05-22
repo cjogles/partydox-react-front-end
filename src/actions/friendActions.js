@@ -1,5 +1,6 @@
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import * as t from "./types";
+import axios from "axios";
 
 export const getFriend = () => (dispatch) => {
   let id = localStorage.getItem("id");
@@ -19,9 +20,17 @@ export const updateProfile = (updatedProfile) => (dispatch) => {
   AxiosWithAuth()
     .put(`/friends/user/${id}`, updatedProfile)
     .then((res) => {
+      localStorage.setItem("username", res.data.username);
+      localStorage.setItem("name", res.data.friend_name);
       dispatch({ type: t.UPDATE_FRIEND, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
     });
 };
+
+export const resetStore = (history) => (dispatch) => {
+  localStorage.clear();
+  dispatch({ type: t.RESET_STORE, payload:"store reset"})
+  history.push("/")
+}
