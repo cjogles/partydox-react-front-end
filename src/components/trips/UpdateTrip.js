@@ -67,9 +67,9 @@ function UpdateTrip(props) {
             <label htmlFor="trip_car">Trip Car:</label>
             <input name="trip_car" ref={register}></input>
             <label htmlFor="trip_start_date">Trip Start Date:</label>
-            <input type="datetime-local" name="trip_start_date" ref={register}></input>
+            <input name="trip_start_date" ref={register}></input>
             <label htmlFor="trip_end_date">Trip End Date:</label>
-            <input type="datetime-local" name="trip_end_date" ref={register}></input>
+            <input name="trip_end_date" ref={register}></input>
             <label htmlFor="trip_notes">Trip Notes:</label>
             <textarea
               rows="4"

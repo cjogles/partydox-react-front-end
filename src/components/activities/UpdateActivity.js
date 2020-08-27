@@ -54,11 +54,11 @@ function UpdateActivity(props) {
             <label htmlFor="activity_description">Activity Description:</label>
             <input name="activity_description" ref={register}></input>
             <label htmlFor="activity_start_date">Start Date:</label>
-            <input type="datetime-local" name="activity_start_date" ref={register}></input>
+            <input name="activity_start_date" ref={register}></input>
             <label htmlFor="activity_end_date">
               End Date:
             </label>
-            <input type="datetime-local" name="activity_end_date" ref={register}></input>
+            <input name="activity_end_date" ref={register}></input>
             <label htmlFor="activity_address">Activity Address:</label>
             <input name="activity_address" ref={register}></input>
             <label htmlFor="activity_phone">Activity Phone:</label>

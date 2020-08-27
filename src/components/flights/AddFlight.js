@@ -29,7 +29,7 @@ function AddFlight(props) {
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="departure_date">Departure Date:</label>
-            <input type="datetime-local" name="departure_date" autoFocus={true} ref={register({ required: true })} />
+            <input name="departure_date" autoFocus={true} ref={register({ required: true })} />
             <label htmlFor="departure_airport_name">Departure Airport Name:</label>
             <input name="departure_airport_name" ref={register} />
             <label htmlFor="departure_airport_address">Departure Airport Address:</label>
@@ -47,7 +47,7 @@ function AddFlight(props) {
             <label htmlFor="departure_flight_notes">Departure Airport Notes:</label>
             <textarea rows="4" cols="40" name="departure_flight_notes" ref={register} />
             <label htmlFor="arrival_date">Arrival Date:</label>
-            <input type="datetime-local" name="arrival_date" ref={register} />
+            <input name="arrival_date" ref={register} />
             <label htmlFor="arrival_airport_name">Arrival Airport Name:</label>
             <input name="arrival_airport_name" ref={register} />
             <label htmlFor="arrival_airport_address">Arrival Airport Address:</label>
