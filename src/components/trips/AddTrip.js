@@ -39,9 +39,9 @@ function AddTrip(props) {
             <label htmlFor="trip_car">Trip Car:</label>
             <input name="trip_car" ref={register} />
             <label htmlFor="trip_start_date">Trip Start Date:</label>
-            <input type="datetime-local" name="trip_start_date" ref={register} />
+            <input name="trip_start_date" ref={register} />
             <label htmlFor="trip_end_date">Trip End Date:</label>
-            <input type="datetime-local" name="trip_end_date" ref={register} />
+            <input name="trip_end_date" ref={register} />
             <label htmlFor="trip_notes">Trip Notes:</label>
             <textarea rows="4" cols="40" name="trip_notes" ref={register} />
             {/* display the following errors for respective inputs */}
